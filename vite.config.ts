@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import { checker } from 'vite-plugin-checker';
 import path, { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
+import svgLoader from 'vite-svg-loader';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -24,6 +25,7 @@ export default defineConfig({
     checker({
       typescript: true,
     }),
+    svgLoader(),
   ],
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, './src') }],
