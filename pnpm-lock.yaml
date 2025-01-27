@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@twa-dev/types':
+        specifier: 7.10.0
+        version: 7.10.0
       vue:
         specifier: 3.5.10
         version: 3.5.10(typescript@5.6.2)
@@ -400,6 +403,9 @@ packages:
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
+
+  '@twa-dev/types@7.10.0':
+    resolution: {integrity: sha512-BXHyNLXy+cPbOZ2qQq5ArPKcP4kUfuX3YBSFT0XUxtMNWAzvyMuYAiq59UTfQ8OnELXlfChrAoIT3c2pujBtcQ==}
 
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
@@ -1505,6 +1511,8 @@ snapshots:
     optional: true
 
   '@trysound/sax@0.2.0': {}
+
+  '@twa-dev/types@7.10.0': {}
 
   '@types/estree@1.0.6': {}
 

@@ -10,7 +10,8 @@
     "lint": "pnpm eslint"
   },
   "dependencies": {
-    "vue": "3.5.10"
+    "vue": "3.5.10",
+    "@twa-dev/types": "7.10.0"
   },
   "devDependencies": {
     "@eslint/js": "9.11.1",
