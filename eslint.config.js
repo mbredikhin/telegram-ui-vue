@@ -30,6 +30,7 @@ export default tseslint.config(
           default: 'array',
         },
       ],
+      'vue/multi-word-component-names': 'off',
     },
   },
   configPrettier
