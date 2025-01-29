@@ -5,25 +5,22 @@
 </template>
 
 <script setup lang="ts">
-import { provide, ref, computed, inject, type Ref } from 'vue';
+import { provide, ref, computed } from 'vue';
 import { type AppRootInjection, appRootInjectionKey, getInitialPlatform } from './lib';
 
-const appRootInjection = inject(appRootInjectionKey) as Ref<AppRootInjection>;
+const appRootInjection = ref<AppRootInjection>({
+  isRendered: false,
+  appearance: 'light',
+  platform: getInitialPlatform(),
+});
+
+provide(appRootInjectionKey, appRootInjection);
 
 const classes = computed<string[]>(() => [
   'app-root',
   `app-root--${appRootInjection.value.platform}`,
   `app-root--${appRootInjection.value.appearance}`,
 ]);
-
-provide(
-  appRootInjectionKey,
-  ref<AppRootInjection>({
-    isRendered: false,
-    appearance: 'light',
-    platform: getInitialPlatform(),
-  })
-);
 </script>
 
 <style lang="scss">
@@ -197,10 +194,12 @@ provide(
     --tgui-font-caption-1: 400 13px/16px var(--tgui-font-family);
     --tgui-font-caption-1--semi-bold: 600 13px/16px var(--tgui-font-family);
     --tgui-font-caption-1--bold: 700 13px/16px var(--tgui-font-family);
+    --tgui-font-caption-1-line-height: 20px;
 
     --tgui-font-caption-2: 400 10px/13px var(--tgui-font-family);
     --tgui-font-caption-2--semi-bold: 600 10px/13px var(--tgui-font-family);
     --tgui-font-caption-2--bold: 700 10px/13px var(--tgui-font-family);
+    --tgui-font-caption-2-line-height: 16px;
   }
 }
 </style>

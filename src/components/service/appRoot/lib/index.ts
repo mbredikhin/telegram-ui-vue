@@ -16,9 +16,9 @@ export const getInitialPlatform = () => {
 };
 
 export const useAppRootInjection = () => {
-  const injection = inject(appRootInjectionKey)!;
+  const injection = inject(appRootInjectionKey);
 
-  if (!injection.value.isRendered) {
+  if (!injection?.value?.isRendered) {
     throw new Error('[TGUI] Wrap your app with <AppRoot> component');
   }
 
