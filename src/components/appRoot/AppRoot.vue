@@ -6,11 +6,7 @@
 
 <script setup lang="ts">
 import { provide, ref, computed, inject, type Ref } from 'vue';
-import {
-  type AppRootInjection,
-  appRootInjectionKey,
-  getInitialPlatform,
-} from './lib';
+import { type AppRootInjection, appRootInjectionKey, getInitialPlatform } from './lib';
 
 const appRootInjection = inject(appRootInjectionKey) as Ref<AppRootInjection>;
 
@@ -66,6 +62,10 @@ provide(
   --tgui-tooltip-background-dark: rgba(0, 0, 0, 0.52);
   --tgui-white: #ffffff;
   --tgui-black: #000000;
+
+  --tgui-font-weight-accent-1: 700;
+  --tgui-font-weight-accent-2: 600;
+  --tgui-font-weight-accent-3: 400;
 
   &--dark {
     --tgui-bg-color: #212121;
@@ -155,8 +155,8 @@ provide(
   }
 
   &--ios {
-    --tgui-font-family: 'SF Pro', system-ui, -apple-system, BlinkMacSystemFont,
-      'Apple Color Emoji', sans-serif;
+    --tgui-font-family: 'SF Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Apple Color Emoji',
+      sans-serif;
     --tgui-font-family--mono: 'SF Mono', 'Apple Color Emoji', monospace;
 
     --tgui-font-large-title: 400 34px/41px var(--tgui-font-family);
