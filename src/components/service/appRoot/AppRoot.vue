@@ -142,13 +142,18 @@ const classes = computed<string[]>(() => [
     --tgui-font-subheadline-2--semi-bold: 600 15px/22px var(--tgui-font-family);
     --tgui-font-subheadline-2--bold: 700 15px/22px var(--tgui-font-family);
 
+    --tgui-font-caption-1-font-size: 13px;
+    --tgui-font-caption-1-line-height: 20px;
     --tgui-font-caption-1: 400 13px/20px var(--tgui-font-family);
     --tgui-font-caption-1--semi-bold: 600 13px/20px var(--tgui-font-family);
     --tgui-font-caption-1--bold: 700 13px/20px var(--tgui-font-family);
 
+    --tgui-font-caption-2-font-size: 10px;
+    --tgui-font-caption-2-line-height: 16px;
     --tgui-font-caption-2: 400 10px/16px var(--tgui-font-family);
     --tgui-font-caption-2--semi-bold: 600 10px/16px var(--tgui-font-family);
     --tgui-font-caption-2--bold: 700 10px/16px var(--tgui-font-family);
+    --tgui-font-caption-2-line-height: 16px;
   }
 
   &--ios {
@@ -194,12 +199,14 @@ const classes = computed<string[]>(() => [
     --tgui-font-caption-1: 400 13px/16px var(--tgui-font-family);
     --tgui-font-caption-1--semi-bold: 600 13px/16px var(--tgui-font-family);
     --tgui-font-caption-1--bold: 700 13px/16px var(--tgui-font-family);
-    --tgui-font-caption-1-line-height: 20px;
+    --tgui-font-caption-1-line-height: 16px;
 
+    --tgui-font-caption-2-font-size: 10px;
+    --tgui-font-caption-2-line-height: 13px;
     --tgui-font-caption-2: 400 10px/13px var(--tgui-font-family);
     --tgui-font-caption-2--semi-bold: 600 10px/13px var(--tgui-font-family);
     --tgui-font-caption-2--bold: 700 10px/13px var(--tgui-font-family);
-    --tgui-font-caption-2-line-height: 16px;
+    --tgui-font-caption-2-line-height: 13px;
   }
 }
 </style>

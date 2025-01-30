@@ -1,5 +1,5 @@
 <template>
-  <component :is="is" :class="classes"><slot /></component>
+  <component v-bind="props" :is="props.is" :class="classes"><slot /></component>
 </template>
 
 <script setup lang="ts">
