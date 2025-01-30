@@ -1,5 +1,5 @@
 <template>
-  <component :is="is" :class="classes" />
+  <component :is="is" :class="classes"><slot /></component>
 </template>
 
 <script setup lang="ts">
@@ -28,35 +28,35 @@ const props = withDefaults(defineProps<TypographyProps>(), {
 });
 
 const classes = computed(() => ({
-  wrapper: true,
-  [`wrapper--weight-${props.weight}`]: true,
-  ['wrapper--plain']: props.plain,
-  ['wrapper--caps']: props.caps,
+  typography: true,
+  [`typography--weight-${props.weight}`]: true,
+  ['typography--plain']: props.plain,
+  ['typography--caps']: props.caps,
 }));
 </script>
 
-<style lang="scss" module>
-.wrapper {
+<style lang="scss" scoped>
+.typography {
   font-family: var(--tgui-font-family);
 }
 
-.wrapper--plain {
-  margin: 0;
-}
-
-.wrapper--weight-1 {
+.typography--weight-1 {
   font-weight: var(--tgui-font-weight-accent-1);
 }
 
-.wrapper--weight-2 {
+.typography--weight-2 {
   font-weight: var(--tgui-font-weight-accent-2);
 }
 
-.wrapper--weight-3 {
+.typography--weight-3 {
   font-weight: var(--tgui-font-weight-accent-3);
 }
 
-.wrapper--caps {
+.typography--plain {
+  margin: 0;
+}
+
+.typography--caps {
   text-transform: uppercase;
 }
 </style>
