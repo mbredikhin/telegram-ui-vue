@@ -1,12 +1,11 @@
 <template>
   <div
     role="progressbar"
-    :title="title"
     :aria-valuenow="progress"
     :aria-valuemin="PROGRESS_MIN_VALUE"
     :aria-valuemax="PROGRESS_MAX_VALUE"
     :class="classes"
-    class="progress"
+    :title="title"
   >
     <div aria-hidden :style="progressLineStyle" class="progress__line"></div>
   </div>
@@ -18,7 +17,7 @@
  */
 import { computed, inject, type Ref } from 'vue';
 import { clamp } from '@/helpers/math';
-import { type AppRootInjection, appRootInjectionKey } from '@/components/appRoot';
+import { type AppRootInjection, appRootInjectionKey } from '@/components/service';
 
 interface ProgressProps {
   value?: number;
@@ -46,7 +45,7 @@ const progressLineStyle = computed<Record<string, string>>(() => ({
 }));
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .progress {
   height: 4px;
   border-radius: 4px;
@@ -57,8 +56,10 @@ const progressLineStyle = computed<Record<string, string>>(() => ({
     background-color: transparent;
   }
 }
+
 .progress__line {
   background-color: var(--tgui-link-color);
+  height: 4px;
   border-radius: 4px;
 }
 </style>

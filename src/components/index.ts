@@ -1,2 +1,2 @@
-export * from './appRoot';
-export * from './progress';
+export * from './service';
+export * from './feedback';
