@@ -107,6 +107,8 @@ const classes = computed<string[]>(() => [
     --tgui-font-family: 'Roboto', sans-serif;
     --tgui-font-family--mono: 'Roboto Mono', monospace;
 
+    --tgui-font-large-title-font-size: 34px;
+    --tgui-font-large-title-line-height: 42px;
     --tgui-font-large-title: 400 34px/42px var(--tgui-font-family);
     --tgui-font-large-title--semi-bold: 600 34px/42px var(--tgui-font-family);
     --tgui-font-large-title--bold: 700 34px/42px var(--tgui-font-family);
@@ -163,6 +165,8 @@ const classes = computed<string[]>(() => [
       sans-serif;
     --tgui-font-family--mono: 'SF Mono', 'Apple Color Emoji', monospace;
 
+    --tgui-font-large-title-font-size: 34px;
+    --tgui-font-large-title-line-height: 41px;
     --tgui-font-large-title: 400 34px/41px var(--tgui-font-family);
     --tgui-font-large-title--semi-bold: 600 34px/41px var(--tgui-font-family);
     --tgui-font-large-title--bold: 700 34px/41px var(--tgui-font-family);
