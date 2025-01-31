@@ -1,1 +1,3 @@
-export * from './Typography.vue';
+export * from './typography';
+export * from './caption';
+export * from './headline';
