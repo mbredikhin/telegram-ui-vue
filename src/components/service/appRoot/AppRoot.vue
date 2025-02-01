@@ -136,11 +136,15 @@ const classes = computed<string[]>(() => [
     --tgui-font-text--semi-bold: 600 17px/26px var(--tgui-font-family);
     --tgui-font-text--bold: 700 17px/26px var(--tgui-font-family);
 
+    --tgui-font-subheadline-1-font-size: 16px;
+    --tgui-font-subheadline-1-line-height: 24px;
     --tgui-font-subheadline-1: 400 16px/24px var(--tgui-font-family);
     --tgui-font-subheadline-1--code: 400 16px/24px var(--tgui-font-family--mono);
     --tgui-font-subheadline-1--semi-bold: 600 16px/24px var(--tgui-font-family);
     --tgui-font-subheadline-1--bold: 700 16px/24px var(--tgui-font-family);
 
+    --tgui-font-subheadline-2-font-size: 15px;
+    --tgui-font-subheadline-2-line-height: 22px;
     --tgui-font-subheadline-2: 400 15px/22px var(--tgui-font-family);
     --tgui-font-subheadline-2--code: 400 15px/22px var(--tgui-font-family--mono);
     --tgui-font-subheadline-2--semi-bold: 600 15px/22px var(--tgui-font-family);
@@ -194,11 +198,15 @@ const classes = computed<string[]>(() => [
     --tgui-font-text--semi-bold: 600 17px/22px var(--tgui-font-family);
     --tgui-font-text--bold: 700 17px/22px var(--tgui-font-family);
 
+    --tgui-font-subheadline-1-font-size: 16px;
+    --tgui-font-subheadline-1-line-height: 21px;
     --tgui-font-subheadline-1: 400 16px/21px var(--tgui-font-family);
     --tgui-font-subheadline-1--code: 400 16px/21px var(--tgui-font-family--mono);
     --tgui-font-subheadline-1--semi-bold: 600 16px/21px var(--tgui-font-family);
     --tgui-font-subheadline-1--bold: 700 16px/21px var(--tgui-font-family);
 
+    --tgui-font-subheadline-2-font-size: 15px;
+    --tgui-font-subheadline-2-line-height: 20px;
     --tgui-font-subheadline-2: 400 15px/20px var(--tgui-font-family);
     --tgui-font-subheadline-2--code: 400 15px/20px var(--tgui-font-family--mono);
     --tgui-font-subheadline-2--semi-bold: 600 15px/20px var(--tgui-font-family);
