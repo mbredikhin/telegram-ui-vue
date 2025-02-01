@@ -131,6 +131,8 @@ const classes = computed<string[]>(() => [
     --tgui-font-headline--semi-bold: 600 19px/28px var(--tgui-font-family);
     --tgui-font-headline--bold: 700 19px/28px var(--tgui-font-family);
 
+    --tgui-font-text-font-size: 17px;
+    --tgui-font-text-line-height: 26px;
     --tgui-font-text: 400 17px/26px var(--tgui-font-family);
     --tgui-font-text--medium: 500 17px/26px var(--tgui-font-family);
     --tgui-font-text--semi-bold: 600 17px/26px var(--tgui-font-family);
@@ -193,6 +195,8 @@ const classes = computed<string[]>(() => [
     --tgui-font-headline--semi-bold: 600 19px/24px var(--tgui-font-family);
     --tgui-font-headline--bold: 700 19px/24px var(--tgui-font-family);
 
+    --tgui-font-text-font-size: 17px;
+    --tgui-font-text-line-height: 22px;
     --tgui-font-text: 400 17px/22px var(--tgui-font-family);
     --tgui-font-text--medium: 500 17px/22px var(--tgui-font-family);
     --tgui-font-text--semi-bold: 600 17px/22px var(--tgui-font-family);
