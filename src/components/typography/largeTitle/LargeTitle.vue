@@ -1,5 +1,5 @@
 <template>
-  <Typography v-bind="props"><slot /></Typography>
+  <Typography v-bind="props" class="large-title"><slot /></Typography>
 </template>
 
 <script setup lang="ts">
