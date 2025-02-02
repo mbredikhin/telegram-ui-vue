@@ -59,6 +59,7 @@ const classes = computed<string[]>(() => [
   --tgui-tooltip-background-dark: rgba(0, 0, 0, 0.52);
   --tgui-white: #ffffff;
   --tgui-black: #000000;
+  --tgui-tertiary-bg-color: #f4f4f7;
 
   --tgui-font-weight-accent-1: 700;
   --tgui-font-weight-accent-2: 600;
@@ -99,6 +100,7 @@ const classes = computed<string[]>(() => [
     --tgui-tooltip-background-dark: rgba(0, 0, 0, 0.52);
     --tgui-white: #ffffff;
     --tgui-black: #000000;
+    --tgui-tertiary-bg-color: #2a2a2a;
   }
 
   // OS-specific tokens below
