@@ -113,14 +113,20 @@ const classes = computed<string[]>(() => [
     --tgui-font-large-title--semi-bold: 600 34px/42px var(--tgui-font-family);
     --tgui-font-large-title--bold: 700 34px/42px var(--tgui-font-family);
 
+    --tgui-font-title-1-font-size: 28px;
+    --tgui-font-title-1-line-height: 36px;
     --tgui-font-title-1: 400 28px/36px var(--tgui-font-family);
     --tgui-font-title-1--semi-bold: 600 28px/36px var(--tgui-font-family);
     --tgui-font-title-1--bold: 700 28px/36px var(--tgui-font-family);
 
+    --tgui-font-title-2-font-size: 24px;
+    --tgui-font-title-2-line-height: 32px;
     --tgui-font-title-2: 400 24px/32px var(--tgui-font-family);
     --tgui-font-title-2--semi-bold: 600 24px/32px var(--tgui-font-family);
     --tgui-font-title-2--bold: 700 24px/32px var(--tgui-font-family);
 
+    --tgui-font-title-3-font-size: 20px;
+    --tgui-font-title-3-line-height: 24px;
     --tgui-font-title-3: 400 20px/24px var(--tgui-font-family);
     --tgui-font-title-3--semi-bold: 600 20px/24px var(--tgui-font-family);
     --tgui-font-title-3--bold: 700 20px/24px var(--tgui-font-family);
@@ -177,14 +183,20 @@ const classes = computed<string[]>(() => [
     --tgui-font-large-title--semi-bold: 600 34px/41px var(--tgui-font-family);
     --tgui-font-large-title--bold: 700 34px/41px var(--tgui-font-family);
 
+    --tgui-font-title-1-font-size: 28px;
+    --tgui-font-title-1-line-height: 34px;
     --tgui-font-title-1: 400 28px/34px var(--tgui-font-family);
     --tgui-font-title-1--semi-bold: 600 28px/34px var(--tgui-font-family);
     --tgui-font-title-1--bold: 700 28px/34px var(--tgui-font-family);
 
+    --tgui-font-title-2-font-size: 24px;
+    --tgui-font-title-2-line-height: 28px;
     --tgui-font-title-2: 400 24px/28px var(--tgui-font-family);
     --tgui-font-title-2--semi-bold: 600 24px/28px var(--tgui-font-family);
     --tgui-font-title-2--bold: 700 24px/28px var(--tgui-font-family);
 
+    --tgui-font-title-3-font-size: 20px;
+    --tgui-font-title-3-line-height: 25px;
     --tgui-font-title-3: 400 20px/25px var(--tgui-font-family);
     --tgui-font-title-3--semi-bold: 600 20px/25px var(--tgui-font-family);
     --tgui-font-title-3--bold: 700 20px/25px var(--tgui-font-family);
