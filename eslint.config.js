@@ -31,6 +31,8 @@ export default tseslint.config(
         },
       ],
       'vue/multi-word-component-names': 'off',
+      'vue/attribute-hyphenation': 'off',
+      'vue/v-on-event-hyphenation': 'off',
     },
   },
   configPrettier
