@@ -6,10 +6,14 @@
 
 <script setup lang="ts">
 import { provide, ref, computed } from 'vue';
-import { type AppRootInjection, appRootInjectionKey, getInitialPlatform } from './lib';
+import {
+  type AppRootInjection,
+  appRootInjectionKey,
+  getInitialPlatform,
+} from './lib';
 
 const appRootInjection = ref<AppRootInjection>({
-  isRendered: false,
+  isRendered: true,
   appearance: 'light',
   platform: getInitialPlatform(),
 });
@@ -175,8 +179,8 @@ const classes = computed<string[]>(() => [
   }
 
   &--ios {
-    --tgui-font-family: 'SF Pro', system-ui, -apple-system, BlinkMacSystemFont, 'Apple Color Emoji',
-      sans-serif;
+    --tgui-font-family: 'SF Pro', system-ui, -apple-system, BlinkMacSystemFont,
+      'Apple Color Emoji', sans-serif;
     --tgui-font-family--mono: 'SF Mono', 'Apple Color Emoji', monospace;
 
     --tgui-font-large-title-font-size: 34px;
