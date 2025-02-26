@@ -1,4 +1,5 @@
 export * from './avatar';
+export * from './avatarStack';
 export * from './badge';
 export * from './blockquote';
 export * from './iconContainer';
