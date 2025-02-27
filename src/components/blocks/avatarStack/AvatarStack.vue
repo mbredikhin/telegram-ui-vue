@@ -27,6 +27,6 @@ defineSlots<{
 }
 
 .avatar-stack > * {
-  box-shadow: 0 0 0 3px var(--tgui-bg-color);
+  box-shadow: 0 0 0 3px var(--tgui-bg-color) !important;
 }
 </style>
