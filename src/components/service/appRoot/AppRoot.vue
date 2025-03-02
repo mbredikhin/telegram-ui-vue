@@ -29,6 +29,45 @@ const classes = computed<string[]>(() => [
 
 <style lang="scss">
 .app-root {
+  /* CSS Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
+    font-family: sans-serif;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  ul,
+  ol {
+    list-style: none;
+  }
+
   --tgui-bg-color: #ffffff;
   --tgui-text-color: #000000;
   --tgui-hint-color: #707579;
