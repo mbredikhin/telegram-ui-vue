@@ -110,7 +110,8 @@ const classes = computed<string[]>(() => [
   // OS-specific tokens below
 
   &--base {
-    --tgui-font-family: 'Roboto', sans-serif;
+    --tgui-font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Roboto',
+      'Apple Color Emoji', 'Helvetica Neue', sans-serif;
     --tgui-font-family--mono: 'Roboto Mono', monospace;
 
     --tgui-font-large-title-font-size: 34px;
