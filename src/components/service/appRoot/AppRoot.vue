@@ -83,7 +83,7 @@ const classes = computed<string[]>(() => [
   --tgui-destructive-text-color: #e53935;
   --tgui-skeleton: rgba(0, 0, 0, 0.01);
   --tgui-divider: rgba(0, 0, 0, 0.08);
-  --tgui-outline: rgba(0, 0, 0, 0.02);
+  --tgui-outline: rgba(0, 0, 0, 0.05);
   --tgui-surface-primary: rgba(255, 255, 255, 0.58);
   --tgui-surface-dark: rgba(56, 56, 56, 0.52);
   --tgui-quaternary-bg-color: #f6f6fa;
@@ -108,6 +108,8 @@ const classes = computed<string[]>(() => [
   --tgui-font-weight-accent-2: 600;
   --tgui-font-weight-accent-3: 400;
 
+  --tgui-border-width: 1px;
+
   &--dark {
     --tgui-bg-color: #212121;
     --tgui-text-color: #ffffff;
@@ -124,7 +126,7 @@ const classes = computed<string[]>(() => [
     --tgui-destructive-text-color: #e53935;
     --tgui-skeleton: rgba(255, 255, 255, 0.01);
     --tgui-divider: rgba(255, 255, 255, 0.02);
-    --tgui-outline: rgba(255, 255, 255, 0.06);
+    --tgui-outline: rgba(255, 255, 255, 0.1);
     --tgui-surface-primary: rgba(23, 23, 23, 0.58);
     --tgui-surface-dark: rgba(56, 56, 56, 0.52);
     --tgui-quaternary-bg-color: #2f2f2f;
@@ -285,6 +287,12 @@ const classes = computed<string[]>(() => [
     --tgui-font-caption-2--semi-bold: 600 10px/13px var(--tgui-font-family);
     --tgui-font-caption-2--bold: 700 10px/13px var(--tgui-font-family);
     --tgui-font-caption-2-line-height: 13px;
+  }
+}
+
+@media (min-resolution: 2dppx) {
+  .app-root {
+    --tgui-border-width: 0.5px;
   }
 }
 </style>
