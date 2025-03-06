@@ -6,4 +6,5 @@ export * from './iconContainer';
 export * from './image';
 export * from './list';
 export * from './placeholder';
+export * from './section';
 export * from './steps';
