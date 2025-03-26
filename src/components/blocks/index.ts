@@ -8,3 +8,4 @@ export * from './list';
 export * from './placeholder';
 export * from './section';
 export * from './steps';
+export * from './timeline';
