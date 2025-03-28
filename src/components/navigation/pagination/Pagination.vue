@@ -17,8 +17,14 @@
         onClick: item.disabled || isItemEllipsis(item) ? null : item.onClick,
       }"
     >
-      <ChevronLeft24Icon v-if="item.type === PaginationType.Previous" class="icon" />
-      <ChevronRight24Icon v-else-if="item.type === PaginationType.Next" class="icon" />
+      <ChevronLeft24Icon
+        v-if="item.type === PaginationType.Previous"
+        class="icon"
+      />
+      <ChevronRight24Icon
+        v-else-if="item.type === PaginationType.Next"
+        class="icon"
+      />
       <span v-else-if="isItemEllipsis(item)">...</span>
       <span v-else>{{ item.page }}</span>
     </Headline>
@@ -27,7 +33,7 @@
 
 <script setup lang="ts">
 import { computed, toRef } from 'vue';
-import { PaginationType, usePagination, UsePaginationItem, UsePaginationProps } from './lib';
+import { PaginationType, usePagination, UsePaginationItem } from './lib';
 import Headline from '@/components/typography/headline/Headline.vue';
 import ChevronLeft24Icon from '@/icons/24/chevron_left.svg';
 import ChevronRight24Icon from '@/icons/24/chevron_right.svg';
@@ -38,7 +44,21 @@ import ChevronRight24Icon from '@/icons/24/chevron_right.svg';
  * This component can be customized to hide next/previous buttons, specify boundary and sibling count for pagination items, and handle page changes through an `change` event.
  */
 
-export interface PaginationProps extends UsePaginationProps {
+export interface PaginationProps {
+  /** Number of always visible pages at the beginning and end. */
+  boundaryCount?: number;
+  /** The total number of pages. */
+  count?: number;
+  /** The page selected by default when the component is uncontrolled */
+  defaultPage?: number;
+  /** If `true`, hide the next-page button. */
+  hideNextButton?: boolean;
+  /** If `true`, hide the previous-page button. */
+  hidePrevButton?: boolean;
+  /** The current page. */
+  page?: number;
+  /** Number of always visible pages before and after the current page. */
+  siblingCount?: number;
   /** Controls whether the Pagination component is interactive. */
   disabled?: boolean;
 }
@@ -58,7 +78,9 @@ const classes = computed(() => ({
 
 const isItemEllipsis = computed(
   () => (item: UsePaginationItem) =>
-    [PaginationType.StartEllipsis, PaginationType.EndEllipsis].includes(item.type)
+    [PaginationType.StartEllipsis, PaginationType.EndEllipsis].includes(
+      item.type
+    )
 );
 
 function onChange(event: Event, page: number) {

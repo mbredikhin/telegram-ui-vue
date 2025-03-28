@@ -21,16 +21,18 @@
 </template>
 
 <script setup lang="ts">
-import {
-  Caption,
-  Headline,
-  LargeTitle,
-  Title,
-  TypographyProps,
-} from '@/components/typography';
+import { Caption, Headline, LargeTitle, Title } from '@/components/typography';
 import { ImageProps } from '../image/Image.vue';
 
-export interface AvatarAcronymProps extends /* @vue-ignore */ TypographyProps {
+export interface AvatarAcronymProps {
+  /** Controls the font weight of the text, with options ranging from light to bold. */
+  weight?: '1' | '2' | '3';
+  /** If true, transforms the text to uppercase for stylistic emphasis. */
+  caps?: boolean;
+  /** Specifies the HTML tag used to render the text. */
+  is?: string;
+  /** When true, removes the default margins around the text, useful for inline styling or custom layouts. */
+  plain?: boolean;
   size: ImageProps['size'];
 }
 

@@ -1,27 +1,41 @@
 <template>
-  <Typography v-bind="props" :is="props.is ?? levelTags[props.level]" :class="classes">
+  <Typography
+    v-bind="props"
+    :is="props.is ?? levelTags[props.level]"
+    :class="classes"
+  >
     <slot />
   </Typography>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { Typography, type TypographyProps } from '../';
+import { Typography } from '../';
 
 /**
  * The Title component is designed to render text as a page or section heading,
  * providing clear hierarchy and structure within content. It supports three levels of emphasis,
  * allowing for flexibility in design while maintaining semantic integrity. By default, it uses `h3`
- * for its semantic HTML element but can be customized via the `level` prop or explicitly with the `Component` prop.
+ * for its semantic HTML element but can be customized via the `level` prop or explicitly with the `is` prop.
  */
 type TitleLevel = '1' | '2' | '3';
 
-export interface TitleProps extends /* @vue-ignore */ TypographyProps {
+export interface TitleProps {
+  /** Controls the font weight of the text, with options ranging from light to bold. */
+  weight?: '1' | '2' | '3';
+  /** If true, transforms the text to uppercase for stylistic emphasis. */
+  caps?: boolean;
+  /** Specifies the HTML tag used to render the text. */
+  is?: string;
+  /** When true, removes the default margins around the text, useful for inline styling or custom layouts. */
+  plain?: boolean;
   /** Determines the size and semantic tag of the title, with options for `h2`, `h3`, or `h4`. */
   level?: TitleLevel;
 }
 
 const props = withDefaults(defineProps<TitleProps>(), {
+  weight: '3',
+  is: 'span',
   level: '2',
 });
 
