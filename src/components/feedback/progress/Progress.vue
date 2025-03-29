@@ -17,9 +17,12 @@
  */
 import { computed, inject, type Ref } from 'vue';
 import { clamp } from '@/helpers/math';
-import { type AppRootInjection, appRootInjectionKey } from '@/components/service';
+import {
+  type AppRootInjection,
+  appRootInjectionKey,
+} from '@/components/service/appRoot';
 
-interface ProgressProps {
+export interface ProgressProps {
   value?: number;
 }
 
@@ -31,9 +34,13 @@ const PROGRESS_MIN_VALUE = 0;
 const PROGRESS_MAX_VALUE = 100;
 const appRootInjection = inject(appRootInjectionKey) as Ref<AppRootInjection>;
 
-const progress = computed<number>(() => clamp(props.value, PROGRESS_MIN_VALUE, PROGRESS_MAX_VALUE));
+const progress = computed<number>(() =>
+  clamp(props.value, PROGRESS_MIN_VALUE, PROGRESS_MAX_VALUE)
+);
 
-const title = computed<string>(() => `${progress.value} / ${PROGRESS_MAX_VALUE}`);
+const title = computed<string>(
+  () => `${progress.value} / ${PROGRESS_MAX_VALUE}`
+);
 
 const classes = computed<string[]>(() => [
   'progress',

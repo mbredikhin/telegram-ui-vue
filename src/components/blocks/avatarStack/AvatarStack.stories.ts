@@ -1,6 +1,6 @@
 import AvatarStack from './AvatarStack.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { Avatar } from '../avatar';
+import { Avatar } from '@/components/blocks';
 
 const AVATAR_URL = 'https://avatars.githubusercontent.com/u/16864992?v=4';
 

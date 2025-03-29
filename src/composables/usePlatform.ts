@@ -1,4 +1,7 @@
-import { AppRootInjection, useAppRootInjection } from '@/components';
+import {
+  AppRootInjection,
+  useAppRootInjection,
+} from '@/components/service/appRoot';
 
 export const usePlatform = (): NonNullable<AppRootInjection['platform']> => {
   const injection = useAppRootInjection();

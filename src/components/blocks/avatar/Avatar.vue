@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { Image } from '../image';
+import { Image } from '@/components/blocks';
 import AvatarAcronym from './AvatarAcronym.vue';
 /**
  * Renders an image with specific styles for an avatar presentation, including optional acronym display and badge support.

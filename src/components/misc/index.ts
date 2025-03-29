@@ -1,1 +1,2 @@
-export * from './divider';
+import Divider from './divider/Divider.vue';
+export { Divider };
