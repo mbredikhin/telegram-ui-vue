@@ -112,6 +112,9 @@ const classes = computed<string[]>(() => [
 
     --tgui-border-width: 1px;
 
+    --tgui-z-index-simple: 1;
+    --tgui-z-index-skeleton: 2;
+
     &--dark {
       --tgui-bg-color: #212121;
       --tgui-text-color: #ffffff;
