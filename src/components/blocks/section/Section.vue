@@ -25,9 +25,10 @@
 
 <script setup lang="ts">
 import { usePlatform } from '@/composables/usePlatform';
-import { computed, VNode, isVNode } from 'vue';
+import { computed, VNode } from 'vue';
 import SectionHeader from './SectionHeader.vue';
 import SectionFooter from './SectionFooter.vue';
+import { Divider } from '@/components/misc';
 
 /**
  * Organizes content into distinct sections with optional headers and footers. It automatically wraps
@@ -59,13 +60,21 @@ const classes = computed(() => ({
 
 const defaultSlotContent = computed(() => (slots.default?.() as VNode[]) ?? []);
 
-const isComponentPassedToHeader = computed(() =>
-  isVNode((slots.header?.() as unknown[])?.at(0))
-);
+const isComponentPassedToHeader = computed(() => {
+  const vnode = (slots.header?.() as VNode[])?.at(0);
+  if (!vnode) {
+    return false;
+  }
+  return ['object', 'function'].includes(typeof vnode.type);
+});
 
-const isComponentPassedToFooter = computed(() =>
-  isVNode((slots.footer?.() as unknown[])?.at(0))
-);
+const isComponentPassedToFooter = computed(() => {
+  const vnode = (slots.header?.() as VNode[])?.at(0);
+  if (!vnode) {
+    return false;
+  }
+  return ['object', 'function'].includes(typeof vnode.type);
+});
 </script>
 
 <style lang="scss" scoped>
