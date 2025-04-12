@@ -6,3 +6,6 @@ export { Input, type InputProps };
 
 import Rating, { RatingProps } from './rating/Rating.vue';
 export { Rating, type RatingProps };
+
+import Select, { SelectProps } from './select/Select.vue';
+export { Select, type SelectProps };
