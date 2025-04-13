@@ -9,3 +9,6 @@ export { Rating, type RatingProps };
 
 import Select, { SelectProps } from './select/Select.vue';
 export { Select, type SelectProps };
+
+import Textarea, { TextareaProps } from './textarea/Textarea.vue';
+export { Textarea, type TextareaProps };
