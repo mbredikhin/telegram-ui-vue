@@ -12,3 +12,6 @@ export { Select, type SelectProps };
 
 import Textarea, { TextareaProps } from './textarea/Textarea.vue';
 export { Textarea, type TextareaProps };
+
+import Switch, { SwitchProps } from './switch/Switch.vue';
+export { Switch, type SwitchProps };
