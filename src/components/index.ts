@@ -1,6 +1,7 @@
 export * from './blocks';
 export * from './feedback';
 export * from './form';
+export * from './layout';
 export * from './misc';
 export * from './navigation';
 export * from './service';

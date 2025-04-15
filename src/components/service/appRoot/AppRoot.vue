@@ -310,4 +310,16 @@ const classes = computed<string[]>(() => [
     --tgui-border-width: 0.5px;
   }
 }
+
+@supports (padding-top: constant(safe-area-inset-bottom)) {
+  .wrapper {
+    --tgui-safe-area-inset-bottom: constant(safe-area-inset-bottom);
+  }
+}
+
+@supports (padding-top: env(safe-area-inset-bottom)) {
+  .wrapper {
+    --tgui-safe-area-inset-bottom: env(safe-area-inset-bottom);
+  }
+}
 </style>
