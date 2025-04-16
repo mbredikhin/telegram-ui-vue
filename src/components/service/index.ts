@@ -10,3 +10,6 @@ export { VisuallyHidden, type VisuallyHiddenProps };
 
 import { AppRoot } from './appRoot';
 export { AppRoot };
+
+import Tappable, { TappableProps } from './tappable/Tappable.vue';
+export { Tappable, type TappableProps };
