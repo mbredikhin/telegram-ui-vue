@@ -97,8 +97,8 @@ const classes = computed<string[]>(() => [
     --tgui-primary-code-highlight: #4378ff;
     --tgui-secondary-code-highlight: #b00fb4;
     --tgui-tertiary-code-highlight: #3a9f20;
-    --tgui-plain-background: rgba(0, 0, 0, 0.02);
-    --tgui-plain-foreground: rgba(0, 0, 0, 0.5);
+    --tgui-plain-background: rgba(0, 0, 0, 0.04);
+    --tgui-plain-foreground: rgba(0, 0, 0, 0.8);
     --tgui-toast-accent-color: #55a6ff;
     --tgui-tooltip-background-dark: rgba(0, 0, 0, 0.52);
     --tgui-white: #ffffff;

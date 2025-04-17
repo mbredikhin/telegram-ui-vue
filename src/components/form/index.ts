@@ -15,3 +15,9 @@ export { Textarea, type TextareaProps };
 
 import Switch, { SwitchProps } from './switch/Switch.vue';
 export { Switch, type SwitchProps };
+
+import Radio from './radio/Radio.vue';
+export { Radio };
+
+import Chip, { ChipProps } from './chip/Chip.vue';
+export { Chip, type ChipProps };
