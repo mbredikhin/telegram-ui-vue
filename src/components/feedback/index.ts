@@ -11,3 +11,6 @@ export { Skeleton, type SkeletonProps };
 
 import Spoiler, { SpoilerProps } from './spoiler/Spoiler.vue';
 export { Spoiler, type SpoilerProps };
+
+import Spinner, { SpinnerProps } from './spinner/Spinner.vue';
+export { Spinner, type SpinnerProps };
