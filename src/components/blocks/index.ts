@@ -45,3 +45,6 @@ export { Timeline, type TimelineProps };
 
 import TimelineItem, { TimelineItemProps } from './timeline/TimelineItem.vue';
 export { TimelineItem, type TimelineItemProps };
+
+import ButtonItem, { ButtonProps } from './button/Button.vue';
+export { ButtonItem, type ButtonProps };
