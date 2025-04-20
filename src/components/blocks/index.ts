@@ -51,3 +51,6 @@ export { ButtonItem, type ButtonProps };
 
 import Cell, { CellProps } from './cell/Cell.vue';
 export { Cell, type CellProps };
+
+import Info, { InfoProps } from './cell/info/Info.vue';
+export { Info, type InfoProps };
