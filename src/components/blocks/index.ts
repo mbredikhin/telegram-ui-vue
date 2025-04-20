@@ -48,3 +48,6 @@ export { TimelineItem, type TimelineItemProps };
 
 import ButtonItem, { ButtonProps } from './button/Button.vue';
 export { ButtonItem, type ButtonProps };
+
+import Cell, { CellProps } from './cell/Cell.vue';
+export { Cell, type CellProps };

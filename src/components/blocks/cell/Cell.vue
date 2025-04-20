@@ -1,0 +1,186 @@
+<template>
+  <Tappable :is="props.is" :class="classes">
+    <div v-if="slots.before?.()" class="before">
+      <slot name="before" />
+    </div>
+    <div class="middle">
+      <Subheadline
+        v-if="slots.subhead?.()"
+        class="subhead"
+        level="2"
+        weight="3"
+      >
+        <slot name="subhead" />
+      </Subheadline>
+      <component
+        :is="platform === 'ios' ? Text : Subheadline"
+        v-if="slots.default?.() || slots.hint?.() || slots['title-badge']?.()"
+        v-bind="platform === 'ios' ? {} : { level: '1' }"
+        class="head"
+      >
+        <span v-if="slots.default?.()" class="title">
+          <slot />
+        </span>
+        <span v-if="slots.hint?.()" class="hint">
+          <slot name="hint" />
+        </span>
+        <slot name="title-badge" />
+      </component>
+      <Subheadline
+        v-if="slots.subtitle?.()"
+        class="subtitle"
+        level="2"
+        weight="3"
+      >
+        <slot name="subtitle" />
+      </Subheadline>
+      <component
+        :is="platform === 'ios' ? Caption : Subheadline"
+        v-if="slots.description?.()"
+        v-bind="platform === 'ios' ? {} : { level: '2' }"
+        class="description"
+      >
+        <slot name="description" />
+      </component>
+    </div>
+    <div v-if="slots.after?.()" class="after">
+      <slot name="after" />
+    </div>
+  </Tappable>
+</template>
+
+<script setup lang="ts">
+import { Tappable } from '@/components/service';
+import { Caption, Subheadline, Text } from '@/components/typography';
+import { usePlatform } from '@/composables/usePlatform';
+import { computed, type Component } from 'vue';
+
+/**
+ * `Cell` component acts as a flexible and interactive container for various types of content,
+ * enabling the creation of complex list items, form fields, and more. It leverages the `Tappable`
+ * component for interaction and is designed to be flexible and extensible.
+ */
+
+export interface CellProps {
+  /** Custom component or HTML tag to be used as the root element of the cell, div by default */
+  is?: Component | string;
+  /** Controls the hover state of the component externally, useful for keyboard navigation */
+  hovered?: boolean;
+  /** Allows for multiline content without truncation */
+  multiline?: boolean;
+  interactiveAnimation?: 'opacity' | 'background';
+}
+
+const props = withDefaults(defineProps<CellProps>(), {
+  is: 'div',
+  interactiveAnimation: 'background',
+});
+
+const slots = defineSlots<{
+  /** Content displayed above the main content as a subheading */
+  subhead(props?: unknown): unknown;
+  /** Main content displayed as a header */
+  default(props?: unknown): unknown;
+  /** Content displayed alongside the header as a hint */
+  hint(props?: unknown): unknown;
+  /** A badge component to be displayed next to the header */
+  ['title-badge'](props?: unknown): unknown;
+  /** Content displayed below the header as a subtitle */
+  subtitle(props?: unknown): unknown;
+  /** Additional description displayed below the subtitle */
+  description(props?: unknown): unknown;
+  /** Content or elements to be displayed on the left side of the cell */
+  before(props?: unknown): unknown;
+  /** Content or elements to be displayed on the right side of the cell */
+  after(props?: unknown): unknown;
+}>();
+
+const platform = usePlatform();
+
+const classes = computed(() => ({
+  cell: true,
+  ['cell--ios']: platform === 'ios',
+  ['cell--hovered']: props.hovered,
+  ['cell--multiline']: props.multiline,
+}));
+</script>
+
+<style lang="scss" scoped>
+.cell {
+  --tgui-cell-middle-padding: 16px 0;
+
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 24px;
+}
+
+.cell--ios {
+  gap: 16px;
+}
+
+.cell--hovered {
+  background: var(--tgui-tertiary-bg-color);
+}
+
+.before,
+.after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-grow: 1;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  padding: var(--tgui-cell-middle-padding);
+}
+
+.middle > *,
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cell:not(.cell--multiline) .middle > *,
+.cell:not(.cell--multiline) .title {
+  white-space: nowrap;
+}
+
+.subhead {
+  color: var(--tgui-subtitle-text-color);
+}
+
+.head {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hint {
+  color: var(--tgui-hint-color);
+}
+
+.subtitle {
+  color: var(--tgui-hint-color);
+}
+
+.description {
+  color: var(--tgui-hint-color);
+}
+
+.cell--ios {
+  --tgui-cell-middle-padding: 12px 0;
+  padding: 0 16px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cell:hover {
+    background: var(--tgui-tertiary-bg-color);
+  }
+}
+</style>

@@ -3,8 +3,8 @@
     :is="props.is"
     :class="classes"
     :readOnly="attrs.readOnly"
-    @pointer-cancel="onPointerCancel"
-    @pointer-down="onPointerDown"
+    @pointercancel="onPointerCancel"
+    @pointerdown="onPointerDown"
   >
     <Ripple v-if="hasRippleEffect" :clicks="clicks" />
     <slot />
