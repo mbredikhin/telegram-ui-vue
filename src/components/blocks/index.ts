@@ -57,3 +57,6 @@ export { Info, type InfoProps };
 
 import Navigation from './cell/navigation/Navigation.vue';
 export { Navigation };
+
+import ButtonCell, { ButtonCellProps } from './cell/buttonCell/ButtonCell.vue';
+export { ButtonCell, type ButtonCellProps };

@@ -2,7 +2,7 @@
   <section :class="classes">
     <div class="body-with-header">
       <slot v-if="isComponentPassedToHeader" name="header" />
-      <SectionHeader v-else>
+      <SectionHeader v-else-if="slots.header?.()">
         <slot name="header" />
       </SectionHeader>
 
@@ -17,7 +17,7 @@
       </div>
     </div>
     <slot v-if="isComponentPassedToFooter" name="footer" />
-    <SectionFooter v-else>
+    <SectionFooter v-else-if="slots.footer?.()">
       <slot name="footer" />
     </SectionFooter>
   </section>
