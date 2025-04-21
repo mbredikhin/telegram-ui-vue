@@ -54,3 +54,6 @@ export { Cell, type CellProps };
 
 import Info, { InfoProps } from './cell/info/Info.vue';
 export { Info, type InfoProps };
+
+import Navigation from './cell/navigation/Navigation.vue';
+export { Navigation };
