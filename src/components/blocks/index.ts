@@ -60,3 +60,6 @@ export { Navigation };
 
 import ButtonCell, { ButtonCellProps } from './cell/buttonCell/ButtonCell.vue';
 export { ButtonCell, type ButtonCellProps };
+
+import Banner, { BannerProps } from './banner/Banner.vue';
+export { Banner, type BannerProps };
