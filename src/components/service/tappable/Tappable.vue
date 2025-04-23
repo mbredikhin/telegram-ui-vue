@@ -2,7 +2,7 @@
   <component
     :is="props.is"
     :class="classes"
-    :readOnly="attrs.readOnly"
+    :readonly="attrs.readonly"
     @pointercancel="onPointerCancel"
     @pointerdown="onPointerDown"
   >
@@ -42,7 +42,7 @@ const hasRippleEffect = computed(
   () =>
     platform === 'base' &&
     props.interactiveAnimation === 'background' &&
-    !attrs.readOnly
+    !attrs.readonly
 );
 </script>
 
