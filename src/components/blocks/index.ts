@@ -72,3 +72,6 @@ export { CardCell, type CardCellProps };
 
 import CardChip, { CardChipProps } from './card/CardChip.vue';
 export { CardChip, type CardChipProps };
+
+import IconButton, { IconButtonProps } from './iconButton/IconButton.vue';
+export { IconButton, type IconButtonProps };
