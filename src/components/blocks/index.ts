@@ -75,3 +75,14 @@ export { CardChip, type CardChipProps };
 
 import IconButton, { IconButtonProps } from './iconButton/IconButton.vue';
 export { IconButton, type IconButtonProps };
+
+import Accordion, { AccordionProps } from './accordion/Accordion.vue';
+export { Accordion, type AccordionProps };
+
+import AccordionContent from './accordion/accordionContent/AccordionContent.vue';
+export { AccordionContent };
+
+import AccordionSummary, {
+  AccordionSummaryProps,
+} from './accordion/accordionSummary/AccordionSummary.vue';
+export { AccordionSummary, type AccordionSummaryProps };
