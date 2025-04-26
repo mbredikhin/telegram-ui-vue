@@ -21,3 +21,6 @@ export { Radio };
 
 import Chip, { ChipProps } from './chip/Chip.vue';
 export { Chip, type ChipProps };
+
+import ColorInput, { ColorInputProps } from './colorInput/ColorInput.vue';
+export { ColorInput, type ColorInputProps };
