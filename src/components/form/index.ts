@@ -24,3 +24,6 @@ export { Chip, type ChipProps };
 
 import ColorInput, { ColorInputProps } from './colorInput/ColorInput.vue';
 export { ColorInput, type ColorInputProps };
+
+import FileInput, { FileInputProps } from './fileInput/FileInput.vue';
+export { FileInput, type FileInputProps };

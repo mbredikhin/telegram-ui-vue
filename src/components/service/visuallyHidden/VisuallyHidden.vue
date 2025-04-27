@@ -1,5 +1,7 @@
 <template>
-  <component :is="props.is" class="visually-hidden" />
+  <component :is="props.is" class="visually-hidden">
+    <slot />
+  </component>
 </template>
 
 <script setup lang="ts">
