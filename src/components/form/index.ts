@@ -27,3 +27,6 @@ export { ColorInput, type ColorInputProps };
 
 import FileInput, { FileInputProps } from './fileInput/FileInput.vue';
 export { FileInput, type FileInputProps };
+
+import PinInput, { PinInputProps } from './pinInput/PinInput.vue';
+export { PinInput, type PinInputProps };

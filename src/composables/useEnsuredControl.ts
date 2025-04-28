@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { computed, Ref, ref, toRefs } from 'vue';
+import { computed, ComputedRef, ref } from 'vue';
 
 export interface UseEnsuredControlProps<V> {
   value?: V;
@@ -10,19 +10,19 @@ export interface UseEnsuredControlProps<V> {
 export function useEnsuredControl<V = any>(
   props: UseEnsuredControlProps<V>,
   onChange?: (newValue: V) => any
-): [Ref<V>, (newValue: V) => void] {
-  const params = toRefs(props);
+): [ComputedRef<V>, (newValue: V) => void] {
+  const params = computed(() => props);
 
-  const localValue = ref<V>(params.defaultValue.value);
+  const localValue = ref(params.value.defaultValue);
 
   const isControlled = computed(() => props.value !== undefined);
 
   const controlledValue = computed(() =>
-    isControlled.value ? (params.value?.value as V) : (localValue.value as V)
+    isControlled.value ? params.value.value : localValue.value
   );
 
   function changeValue(newValue: V) {
-    if (params.disabled?.value) {
+    if (params.value.disabled) {
       return;
     }
     if (onChange) {
