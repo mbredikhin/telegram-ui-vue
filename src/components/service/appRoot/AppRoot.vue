@@ -1,22 +1,28 @@
 <template>
-  <div :class="classes">
+  <div ref="appRoot" :class="classes">
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
-import { provide, ref, computed } from 'vue';
+import { provide, computed, useTemplateRef } from 'vue';
 import {
   type AppRootInjection,
   appRootInjectionKey,
   getInitialPlatform,
 } from './lib';
 
-const appRootInjection = ref<AppRootInjection>({
-  isRendered: true,
-  appearance: 'light',
-  platform: getInitialPlatform(),
-});
+const appRootRef = useTemplateRef('appRoot');
+
+const appRootInjection = computed(
+  () =>
+    ({
+      isRendered: true,
+      appearance: 'light',
+      platform: getInitialPlatform(),
+      teleportContainer: appRootRef.value,
+    }) as AppRootInjection
+);
 
 provide(appRootInjectionKey, appRootInjection);
 
@@ -114,6 +120,7 @@ const classes = computed<string[]>(() => [
 
     --tgui-z-index-simple: 1;
     --tgui-z-index-skeleton: 2;
+    --tgui-z-index-overlay: 3;
 
     &--dark {
       --tgui-bg-color: #212121;
