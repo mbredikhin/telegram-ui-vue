@@ -1,6 +1,6 @@
-import { Text } from '@/components/typography';
 import FixedLayout from './FixedLayout.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
+import { Button } from '@/components/blocks';
 
 const meta = {
   title: 'Layout/FixedLayout',
@@ -15,17 +15,21 @@ type Story = StoryObj<typeof FixedLayout>;
 
 export const Default: Story = {
   render: (args) => ({
-    components: { FixedLayout, Text },
+    components: { FixedLayout, Button },
     setup() {
       return { args };
     },
     template: `
     <div style="height: 200px; width: 400px">
       <FixedLayout vertical="top" style="padding: 16px">
-        <Text>This is FixedLayout with top vertical</Text>
+        <Button size="l" stretched>
+          This is FixedLayout with top vertical
+        </Button>
       </FixedLayout>
       <FixedLayout style="padding: 16px">
-        <Text>This is FixedLayout with default vertical</Text>
+        <Button size="l" stretched>
+          This is FixedLayout with default vertical
+        </Button>
       </FixedLayout>
     </div>`,
   }),

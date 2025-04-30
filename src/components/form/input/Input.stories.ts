@@ -2,6 +2,8 @@ import { List } from '@/components/blocks';
 import Input from './Input.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import Close24Icon from '@/icons/24/close.svg';
+import { Tappable } from '@/components/service';
+import { Component } from 'vue';
 
 const meta = {
   title: 'Form/Input',
@@ -16,7 +18,12 @@ type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   render: (args) => ({
-    components: { Input, List, Close24Icon },
+    components: {
+      Input,
+      List,
+      Tappable,
+      Close24Icon: Close24Icon as unknown as Component,
+    },
     setup() {
       return { args };
     },
@@ -53,12 +60,12 @@ export const Default: Story = {
         >
           <template #header>Input</template>
           <template #after>
-            <div
+            <Tappable
               style="display: flex"
               @click="args.value = ''"
             >
               <Close24Icon />
-            </div>
+            </Tappable>
           </template>
         </Input>
       </List>`,

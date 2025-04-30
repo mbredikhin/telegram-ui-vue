@@ -1,7 +1,6 @@
-import { Placeholder } from '@/components/blocks';
+import { Cell, Placeholder } from '@/components/blocks';
 import Radio from './Radio.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { Text } from '@/components/typography';
 
 const meta = {
   title: 'Form/Radio',
@@ -22,7 +21,9 @@ export const Default: Story = {
     },
     template: `
     <Placeholder>
-      <template #description>description="This component wraps input with type=radio, see usage example on the With Cell page"</template>
+      <template #description>
+        This component wraps input with type=radio, see usage example on the With Cell page
+      </template>
       <Radio v-bind="args" />
     </Placeholder>`,
   }),
@@ -33,20 +34,37 @@ export const Default: Story = {
 
 export const WithCells: Story = {
   render: (args) => ({
-    components: { Radio, Placeholder, Text },
+    components: { Radio, Cell },
     setup() {
       return { args };
     },
     template: `
     <form>
-      <label style="display: flex; align-items: center; gap: 8px;">
-        <Radio name="radio" value="1" v-bind="args" />
-        <Text>First radio</Text>
-      </label>
-      <label style="display: flex; align-items: center; gap: 8px;">
-        <Radio name="radio" value="2" v-bind="args" />
-        <Text>Second radio</Text>
-      </label>
+      <Cell
+        is="label"
+        multiline
+      >
+        <template #before>
+          <Radio name="radio" value="blue" v-bind="args" />
+        </template>
+        <template #description>
+          The story ends, you wake up in your bed and believe whatever you want to believe
+        </template>
+        Blue pill
+      </Cell>
+
+      <Cell
+        is="label"
+        multiline
+      >
+        <template #before>
+          <Radio name="radio" value="red pill" v-bind="args" />
+        </template>
+        <template #description>
+          You stay in Wonderland, and I show you how deep the rabbit hole goes
+        </template>
+        Red pill
+      </Cell>
     </form>`,
   }),
   args: {},

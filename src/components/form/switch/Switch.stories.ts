@@ -1,4 +1,4 @@
-import { Placeholder } from '@/components/blocks';
+import { Cell, Placeholder } from '@/components/blocks';
 import Switch from './Switch.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -32,4 +32,25 @@ export const Default: Story = {
   args: {
     defaultChecked: true,
   },
+};
+
+export const WithCell: Story = {
+  render: (args) => ({
+    components: { Cell, Switch },
+    setup() {
+      return { args };
+    },
+    template: `
+    <Cell
+      is="label"
+      multiline
+    >
+      <template #description>Click on me</template>
+      <template #after>
+        <Switch defaultChecked v-bind="args" />
+      </template>
+      Radio in a cell
+    </Cell>`,
+  }),
+  args: {},
 };

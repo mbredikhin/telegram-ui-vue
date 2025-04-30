@@ -1,7 +1,6 @@
-import { List } from '@/components/blocks';
+import { Cell, List } from '@/components/blocks';
 import Divider from './Divider.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { Text } from '@/components/typography';
 
 const meta = {
   title: 'Misc/Divider',
@@ -15,16 +14,16 @@ type Story = StoryObj<typeof Divider>;
 
 export const Default: Story = {
   render: (args) => ({
-    components: { Divider, List, Text },
+    components: { Divider, List, Cell },
     setup() {
       return { args };
     },
     template: `
-      <List style="padding: 16, background: var(--tgui-secondary-bg-color)'">
+      <List style="padding: 16px; background: var(--tgui-secondary-bg-color)">
         <div style="background: var(--tgui-bg-color)">
-          <Text>Divider is under</Text>
+          <Cell>Divider is under</Cell>
           <Divider v-bind="args" />
-          <Text>Divider is above</Text>
+          <Cell>Divider is above</Cell>
         </div>
       </List>`,
   }),

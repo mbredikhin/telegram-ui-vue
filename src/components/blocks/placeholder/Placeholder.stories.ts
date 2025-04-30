@@ -1,3 +1,4 @@
+import Button from '../button/Button.vue';
 import Placeholder from './Placeholder.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -13,7 +14,7 @@ type Story = StoryObj<typeof Placeholder>;
 
 export const Default: Story = {
   render: (args) => ({
-    components: { Placeholder },
+    components: { Placeholder, Button },
     setup() {
       return { args };
     },
@@ -49,6 +50,6 @@ export const WithAction: Story = {
   args: {
     ...Default.args,
     description: 'Description',
-    action: '<button>Action</button>',
+    action: '<Button>Action</Button>',
   },
 };
