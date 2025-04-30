@@ -4,7 +4,11 @@
     <div v-if="slots.before?.()" class="before">
       <slot name="before" />
     </div>
-    <ButtonTypography class="content" :size="props.size">
+    <ButtonTypography
+      class="content"
+      :size="props.size"
+      :style="{ opacity: props.loading ? 0 : 1 }"
+    >
       <slot />
     </ButtonTypography>
     <div v-if="slots.after?.()" class="after">
