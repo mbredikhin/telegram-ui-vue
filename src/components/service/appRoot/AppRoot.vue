@@ -92,7 +92,7 @@ const classes = computed<string[]>(() => [
     --tgui-divider: rgba(0, 0, 0, 0.08);
     --tgui-outline: rgba(0, 0, 0, 0.05);
     --tgui-surface-primary: rgba(255, 255, 255, 0.58);
-    --tgui-surface-dark: rgba(56, 56, 56, 0.52);
+    --tgui-surface-dark: rgba(56, 56, 56, 0.85);
     --tgui-quaternary-bg-color: #f6f6fa;
     --tgui-segmented-control-active-bg: #ffffff;
     --tgui-card-bg-color: #ffffff;
@@ -140,7 +140,7 @@ const classes = computed<string[]>(() => [
       --tgui-divider: rgba(255, 255, 255, 0.02);
       --tgui-outline: rgba(255, 255, 255, 0.1);
       --tgui-surface-primary: rgba(23, 23, 23, 0.58);
-      --tgui-surface-dark: rgba(56, 56, 56, 0.52);
+      --tgui-surface-dark: rgba(56, 56, 56, 0.85);
       --tgui-quaternary-bg-color: #2f2f2f;
       --tgui-segmented-control-active-bg: #2f2f2f;
       --tgui-card-bg-color: #323232;

@@ -1,34 +1,21 @@
-import { ref, watch } from 'vue';
+import { MaybeRef, toValue } from 'vue';
 
-export const useTimeout = (callbackFunction: () => void, duration: number) => {
-  const options = ref({ callbackFunction, duration });
-  const timeout = ref<ReturnType<typeof setTimeout>>();
-
-  watch(
-    () => callbackFunction,
-    (callbackFunction) => {
-      options.value.callbackFunction = callbackFunction;
-    }
-  );
-
-  watch(
-    () => duration,
-    (duration) => {
-      options.value.duration = duration;
-    }
-  );
-
-  function clear() {
-    return clearTimeout(timeout?.value);
-  }
+export function useTimeout(
+  cb: (...args: unknown[]) => unknown,
+  duration: MaybeRef<number>
+) {
+  let timeout: ReturnType<typeof setTimeout> | null = null;
 
   function set() {
     clear();
-    timeout.value = setTimeout(
-      options.value.callbackFunction,
-      options.value.duration
-    );
+    timeout = setTimeout(cb, toValue(duration));
+  }
+
+  function clear() {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
   }
 
   return { set, clear };
-};
+}
