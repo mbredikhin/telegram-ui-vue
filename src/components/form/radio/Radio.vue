@@ -31,15 +31,11 @@ const emit = defineEmits<{
 
 const attrs = useAttrs();
 
-const [checked, setChecked] = useEnsuredControl(
-  {
-    defaultValue:
-      (attrs.checked as boolean) ?? (attrs.defaultChecked as boolean) ?? false,
-  },
-  (value: boolean) => {
-    emit('input', value);
-  }
-);
+const [checked, setChecked] = useEnsuredControl({
+  defaultValue:
+    (attrs.checked as boolean) ?? (attrs.defaultChecked as boolean) ?? false,
+  onChange,
+});
 
 const classes = computed(() => ({
   radio: true,
@@ -49,6 +45,10 @@ const classes = computed(() => ({
 function onClick() {
   const value = !attrs.checked;
   setChecked(value);
+  emit('input', value);
+}
+
+function onChange(value: boolean) {
   emit('input', value);
 }
 </script>

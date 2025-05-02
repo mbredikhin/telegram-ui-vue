@@ -1,6 +1,6 @@
 import { useEnsuredControl } from '@/composables/useEnsuredControl';
 import { range } from '@/helpers/array';
-import { computed, watch, ComputedRef, Ref } from 'vue';
+import { computed, watch, ComputedRef, MaybeRef, toValue } from 'vue';
 
 export enum PaginationType {
   Page = 'page',
@@ -10,27 +10,25 @@ export enum PaginationType {
   EndEllipsis = 'end-ellipsis',
 }
 
-export interface UsePaginationProps {
-  /** Number of always visible pages at the beginning and end. */
-  boundaryCount?: number;
-  /** The total number of pages. */
-  count?: number;
-  /** The page selected by default when the component is uncontrolled */
-  defaultPage?: number;
-  /** If `true`, hide the next-page button. */
-  hideNextButton?: boolean;
-  /** If `true`, hide the previous-page button. */
-  hidePrevButton?: boolean;
-  /** The current page. */
-  page?: number;
-  /** Number of always visible pages before and after the current page. */
-  siblingCount?: number;
-}
-
 export type OnChange = (event: Event, page: number) => void;
 
-interface PaginationParams extends Required<Omit<UsePaginationProps, 'page'>> {
-  page?: number | undefined;
+export interface UsePaginationConfig {
+  /** Number of always visible pages at the beginning and end. */
+  boundaryCount: MaybeRef<number | undefined>;
+  /** The total number of pages. */
+  count: MaybeRef<number | undefined>;
+  /** The page selected by default when the component is uncontrolled */
+  defaultPage: MaybeRef<number | undefined>;
+  /** If `true`, hide the next-page button. */
+  hideNextButton: MaybeRef<boolean | undefined>;
+  /** If `true`, hide the previous-page button. */
+  hidePrevButton: MaybeRef<boolean | undefined>;
+  /** The current page. */
+  page: MaybeRef<number | undefined>;
+  /** Number of always visible pages before and after the current page. */
+  siblingCount: MaybeRef<number | undefined>;
+  /** Callback to be fired when value changed. */
+  onChange?: OnChange;
 }
 
 export interface UsePaginationResult {
@@ -46,33 +44,33 @@ export interface UsePaginationItem {
   onClick: (event: Event) => void;
 }
 
-export const usePagination = (
-  props: Ref<UsePaginationProps>,
-  onChange?: OnChange
-): UsePaginationResult => {
-  const params = computed<PaginationParams>(() => ({
-    boundaryCount: props.value.boundaryCount ?? 1,
-    count: props.value.count ?? 1,
-    defaultPage: props.value.defaultPage ?? 1,
-    hideNextButton: props.value.hideNextButton ?? false,
-    hidePrevButton: props.value.hidePrevButton ?? false,
-    page: props.value.page,
-    siblingCount: props.value.siblingCount ?? 1,
+export function usePagination(props: UsePaginationConfig): UsePaginationResult {
+  const config = computed(() => ({
+    boundaryCount: toValue(props.boundaryCount) ?? 1,
+    count: toValue(props.count) ?? 1,
+    defaultPage: toValue(props.defaultPage) ?? 1,
+    hideNextButton: toValue(props.hideNextButton) ?? false,
+    hidePrevButton: toValue(props.hidePrevButton) ?? false,
+    page: toValue(props.page),
+    siblingCount: toValue(props.siblingCount) ?? 1,
   }));
 
   const [page, setPage] = useEnsuredControl({
-    value: params.value.page,
-    defaultValue: params.value.defaultPage,
+    value: config.value.page,
+    defaultValue: config.value.defaultPage,
   });
 
   const startPages = computed(() =>
-    range(1, Math.min(params.value.boundaryCount, params.value.count))
+    range(1, Math.min(config.value.boundaryCount, config.value.count))
   );
 
   const endPages = computed(() =>
     range(
-      Math.max(params.value.count - params.value.boundaryCount + 1, params.value.boundaryCount + 1),
-      params.value.count
+      Math.max(
+        config.value.count - config.value.boundaryCount + 1,
+        config.value.boundaryCount + 1
+      ),
+      config.value.count
     )
   );
 
@@ -80,12 +78,15 @@ export const usePagination = (
     Math.max(
       Math.min(
         // Natural start
-        page.value - params.value.siblingCount,
+        page.value - config.value.siblingCount,
         // Lower boundary when page is high
-        params.value.count - params.value.boundaryCount - params.value.siblingCount * 2 - 1
+        config.value.count -
+          config.value.boundaryCount -
+          config.value.siblingCount * 2 -
+          1
       ),
       // Greater than startPages
-      params.value.boundaryCount + 2
+      config.value.boundaryCount + 2
     )
   );
 
@@ -93,27 +94,28 @@ export const usePagination = (
     Math.min(
       Math.max(
         // Natural end
-        page.value + params.value.siblingCount,
+        page.value + config.value.siblingCount,
         // Upper boundary when page is low
-        params.value.boundaryCount + params.value.siblingCount * 2 + 2
+        config.value.boundaryCount + config.value.siblingCount * 2 + 2
       ),
       // Less than endPages
-      endPages.value.length > 0 ? endPages.value[0] - 2 : params.value.count - 1
+      endPages.value.length > 0 ? endPages.value[0] - 2 : config.value.count - 1
     )
   );
 
   // Basic list of items to render
   // e.g. itemList = ['first', 'previous', 1, 'ellipsis', 4, 5, 6, 'ellipsis', 10, 'next', 'last']
   const itemList = computed<(PaginationType | number)[]>(() => [
-    ...(params.value.hidePrevButton ? [] : [PaginationType.Previous]),
+    ...(config.value.hidePrevButton ? [] : [PaginationType.Previous]),
     ...startPages.value,
 
     // Start ellipsis
 
-    ...(siblingsStart.value > params.value.boundaryCount + 2
+    ...(siblingsStart.value > config.value.boundaryCount + 2
       ? [PaginationType.StartEllipsis]
-      : params.value.boundaryCount + 1 < params.value.count - params.value.boundaryCount
-        ? [params.value.boundaryCount + 1]
+      : config.value.boundaryCount + 1 <
+          config.value.count - config.value.boundaryCount
+        ? [config.value.boundaryCount + 1]
         : []),
 
     // Sibling pages
@@ -121,25 +123,24 @@ export const usePagination = (
 
     // End ellipsis
 
-    ...(siblingsEnd.value < params.value.count - params.value.boundaryCount - 1
+    ...(siblingsEnd.value < config.value.count - config.value.boundaryCount - 1
       ? [PaginationType.EndEllipsis]
-      : params.value.count - params.value.boundaryCount > params.value.boundaryCount
-        ? [params.value.count - params.value.boundaryCount]
+      : config.value.count - config.value.boundaryCount >
+          config.value.boundaryCount
+        ? [config.value.count - config.value.boundaryCount]
         : []),
 
     ...endPages.value,
-    ...(params.value.hideNextButton ? [] : [PaginationType.Next]),
+    ...(config.value.hideNextButton ? [] : [PaginationType.Next]),
   ]);
 
   const handleClick: OnChange = (event, value) => {
     setPage(value);
-    if (onChange) {
-      onChange(event, value);
-    }
+    props.onChange?.(event, value);
   };
 
   watch(
-    () => params.value.page,
+    () => config.value.page,
     (page) => {
       if (page) {
         setPage(page);
@@ -177,14 +178,17 @@ export const usePagination = (
         page: buttonToPage(typeOrPageNumber),
         selected: false,
         disabled:
-          ![PaginationType.StartEllipsis, PaginationType.EndEllipsis].includes(typeOrPageNumber) &&
+          ![PaginationType.StartEllipsis, PaginationType.EndEllipsis].includes(
+            typeOrPageNumber
+          ) &&
           (typeOrPageNumber === PaginationType.Next
-            ? page.value >= params.value.count
+            ? page.value >= config.value.count
             : page.value <= 1),
-        onClick: (event) => handleClick(event, buttonToPage(typeOrPageNumber) || 0),
+        onClick: (event) =>
+          handleClick(event, buttonToPage(typeOrPageNumber) || 0),
       };
     })
   );
 
   return { paginationItems };
-};
+}

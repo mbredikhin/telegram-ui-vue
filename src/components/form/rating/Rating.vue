@@ -64,12 +64,10 @@ const emit = defineEmits<{
 
 const MINIMUM_PRECISION = 0.1;
 
-const [value, setValue] = useEnsuredControl(
-  {
-    defaultValue: props.value,
-  },
-  onChange
-);
+const [value, setValue] = useEnsuredControl({
+  defaultValue: props.value,
+  onChange,
+});
 
 const normalizedPrecision = computed(() =>
   clamp(props.precision, MINIMUM_PRECISION, 1)

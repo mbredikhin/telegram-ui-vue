@@ -1,33 +1,31 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { computed, ComputedRef, ref } from 'vue';
+import { computed, ComputedRef, MaybeRef, ref, toValue } from 'vue';
 
-export interface UseEnsuredControlProps<V> {
-  value?: V;
+interface UseEnsuredControlConfig<V> {
   defaultValue: V;
-  disabled?: boolean | undefined;
+  value?: MaybeRef<V>;
+  disabled?: MaybeRef<boolean | undefined>;
+  onChange?: (newValue: V) => any;
 }
 
+type UseEnsuredControlResult<V> = [ComputedRef<V>, (newValue: V) => void];
+
 export function useEnsuredControl<V = any>(
-  props: UseEnsuredControlProps<V>,
-  onChange?: (newValue: V) => any
-): [ComputedRef<V>, (newValue: V) => void] {
-  const params = computed(() => props);
+  config: UseEnsuredControlConfig<V>
+): UseEnsuredControlResult<V> {
+  const localValue = ref(config.defaultValue);
 
-  const localValue = ref(params.value.defaultValue);
-
-  const isControlled = computed(() => props.value !== undefined);
+  const isControlled = computed(() => toValue(config.value) !== undefined);
 
   const controlledValue = computed(() =>
-    isControlled.value ? params.value.value : localValue.value
+    isControlled.value ? toValue(config.value) : localValue.value
   );
 
   function changeValue(newValue: V) {
-    if (params.value.disabled) {
+    if (toValue(config.disabled)) {
       return;
     }
-    if (onChange) {
-      onChange(newValue);
-    }
+    config.onChange?.(newValue);
     if (!isControlled.value) {
       localValue.value = newValue;
     }

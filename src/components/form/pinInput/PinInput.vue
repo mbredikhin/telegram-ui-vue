@@ -11,8 +11,8 @@
                 setInputRefs(el as InstanceType<typeof PinInputCell>, index)
             "
             :key="index"
-            :isTyped="index < value.length"
-            :value="value[index] || ''"
+            :isTyped="index < inputValue.length"
+            :value="inputValue[index] || ''"
             :autofocus="index === 0"
             :tabIndex="-1"
             :readonly="true"
@@ -100,15 +100,13 @@ const normalizedPinCount = computed(() =>
   Math.max(PIN_MIN_COUNT, props.pinCount)
 );
 
-const { value, handleClickValue, handleClickBackspace, handleButton } =
-  usePinInput(
-    ref({
-      pinCount: normalizedPinCount.value,
-      value: props.value,
-    }),
+const { inputValue, handleClickValue, handleClickBackspace, handleButton } =
+  usePinInput({
+    pinCount: normalizedPinCount.value,
+    value: props.value ?? [],
     inputRefs,
-    onChange
-  );
+    onChange,
+  });
 
 const classes = computed(() => ({
   ['pin-input']: true,

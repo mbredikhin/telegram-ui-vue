@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, toRef } from 'vue';
+import { computed, toRefs } from 'vue';
 import { PaginationType, usePagination, UsePaginationItem } from './lib';
 import Headline from '@/components/typography/headline/Headline.vue';
 import ChevronLeft24Icon from '@/icons/24/chevron_left.svg';
@@ -69,7 +69,7 @@ const emit = defineEmits<{
   (e: 'change', event: Event, page: number): void;
 }>();
 
-const { paginationItems } = usePagination(toRef(props), onChange);
+const { paginationItems } = usePagination({ ...toRefs(props), onChange });
 
 const classes = computed(() => ({
   pagination: true,
