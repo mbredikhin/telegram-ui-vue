@@ -6,3 +6,6 @@ export { ModalHeader };
 
 import Modal, { ModalProps } from './modal/Modal.vue';
 export { Modal, type ModalProps };
+
+import Popper, { PopperProps } from './popper/Popper.vue';
+export { Popper, type PopperProps };
