@@ -86,3 +86,13 @@ import AccordionSummary, {
   AccordionSummaryProps,
 } from './accordion/accordionSummary/AccordionSummary.vue';
 export { AccordionSummary, type AccordionSummaryProps };
+
+import InlineButtonsItem, {
+  InlineButtonsItemProps,
+} from './inlineButtons/InlineButtonsItem.vue';
+export { InlineButtonsItem, type InlineButtonsItemProps };
+
+import InlineButtons, {
+  InlineButtonsProps,
+} from './inlineButtons/InlineButtons.vue';
+export { InlineButtons, type InlineButtonsProps };
