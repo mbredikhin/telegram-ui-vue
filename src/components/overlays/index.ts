@@ -9,3 +9,6 @@ export { Modal, type ModalProps };
 
 import Popper, { PopperProps } from './popper/Popper.vue';
 export { Popper, type PopperProps };
+
+import Tooltip, { TooltipProps } from './tooltip/Tooltip.vue';
+export { Tooltip, type TooltipProps };
