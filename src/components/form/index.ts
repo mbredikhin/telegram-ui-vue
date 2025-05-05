@@ -30,3 +30,6 @@ export { FileInput, type FileInputProps };
 
 import PinInput, { PinInputProps } from './pinInput/PinInput.vue';
 export { PinInput, type PinInputProps };
+
+import Selectable from './selectable/Selectable.vue';
+export { Selectable };
