@@ -21,3 +21,9 @@ export { Link };
 
 import Pagination, { PaginationProps } from './pagination/Pagination.vue';
 export { Pagination, type PaginationProps };
+
+import TabsListItem, { TabsListItemProps } from './tabsList/TabsListItem.vue';
+export { TabsListItem, type TabsListItemProps };
+
+import TabsList from './tabsList/TabsList.vue';
+export { TabsList };
