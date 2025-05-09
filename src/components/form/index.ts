@@ -33,3 +33,6 @@ export { PinInput, type PinInputProps };
 
 import Selectable from './selectable/Selectable.vue';
 export { Selectable };
+
+import Multiselectable from './multiselectable/Multiselectable.vue';
+export { Multiselectable };

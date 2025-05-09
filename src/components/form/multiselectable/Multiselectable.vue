@@ -1,0 +1,85 @@
+<template>
+  <label :class="classes">
+    <VisuallyHidden v-bind="attrs" is="input" type="checkbox" class="input">
+      <slot />
+    </VisuallyHidden>
+    <MultiselectableIosIcon
+      v-if="platform === 'ios'"
+      class="icon"
+      aria-hidden
+    />
+    <MultiselectableBaseIcon v-else class="icon" aria-hidden />
+    <MultiselectableCheckedIosIcon
+      v-if="platform === 'ios'"
+      class="icon--checked"
+      aria-hidden
+    />
+    <MultiselectableCheckedBaseIcon v-else class="icon--checked" aria-hidden />
+  </label>
+</template>
+
+<script lang="ts">
+export default {
+  inheritAttrs: false,
+};
+</script>
+
+<script setup lang="ts">
+import { VisuallyHidden } from '@/components/service';
+import { usePlatform } from '@/composables/usePlatform';
+import { computed, useAttrs } from 'vue';
+import MultiselectableIosIcon from './icons/multiselectable-ios.svg';
+import MultiselectableBaseIcon from './icons/multiselectable.svg';
+import MultiselectableCheckedIosIcon from './icons/multiselectable-checked-ios.svg';
+import MultiselectableCheckedBaseIcon from './icons/multiselectable-checked.svg';
+
+/**
+ * Renders a custom multiselectable checkbox input, adapting its icons based on the current platform (iOS or others).
+ * Supports all standard input checkbox properties.
+ */
+
+const platform = usePlatform();
+const attrs = useAttrs();
+
+const classes = computed(() => ({
+  multiselectable: true,
+  ['multiselectable--disabled']: attrs.disabled,
+}));
+</script>
+
+<style lang="scss" scoped>
+.multiselectable {
+  position: relative;
+  cursor: pointer;
+}
+
+.multiselectable--disabled {
+  cursor: default;
+  opacity: 0.25;
+}
+
+.icon {
+  display: block;
+  color: var(--tgui-outline);
+}
+
+.icon--checked {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  color: var(--tgui-link-color);
+}
+
+.icon,
+.icon--checked {
+  transition: opacity 0.15s ease-out;
+}
+
+.input:checked ~ .icon {
+  opacity: 0;
+}
+
+.input:checked ~ .icon--checked {
+  opacity: 1;
+}
+</style>
