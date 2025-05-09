@@ -27,3 +27,11 @@ export { TabsListItem, type TabsListItemProps };
 
 import TabsList from './tabsList/TabsList.vue';
 export { TabsList };
+
+import SegmentedControlItem, {
+  SegmentedControlItemProps,
+} from './segmentedControl/SegmentedControlItem.vue';
+export { SegmentedControlItem, type SegmentedControlItemProps };
+
+import SegmentedControl from './segmentedControl/SegmentedControl.vue';
+export { SegmentedControl };
