@@ -8,6 +8,26 @@ const meta = {
   title: 'Blocks/Accordion/AccordionSummary',
   component: AccordionSummary,
   tags: ['autodocs'],
+  argTypes: {
+    is: {
+      type: 'string',
+      description:
+        'Custom component or HTML tag to be used as the root element of the cell, div by default',
+    },
+    hovered: {
+      type: 'boolean',
+      description:
+        'Controls the hover state of the component externally, useful for keyboard navigation',
+    },
+    multiline: {
+      type: 'boolean',
+      description: 'Allows for multiline content without truncation',
+    },
+    interactiveAnimation: {
+      control: 'select',
+      options: ['opacity', 'background'],
+    },
+  },
 } satisfies Meta<typeof AccordionSummary>;
 
 export default meta;
@@ -15,7 +35,6 @@ export default meta;
 type Story = StoryObj<typeof AccordionSummary>;
 
 export const Default: Story = {
-  args: {},
   render: (args) => ({
     components: {
       Accordion,
@@ -30,8 +49,8 @@ export const Default: Story = {
     template: `
     <Section style="background: var(--tgui-secondary-bg-color); padding: 20px; width: 500px">
       <Accordion expanded @change="console.log">
-        <AccordionSummary>Accordion summary</AccordionSummary>
-        <AccordionContent v-bind="args">
+        <AccordionSummary v-bind="args">Accordion summary</AccordionSummary>
+        <AccordionContent>
           <Subheadline style="padding: 12px 24px 24px" level="2">
             AccordionSummary is Cell component, you can pass all the same props from Cell to it.
           </Subheadline>

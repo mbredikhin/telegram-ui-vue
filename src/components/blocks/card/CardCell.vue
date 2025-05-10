@@ -1,5 +1,5 @@
 <template>
-  <Cell :class="classes" v-bind="props">
+  <Cell :class="classes" v-bind="attrs">
     <template v-for="(_, slot) of slots" #[slot]>
       <slot :name="slot" />
     </template>
@@ -17,24 +17,13 @@
 </template>
 
 <script setup lang="ts">
-import { type Component, computed, inject } from 'vue';
+import { computed, inject, useAttrs } from 'vue';
 import { cardInjectionKey } from './lib';
-import { Cell } from '@/components/blocks';
+import { Cell, CellProps } from '@/components/blocks';
 
-export interface CardCellProps {
-  /** Custom component or HTML tag to be used as the root element of the cell, div by default */
-  is?: Component | string;
-  /** Controls the hover state of the component externally, useful for keyboard navigation */
-  hovered?: boolean;
-  /** Allows for multiline content without truncation */
-  multiline?: boolean;
-  interactiveAnimation?: 'opacity' | 'background';
-}
+export interface CardCellProps extends /* @vue-ignore */ CellProps {}
 
-const props = withDefaults(defineProps<CardCellProps>(), {
-  is: 'div',
-  interactiveAnimation: 'background',
-});
+defineProps<CardCellProps>();
 
 const slots = defineSlots<{
   /** Content displayed above the main content as a subheading */
@@ -55,6 +44,7 @@ const slots = defineSlots<{
   after(props?: unknown): unknown;
 }>();
 
+const attrs: CellProps = useAttrs();
 const cardInjection = inject(cardInjectionKey);
 
 const classes = computed(() => ({

@@ -18,12 +18,11 @@ export const Default: Story = {
       return { args };
     },
     template: `
-    <div style="display: flex; justify-content: center;">
+    <div style="display: flex; justify-content: center">
       <Navigation v-bind="args">
         <template #default>Action</template>
       </Navigation>
-    </div>
-    `,
+    </div>`,
   }),
   args: {},
 };

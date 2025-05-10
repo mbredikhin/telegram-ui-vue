@@ -16,6 +16,7 @@
 import { Subheadline } from '@/components/typography';
 import { IconContainer } from '@/components/blocks';
 import Quote12Icon from '@/icons/12/quote.svg';
+
 /**
  * Renders a stylized blockquote element, typically used for quotations or special text. The component can include an
  * icon in the top right corner and supports different content types for flexible use within UI designs.

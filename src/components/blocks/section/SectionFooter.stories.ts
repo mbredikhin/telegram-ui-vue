@@ -5,6 +5,12 @@ const meta = {
   title: 'Blocks/Section/SectionFooter',
   component: SectionFooter,
   tags: ['autodocs'],
+  argTypes: {
+    centered: {
+      type: 'boolean',
+      description: 'Centering text, adding additional indents',
+    },
+  },
 } satisfies Meta<typeof SectionFooter>;
 
 export default meta;

@@ -6,6 +6,18 @@ const meta = {
   title: 'Blocks/Timeline/Timeline',
   component: Timeline,
   tags: ['autodocs'],
+  argTypes: {
+    horizontal: {
+      type: 'boolean',
+      description:
+        'Determines the orientation of the timeline. If true, the timeline is displayed horizontally.',
+    },
+    active: {
+      type: 'number',
+      description:
+        'The index of the active item in the timeline, which affects styling to indicate progress.',
+    },
+  },
 } satisfies Meta<typeof Timeline>;
 
 export default meta;

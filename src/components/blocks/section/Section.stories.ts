@@ -64,11 +64,13 @@ export const Default: Story = {
         <template #header>Personal Information</template>
         <template #footer>The official Telegram app is available for Android, iPhone, iPad, Windows, macOS and Linux.</template>
         <Input
+          type="text"
           placeholder="21 y.o. designer from San Francisco"
         >
           <template #header>First name</template>
         </Input>
         <Input
+          type="text"
           placeholder="21 y.o. designer from San Francisco"
         >
           <template #header>Last name</template>

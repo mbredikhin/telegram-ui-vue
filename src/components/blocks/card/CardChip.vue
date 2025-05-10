@@ -1,5 +1,5 @@
 <template>
-  <Chip v-bind="props" class="card-chip">
+  <Chip v-bind="attrs" class="card-chip">
     <template v-for="(_, slot) of slots" #[slot]>
       <slot :name="slot" />
     </template>
@@ -7,20 +7,12 @@
 </template>
 
 <script setup lang="ts">
-import { Chip } from '@/components/form';
-import { Component } from 'vue';
+import { Chip, ChipProps } from '@/components/form';
+import { useAttrs } from 'vue';
 
-export interface CardChipProps {
-  /** Defines the visual style of the chip, affecting its background, border, and shadow. */
-  mode?: 'elevated' | 'mono' | 'outline';
-  /** Specifies the HTML tag or component used to render the Chip, defaulting to `div`. */
-  is?: Component | string;
-}
+export interface CardChipProps extends /* @vue-ignore */ ChipProps {}
 
-const props = withDefaults(defineProps<CardChipProps>(), {
-  mode: 'elevated',
-  is: 'div',
-});
+defineProps<CardChipProps>();
 
 const slots = defineSlots<{
   /** Content or component to be placed before the main text, typically an icon or avatar. */
@@ -30,6 +22,8 @@ const slots = defineSlots<{
   /** The main text content of the chip. */
   default(props?: unknown): unknown;
 }>();
+
+const attrs: ChipProps = useAttrs();
 </script>
 
 <style lang="scss" scoped>

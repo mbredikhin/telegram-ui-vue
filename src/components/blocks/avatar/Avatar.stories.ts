@@ -9,10 +9,23 @@ const meta = {
   title: 'Blocks/Avatar',
   component: Avatar,
   tags: ['autodocs'],
+  parameters: {
+    controls: { include: ['size', 'acronym', 'src'] },
+  },
   argTypes: {
     size: {
       control: 'select',
       options: [20, 24, 28, 40, 48, 96],
+      description:
+        'Specifies the size of the image, with a default of 40. Sizes are defined in pixels.',
+    },
+    acronym: {
+      type: 'string',
+      description:
+        'One or two letters to be shown as a placeholder. `fallback-icon` will not be used if `acronym` is provided.',
+    },
+    src: {
+      type: 'string',
     },
   },
 } satisfies Meta<typeof Avatar>;
@@ -69,7 +82,7 @@ export const WithBadge: Story = {
     template: `
     <Avatar v-bind="args">
       <template #default>
-        <AvatarBadge v-bind="{ type: 'number' }">42</AvatarBadge>
+        <AvatarBadge type="number">42</AvatarBadge>
       </template>
       <template #fallback-icon>${args['fallback-icon'] ?? ''}</template>
     </Avatar>`,

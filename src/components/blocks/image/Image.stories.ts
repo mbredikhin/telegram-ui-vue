@@ -9,6 +9,9 @@ const meta = {
   title: 'Blocks/Image',
   component: Image,
   tags: ['autodocs'],
+  parameters: {
+    controls: { include: ['size', 'src'] },
+  },
   argTypes: {
     size: {
       control: 'select',
@@ -69,7 +72,7 @@ export const WithBadge: Story = {
     },
     template: `
     <Image v-bind="args">
-      <ImageBadge v-bind="{ type: 'number' }">42</ImageBadge>
+      <ImageBadge type="number">42</ImageBadge>
     </Image>`,
   }),
   args: {
@@ -97,6 +100,5 @@ export const WithChildren: Story = {
   }),
   args: {
     size: 48,
-    default: '<Quote12Icon />',
   },
 };

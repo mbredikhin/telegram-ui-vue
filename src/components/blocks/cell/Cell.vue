@@ -1,5 +1,5 @@
 <template>
-  <Tappable :is="props.is" :class="classes">
+  <Tappable v-bind="attrs" :is="props.is" :class="classes">
     <div v-if="slots.before?.()" class="before">
       <slot name="before" />
     </div>
@@ -50,10 +50,10 @@
 </template>
 
 <script setup lang="ts">
-import { Tappable } from '@/components/service';
+import { Tappable, TappableProps } from '@/components/service';
 import { Caption, Subheadline, Text } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
-import { computed, type Component } from 'vue';
+import { type Component, computed, useAttrs } from 'vue';
 
 /**
  * `Cell` component acts as a flexible and interactive container for various types of content,
@@ -61,20 +61,18 @@ import { computed, type Component } from 'vue';
  * component for interaction and is designed to be flexible and extensible.
  */
 
-export interface CellProps {
-  /** Custom component or HTML tag to be used as the root element of the cell, div by default */
-  is?: Component | string;
+type Attrs = Omit<TappableProps, 'is'>;
+
+export interface CellProps extends /* @vue-ignore */ Attrs {
   /** Controls the hover state of the component externally, useful for keyboard navigation */
   hovered?: boolean;
   /** Allows for multiline content without truncation */
   multiline?: boolean;
-  interactiveAnimation?: 'opacity' | 'background';
+  /** Custom component or HTML tag to be used as the root element of the cell, div by default */
+  is?: Component | string;
 }
 
-const props = withDefaults(defineProps<CellProps>(), {
-  is: 'div',
-  interactiveAnimation: 'background',
-});
+const props = defineProps<CellProps>();
 
 const slots = defineSlots<{
   /** Content displayed above the main content as a subheading */
@@ -95,6 +93,7 @@ const slots = defineSlots<{
   after(props?: unknown): unknown;
 }>();
 
+const attrs: Attrs = useAttrs();
 const platform = usePlatform();
 
 const classes = computed(() => ({

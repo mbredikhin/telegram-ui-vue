@@ -1,5 +1,5 @@
 <template>
-  <Tappable is="button" :class="classes">
+  <Tappable v-bind="attrs" is="button" :class="classes">
     <slot />
     <Caption v-if="props.text" class="text" level="1" weight="2">
       {{ props.text }}
@@ -10,7 +10,14 @@
 <script setup lang="ts">
 import { usePlatform } from '@/composables/usePlatform';
 import { InlineButtonsInjection, inlineButtonsInjectionKey } from './lib';
-import { computed, inject, ref, Ref } from 'vue';
+import {
+  ButtonHTMLAttributes,
+  computed,
+  inject,
+  ref,
+  Ref,
+  useAttrs,
+} from 'vue';
 import { Tappable } from '@/components/service';
 import { Caption } from '@/components/typography';
 
@@ -21,7 +28,8 @@ import { Caption } from '@/components/typography';
  * and designs, providing a consistent and adaptable interface element.
  */
 
-export interface InlineButtonsItemProps {
+export interface InlineButtonsItemProps
+  extends /* @vue-ignore */ ButtonHTMLAttributes {
   /** Optional mode for styling the button, with 'plain' as the default. */
   mode?: InlineButtonsInjection['mode'];
   /** Text displayed inside the button. */
@@ -38,6 +46,7 @@ defineSlots<{
   default(props?: unknown): unknown;
 }>();
 
+const attrs: ButtonHTMLAttributes = useAttrs();
 const platform = usePlatform();
 const inlineButtonsInjection = inject(
   inlineButtonsInjectionKey,

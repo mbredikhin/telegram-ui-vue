@@ -10,6 +10,14 @@ const meta = {
   title: 'Blocks/InlineButtons/InlineButtons',
   component: InlineButtons,
   tags: ['autodocs'],
+  argTypes: {
+    mode: {
+      control: 'select',
+      options: ['plain', 'bezeled', 'gray'],
+      description:
+        'Dictates the styling mode for the inline buttons, affecting color and background.',
+    },
+  },
 } satisfies Meta<typeof InlineButtons>;
 
 export default meta;

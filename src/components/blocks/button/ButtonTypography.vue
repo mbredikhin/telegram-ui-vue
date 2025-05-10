@@ -1,27 +1,24 @@
 <template>
-  <Text v-if="props.size === 'l'" v-bind="props" weight="2">
+  <Text v-if="props.size === 'l'" weight="2" v-bind="attrs">
     <slot />
   </Text>
-  <Subheadline v-else v-bind="props" level="2" weight="2">
+  <Subheadline v-else level="2" weight="2" v-bind="attrs">
     <slot />
   </Subheadline>
 </template>
 
 <script setup lang="ts">
-import { Subheadline, Text } from '@/components/typography';
+import { Subheadline, Text, TypographyProps } from '@/components/typography';
+import { useAttrs } from 'vue';
 
-export interface ButtonTypographyProps {
-  /** If true, transforms the text to uppercase for stylistic emphasis. */
-  caps?: boolean;
-  /** Specifies the HTML tag used to render the text. */
-  is?: string;
-  /** When true, removes the default margins around the text, useful for inline styling or custom layouts. */
-  plain?: boolean;
+export interface ButtonTypographyProps
+  extends /* @vue-ignore */ TypographyProps {
   size: 's' | 'm' | 'l';
 }
 
 const props = withDefaults(defineProps<ButtonTypographyProps>(), {
   size: 'm',
-  is: 'span',
 });
+
+const attrs: TypographyProps = useAttrs();
 </script>

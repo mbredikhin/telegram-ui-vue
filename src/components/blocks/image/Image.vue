@@ -1,5 +1,5 @@
 <template>
-  <div :style="styles" :class="classes">
+  <div :style="styles" :class="classes" v-bind="attrs">
     <img
       v-if="hasSrc"
       class="image"
@@ -24,13 +24,14 @@
 
 <script setup lang="ts">
 import { computed, ImgHTMLAttributes, ref, useAttrs } from 'vue';
+
 /**
  * Renders an image with optional fallback content. It supports custom sizing and will automatically
  * handle loading states and errors by optionally displaying a fallback icon. This component can also
  * include additional content, such as badges or overlays, as children.
  */
 
-export interface ImageProps {
+export interface ImageProps extends /* @vue-ignore */ ImgHTMLAttributes {
   /** Specifies the size of the image, with a default of 40. Sizes are defined in pixels. */
   size?: 20 | 24 | 28 | 40 | 48 | 96;
 }
@@ -51,7 +52,7 @@ const slots = defineSlots<{
 
 const loaded = ref(false);
 const failed = ref(false);
-const attrs = useAttrs() as ImgHTMLAttributes;
+const attrs: ImgHTMLAttributes = useAttrs();
 
 const styles = computed(() => ({
   width: `${props.size}px`,

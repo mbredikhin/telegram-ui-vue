@@ -5,6 +5,12 @@ const meta = {
   title: 'Blocks/Section/SectionHeader',
   component: SectionHeader,
   tags: ['autodocs'],
+  argTypes: {
+    large: {
+      type: 'boolean',
+      description: 'Large title, changes font size, padding and color',
+    },
+  },
 } satisfies Meta<typeof SectionHeader>;
 
 export default meta;

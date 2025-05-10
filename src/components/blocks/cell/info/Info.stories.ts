@@ -7,6 +7,19 @@ const meta = {
   title: 'Blocks/Cell/Info',
   component: Info,
   tags: ['autodocs'],
+  argTypes: {
+    type: {
+      control: 'select',
+      options: ['text', 'avatarStack'],
+      description:
+        'Determines the type of content to display, affecting the layout and styling.',
+    },
+    subtitle: {
+      type: 'string',
+      description:
+        "Text content for the component, utilized when the `type` is set to 'text'.",
+    },
+  },
 } satisfies Meta<typeof Info>;
 
 export default meta;
@@ -20,13 +33,12 @@ export const Default: Story = {
       return { args };
     },
     template: `
-    <div style="display: flex; justify-content: center;">
+    <div style="display: flex; justify-content: center">
       <Info v-bind="args">
         <template #default>Action</template>
         <template #subtitle>Subtitle</template>
       </Info>
-    </div>
-    `,
+    </div>`,
   }),
   args: {
     type: 'text',
@@ -43,16 +55,15 @@ export const WithAvatarStack: Story = {
     <Info type="avatarStack">
       <template #avatar-stack>
         <AvatarStack>
-          <Avatar size="28" />
-          <Avatar size="28" />
-          <Avatar size="28" />
+          <Avatar :size="28" />
+          <Avatar :size="28" />
+          <Avatar :size="28" />
         </AvatarStack>
       </template>
       <template #default>
         Action
       </template>
-    </Info>
-    `,
+    </Info>`,
   }),
   args: {
     type: 'avatarStack',

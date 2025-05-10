@@ -1,5 +1,5 @@
 <template>
-  <Tappable :is="props.is" :class="classes">
+  <Tappable :is="props.is" v-bind="attrs" :class="classes">
     <slot name="before" />
     <Typography v-if="slots.default?.()">
       <slot />
@@ -9,27 +9,27 @@
 </template>
 
 <script setup lang="ts">
-import { Tappable } from '@/components/service';
+import { Tappable, TappableProps } from '@/components/service';
 import { Typography } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
-import { Component, computed } from 'vue';
+import { type Component, computed, useAttrs } from 'vue';
 
 /**
  * Renders an interactive cell component with optional leading and trailing elements. Designed to be flexible,
  * supporting various content structures and interaction models within UI designs.
  */
 
-export interface ButtonCellProps {
+type Attrs = Omit<TappableProps, 'is'>;
+
+export interface ButtonCellProps extends /* @vue-ignore */ Attrs {
   /** Determines the button cell's visual theme, influencing color and style. */
   mode?: 'default' | 'destructive';
   /** Specifies the root element type for more semantic HTML structure or integration with navigation libraries. */
-  interactiveAnimation?: 'opacity' | 'background';
   is?: Component | string;
 }
 
 const props = withDefaults(defineProps<ButtonCellProps>(), {
   mode: 'default',
-  interactiveAnimation: 'background',
   is: 'button',
 });
 
@@ -43,6 +43,7 @@ const slots = defineSlots<{
 }>();
 
 const platform = usePlatform();
+const attrs: Attrs = useAttrs();
 
 const classes = computed(() => ({
   ['button-cell']: true,

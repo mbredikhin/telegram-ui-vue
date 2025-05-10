@@ -1,5 +1,10 @@
 <template>
-  <Tappable :is="props.is" :type="attrs.type || 'button'" :class="classes">
+  <Tappable
+    :is="props.is"
+    :type="attrs.type || 'button'"
+    v-bind="attrs"
+    :class="classes"
+  >
     <Spinner v-if="props.loading" class="spinner" size="s" />
     <div v-if="slots.before?.()" class="before">
       <slot name="before" />
@@ -21,10 +26,11 @@
 import { Spinner } from '@/components/feedback';
 import { Tappable } from '@/components/service';
 import { usePlatform } from '@/composables/usePlatform';
-import { computed, useAttrs, type Component } from 'vue';
+import { ButtonHTMLAttributes, computed, useAttrs, type Component } from 'vue';
 import ButtonTypography from './ButtonTypography.vue';
 
-export interface ButtonProps {
+export interface ButtonProps
+  extends /* @vue-ignore */ Omit<ButtonHTMLAttributes, 'is'> {
   /** Controls the size of the button, influencing padding and font size. */
   size?: 's' | 'm' | 'l';
   /** If true, stretches the button to fill the width with its container. */
@@ -55,7 +61,7 @@ const slots = defineSlots<{
 }>();
 
 const platform = usePlatform();
-const attrs = useAttrs();
+const attrs: ButtonHTMLAttributes = useAttrs();
 
 const classes = computed(() => ({
   button: true,

@@ -1,19 +1,20 @@
 <template>
-  <Tappable is="button" :class="classes">
+  <Tappable v-bind="attrs" is="button" :class="classes">
     <slot />
   </Tappable>
 </template>
 
 <script setup lang="ts">
 import { Tappable } from '@/components/service';
-import { computed } from 'vue';
+import { ButtonHTMLAttributes, computed, useAttrs } from 'vue';
 
 /**
  * Renders an icon button with customizable size and mode. It utilizes the `Tappable` component for enhanced
  * touch interaction, allowing it to serve various UI actions efficiently.
  */
 
-export interface IconButtonProps {
+export interface IconButtonProps
+  extends /* @vue-ignore */ ButtonHTMLAttributes {
   /** Specifies the button size, affecting icon scaling. Recommended icon sizes are 20px for 's', 24px for 'm', and 28px for 'l'. */
   size?: 's' | 'm' | 'l';
   /** Defines the button's visual style, affecting its color and background. */
@@ -24,6 +25,8 @@ const props = withDefaults(defineProps<IconButtonProps>(), {
   size: 'm',
   mode: 'bezeled',
 });
+
+const attrs: ButtonHTMLAttributes = useAttrs();
 
 const classes = computed(() => ({
   ['icon-button']: true,

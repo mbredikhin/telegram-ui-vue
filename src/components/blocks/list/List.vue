@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import { type Component, computed } from 'vue';
 import { usePlatform } from '@/composables/usePlatform';
+
 /**
  * Renders a container for list items, applying platform-specific styles for consistency across different operating systems.
  * This component serves as a foundational element for creating lists in a user interface.

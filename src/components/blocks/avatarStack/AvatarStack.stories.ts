@@ -22,10 +22,10 @@ export const Default: Story = {
     },
     template: `
     <AvatarStack v-bind="args">
-      <Avatar size="48" src="${AVATAR_URL}" />
-      <Avatar size="48" src="${AVATAR_URL}" />
-      <Avatar size="48" src="${AVATAR_URL}" />
-      <Avatar size="48" src="${AVATAR_URL}" />
+      <Avatar :size="48" src="${AVATAR_URL}" />
+      <Avatar :size="48" src="${AVATAR_URL}" />
+      <Avatar :size="48" src="${AVATAR_URL}" />
+      <Avatar :size="48" src="${AVATAR_URL}" />
     </AvatarStack>`,
   }),
   args: {},

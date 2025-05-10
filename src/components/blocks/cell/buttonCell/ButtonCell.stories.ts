@@ -10,6 +10,19 @@ const meta = {
   title: 'Blocks/Cell/ButtonCell',
   component: ButtonCell,
   tags: ['autodocs'],
+  argTypes: {
+    mode: {
+      control: 'select',
+      options: ['default', 'destructive'],
+      description:
+        "Determines the button cell's visual theme, influencing color and style.",
+    },
+    is: {
+      type: 'string',
+      description:
+        'Specifies the root element type for more semantic HTML structure or integration with navigation libraries.',
+    },
+  },
 } satisfies Meta<typeof ButtonCell>;
 
 export default meta;
@@ -51,8 +64,7 @@ export const Default: Story = {
           </ButtonCell>
         </Section>
       </List>
-    </div>
-    `,
+    </div>`,
   }),
   args: {},
 };

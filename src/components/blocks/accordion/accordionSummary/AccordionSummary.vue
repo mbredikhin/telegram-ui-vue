@@ -3,7 +3,7 @@
     :id="accordionInjection.labelId"
     :aria-expanded="accordionInjection.expanded"
     :aria-controls="accordionInjection.contentId"
-    v-bind="props"
+    v-bind="attrs"
     @click="toggle"
   >
     <template v-for="(_, slot) of slots" #[slot]>
@@ -23,9 +23,9 @@
 </template>
 
 <script setup lang="ts">
-import { type Component, type Ref, inject } from 'vue';
+import { type Ref, inject, useAttrs } from 'vue';
 import ChevronDown24Icon from '@/icons/24/chevron_down.svg';
-import { Cell } from '@/components';
+import { Cell, CellProps } from '@/components/blocks';
 import { accordionInjectionKey, AccordionInjection } from '../lib';
 
 /**
@@ -34,17 +34,11 @@ import { accordionInjectionKey, AccordionInjection } from '../lib';
  * a consistent UI and accessibility features.
  */
 
-export interface AccordionSummaryProps {
-  /** Custom component or HTML tag to be used as the root element of the cell, div by default */
-  is?: Component | string;
-  /** Controls the hover state of the component externally, useful for keyboard navigation */
-  hovered?: boolean;
-  /** Allows for multiline content without truncation */
-  multiline?: boolean;
-  interactiveAnimation?: 'opacity' | 'background';
-}
+export interface AccordionSummaryProps extends /* @vue-ignore */ CellProps {}
 
-const props = defineProps<AccordionSummaryProps>();
+defineProps<AccordionSummaryProps>();
+
+const attrs: CellProps = useAttrs();
 
 const slots = defineSlots<{
   /** Content displayed above the main content as a subheading */

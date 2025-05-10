@@ -7,6 +7,13 @@ const meta = {
   title: 'Blocks/List',
   component: List,
   tags: ['autodocs'],
+  argTypes: {
+    is: {
+      type: 'string',
+      description:
+        'Specifies the HTML tag or component used to render the list, defaulting to `div`.',
+    },
+  },
 } satisfies Meta<typeof List>;
 
 export default meta;
@@ -25,6 +32,7 @@ export const Default: Story = {
         <template #header>Personal Information</template>
         <template #footer>The official Telegram app is available for Android, iPhone, iPad, Windows, macOS and Linux.</template>
         <Input
+          type="text"
           placeholder="21 y.o. designer from San Francisco"
         >
           <template #header>First name</template>

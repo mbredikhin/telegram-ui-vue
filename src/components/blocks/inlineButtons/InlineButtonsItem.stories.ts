@@ -7,6 +7,23 @@ const meta = {
   title: 'Blocks/InlineButtons/InlineButtonsItem',
   component: InlineButtonsItem,
   tags: ['autodocs'],
+  parameters: {
+    controls: {
+      include: ['mode', 'text'],
+    },
+  },
+  argTypes: {
+    mode: {
+      control: 'select',
+      options: ['plain', 'bezeled', 'gray'],
+      description:
+        "Optional mode for styling the button, with 'plain' as the default.",
+    },
+    text: {
+      type: 'string',
+      description: 'Text displayed inside the button.',
+    },
+  },
 } satisfies Meta<typeof InlineButtonsItem>;
 
 export default meta;
@@ -25,7 +42,7 @@ export const Default: Story = {
     template: `
     <div style="max-width: 160px">
       <InlineButtonsItem v-bind="args">
-        <template #default><Chat24Icon /></template>
+        <Chat24Icon />
       </InlineButtonsItem>
     </div>`,
   }),

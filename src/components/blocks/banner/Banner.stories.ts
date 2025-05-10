@@ -1,5 +1,6 @@
 import Button from '../button/Button.vue';
 import Image from '../image/Image.vue';
+import List from '../list/List.vue';
 import Banner from './Banner.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -7,7 +8,18 @@ const meta = {
   title: 'Blocks/Banner',
   component: Banner,
   tags: ['autodocs'],
-  argTypes: {},
+  argTypes: {
+    type: {
+      control: 'select',
+      options: ['section', 'inline'],
+      description:
+        "Specifies the banner's layout style, which can affect its positioning and styling.",
+    },
+    showCloseIcon: {
+      type: 'boolean',
+      description: 'Specifies whether to show the close icon or not.',
+    },
+  },
 } satisfies Meta<typeof Banner>;
 
 export default meta;
@@ -46,7 +58,7 @@ export const Default: Story = {
 
 export const WithImageBackground: Story = {
   render: (args) => ({
-    components: { Banner, Button },
+    components: { Banner, Button, List },
     setup() {
       return { args };
     },
@@ -68,8 +80,7 @@ export const WithImageBackground: Story = {
         </template>
         <Button size="s" mode="white">Try it out</Button>
       </Banner>
-    </List>
-    `,
+    </List>`,
   }),
   args: {
     type: 'section',

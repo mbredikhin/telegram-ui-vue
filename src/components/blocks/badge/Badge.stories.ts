@@ -9,13 +9,19 @@ const meta = {
     type: {
       control: 'select',
       options: ['number', 'dot'],
+      description:
+        "The visual style of the badge: 'number' displays the content, 'dot' shows a simple dot.",
     },
     mode: {
       control: 'select',
       options: ['primary', 'critical', 'secondary', 'gray', 'white'],
+      description:
+        'The color scheme of the badge, affecting its background and text color.',
     },
     large: {
       control: 'boolean',
+      description:
+        "Increases the size of the badge. Applicable only when `type` is 'number'.",
     },
   },
 } satisfies Meta<typeof Badge>;

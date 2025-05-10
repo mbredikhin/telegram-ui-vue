@@ -23,7 +23,8 @@ export const Default: Story = {
     setup() {
       return { args };
     },
-    template: `<Blockquote v-bind="args">
+    template: `
+    <Blockquote v-bind="args">
       <template #default>${args['default'] ?? ''}</template>
       <template #top-right-icon>${args['top-right-icon'] ?? ''}</template>
     </Blockquote>`,

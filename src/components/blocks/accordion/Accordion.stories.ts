@@ -9,6 +9,18 @@ const meta = {
   title: 'Blocks/Accordion/Accordion',
   component: Accordion,
   tags: ['autodocs'],
+  argTypes: {
+    id: {
+      type: 'string',
+      description:
+        'Optional ID for the accordion element, enhancing accessibility (a11y) by associating the accordion summary and content. If not provided, a unique ID will be generated automatically. This ID is crucial for screen readers and other assistive technologies to understand the relationship between the accordion header and content.',
+    },
+    expanded: {
+      type: 'boolean',
+      description:
+        'Determines whether the accordion is currently expanded or collapsed.',
+    },
+  },
 } satisfies Meta<typeof Accordion>;
 
 export default meta;

@@ -5,6 +5,17 @@ const meta = {
   title: 'Blocks/Steps',
   component: Steps,
   tags: ['autodocs'],
+  argTypes: {
+    count: {
+      type: 'number',
+      description: 'Total number of steps.',
+    },
+    progress: {
+      type: 'number',
+      description:
+        'Current progress, indicating how many steps have been completed. Progress is 0-indexed and goes up to `count`.',
+    },
+  },
 } satisfies Meta<typeof Steps>;
 
 export default meta;

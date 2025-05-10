@@ -6,7 +6,20 @@ const meta = {
   title: 'Form/Radio',
   component: Radio,
   tags: ['autodocs'],
-  argTypes: {},
+  parameters: {
+    controls: { include: ['defaultChecked', 'checked', 'disabled'] },
+  },
+  argTypes: {
+    defaultChecked: {
+      type: 'boolean',
+    },
+    disabled: {
+      type: 'boolean',
+    },
+    checked: {
+      type: 'boolean',
+    },
+  },
 } satisfies Meta<typeof Radio>;
 
 export default meta;
@@ -58,7 +71,7 @@ export const WithCells: Story = {
         multiline
       >
         <template #before>
-          <Radio name="radio" value="red pill" v-bind="args" />
+          <Radio name="radio" value="red" v-bind="args" />
         </template>
         <template #description>
           You stay in Wonderland, and I show you how deep the rabbit hole goes

@@ -1,5 +1,5 @@
 <template>
-  <Image style="border-radius: 50%" :class="classes" v-bind="props">
+  <Image style="border-radius: 50%" :class="classes" v-bind="attrs">
     <template #fallback-icon>
       <AvatarAcronym v-if="props.acronym" :size="props.size">
         {{ props.acronym }}
@@ -11,17 +11,18 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import { Image } from '@/components/blocks';
+import { computed, ImgHTMLAttributes, useAttrs } from 'vue';
+import { Image, ImageProps } from '@/components/blocks';
 import AvatarAcronym from './AvatarAcronym.vue';
+
 /**
  * Renders an image with specific styles for an avatar presentation, including optional acronym display and badge support.
  * Utilizes the `Image` component for core functionality, enhancing it with avatar-specific features like acronyms and badges.
  */
 
-export interface AvatarProps {
-  /** Specifies the size of the image, with a default of 40. Sizes are defined in pixels. */
-  size?: 20 | 24 | 28 | 40 | 48 | 96;
+interface Attrs extends ImageProps, ImgHTMLAttributes {}
+
+export interface AvatarProps extends /* @vue-ignore */ Attrs {
   /** One or two letters to be shown as a placeholder. `fallback-icon` will not be used if `acronym` is provided. */
   acronym?: string;
 }
@@ -34,6 +35,8 @@ defineSlots<{
   /** An element (often an icon) displayed `acronym` props is not provided. */
   ['fallback-icon'](props?: unknown): unknown;
 }>();
+
+const attrs: Attrs = useAttrs();
 
 const classes = computed(() => ({
   avatar: true,

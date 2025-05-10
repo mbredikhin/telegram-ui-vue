@@ -7,6 +7,14 @@ const meta = {
   title: 'Blocks/Card',
   component: Card,
   tags: ['autodocs'],
+  argTypes: {
+    type: {
+      control: 'select',
+      options: ['plain', 'ambient'],
+      description:
+        'Defines the visual style of the card, influencing background, shadow, and border.',
+    },
+  },
 } satisfies Meta<typeof Card>;
 
 export default meta;

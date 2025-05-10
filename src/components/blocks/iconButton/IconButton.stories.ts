@@ -9,6 +9,9 @@ const meta = {
   title: 'Blocks/IconButton',
   component: IconButton,
   tags: ['autodocs'],
+  parameters: {
+    controls: { include: ['size', 'mode'] },
+  },
   argTypes: {
     size: {
       control: 'select',
@@ -41,8 +44,7 @@ export const Default: Story = {
       <QuestionMark20Icon v-if="args.size === 's'" />
       <QR24Icon v-if="args.size === 'm'" />
       <Stats28Icon v-if="args.size === 'l'" />
-    </IconButton>
-    `,
+    </IconButton>`,
   }),
   args: {
     size: 's',

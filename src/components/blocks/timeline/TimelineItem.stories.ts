@@ -5,6 +5,25 @@ const meta = {
   title: 'Blocks/Timeline/TimelineItem',
   component: TimelineItem,
   tags: ['autodocs'],
+  parameters: {
+    controls: { include: ['mode', 'horizontal', 'header', 'default'] },
+  },
+  argTypes: {
+    mode: {
+      control: 'select',
+      options: ['active', 'pre-active'],
+      description:
+        'Internal prop, but you can change it. Marks line and dot of the item',
+    },
+    horizontal: {
+      type: 'boolean',
+      description: 'If true, the item will be horizontal, passed from parent',
+    },
+    header: {
+      type: 'string',
+      description: 'Header of the item',
+    },
+  },
 } satisfies Meta<typeof TimelineItem>;
 
 export default meta;

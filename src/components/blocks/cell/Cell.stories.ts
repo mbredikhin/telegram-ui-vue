@@ -8,6 +8,26 @@ const meta = {
   title: 'Blocks/Cell/Cell',
   component: Cell,
   tags: ['autodocs'],
+  argTypes: {
+    hovered: {
+      type: 'boolean',
+      description:
+        'Controls the hover state of the component externally, useful for keyboard navigation',
+    },
+    multiline: {
+      type: 'boolean',
+      description: 'Allows for multiline content without truncation',
+    },
+    is: {
+      type: 'string',
+      description:
+        'Custom component or HTML tag to be used as the root element of the cell, div by default',
+    },
+    interactiveAnimation: {
+      control: 'select',
+      options: ['opacity', 'background'],
+    },
+  },
 } satisfies Meta<typeof Cell>;
 
 export default meta;
@@ -30,13 +50,12 @@ export const Default: Story = {
         <Badge type="dot" />
       </template>
       <template #before>
-        <Avatar size="48" />
+        <Avatar :size="48" />
       </template>
       <template #after>
         <Badge type="number">99</Badge>
       </template>
-    </Cell>
-    `,
+    </Cell>`,
   }),
   args: {},
 };
@@ -52,13 +71,12 @@ export const WithInfo: Story = {
       <template #default>Noah</template>
       <template #subtitle>Yesterday</template>
       <template #before>
-        <Avatar size="48" />
+        <Avatar :size="48" />
       </template>
       <template #after>
         <Info type="text" subtitle="Received">+1000</Info>
       </template>
-    </Cell>
-    `,
+    </Cell>`,
   }),
   args: {},
 };

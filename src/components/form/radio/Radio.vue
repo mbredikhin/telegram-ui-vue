@@ -6,7 +6,6 @@
       type="radio"
       class="input"
       :checked="checked"
-      :disabled="attrs.disabled"
     />
     <RadioIcon class="icon" aria-hidden />
     <RadioCheckedIcon class="icon--checked" aria-hidden />
@@ -15,7 +14,7 @@
 
 <script setup lang="ts">
 import { VisuallyHidden } from '@/components/service';
-import { computed, useAttrs } from 'vue';
+import { computed, InputHTMLAttributes, useAttrs } from 'vue';
 import RadioIcon from './icons/radio.svg';
 import RadioCheckedIcon from './icons/radio-checked.svg';
 import { useEnsuredControl } from '@/composables/useEnsuredControl';
@@ -25,15 +24,23 @@ import { useEnsuredControl } from '@/composables/useEnsuredControl';
  * It supports all standard properties and events of an HTML input element of type "radio".
  */
 
+interface RadioProps extends /* @vue-ignore */ InputHTMLAttributes {
+  defaultChecked?: boolean;
+}
+
+const props = withDefaults(defineProps<RadioProps>(), {
+  defaultChecked: false,
+});
+
 const emit = defineEmits<{
   (e: 'input', value: boolean): void;
 }>();
 
-const attrs = useAttrs();
+const attrs: InputHTMLAttributes = useAttrs();
 
 const [checked, setChecked] = useEnsuredControl({
   defaultValue:
-    (attrs.checked as boolean) ?? (attrs.defaultChecked as boolean) ?? false,
+    (attrs.checked as boolean) ?? (props.defaultChecked as boolean) ?? false,
   onChange,
 });
 
