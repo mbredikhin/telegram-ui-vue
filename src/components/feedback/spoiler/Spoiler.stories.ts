@@ -6,6 +6,12 @@ const meta = {
   title: 'Feedback/Spoiler',
   component: Spoiler,
   tags: ['autodocs'],
+  argTypes: {
+    visible: {
+      type: 'boolean',
+      description: 'Controls the visibility of the content inside the spoiler.',
+    },
+  },
 } satisfies Meta<typeof Spoiler>;
 
 export default meta;
@@ -21,7 +27,7 @@ export const Default: Story = {
     template: `
     <div>
       <Spoiler v-bind="args">
-        <div style="width: 200px; height: 200px; background: yellowgreen" />
+        <div style="width: 200px; height: 200px; background: yellowgreen"></div>
       </Spoiler>
       <br />
       <Spoiler v-bind="args">
@@ -29,8 +35,7 @@ export const Default: Story = {
           Hello
         </Text>
       </Spoiler>
-    </div>
-    `,
+    </div>`,
   }),
   args: {},
 };

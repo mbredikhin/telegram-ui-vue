@@ -6,6 +6,18 @@ const meta = {
   title: 'Feedback/Skeleton',
   component: Skeleton,
   tags: ['autodocs'],
+  argTypes: {
+    withoutAnimation: {
+      type: 'boolean',
+      description:
+        'If true, disables the shimmering animation of the skeleton.',
+    },
+    visible: {
+      type: 'boolean',
+      description:
+        'If true, the skeleton overlay is shown above the content. When false, the skeleton is hidden, showing any underlying content.',
+    },
+  },
 } satisfies Meta<typeof Skeleton>;
 
 export default meta;

@@ -5,6 +5,14 @@ const meta = {
   title: 'Feedback/Spinner',
   component: Spinner,
   tags: ['autodocs'],
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['s', 'm', 'l'],
+      description:
+        "Determines the size of the spinner. Can be 'small' (s), 'medium' (m), or 'large' (l), with 'medium' being the default size.",
+    },
+  },
 } satisfies Meta<typeof Spinner>;
 
 export default meta;

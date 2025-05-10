@@ -14,3 +14,11 @@ export { Spoiler, type SpoilerProps };
 
 import Spinner, { SpinnerProps } from './spinner/Spinner.vue';
 export { Spinner, type SpinnerProps };
+
+import Snackbar, { SnackbarProps } from './snackbar/Snackbar.vue';
+export { Snackbar, type SnackbarProps };
+
+import SnackbarButton, {
+  SnackbarButtonProps,
+} from './snackbar/SnackbarButton.vue';
+export { SnackbarButton, type SnackbarButtonProps };

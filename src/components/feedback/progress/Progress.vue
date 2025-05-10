@@ -23,6 +23,7 @@ import {
 } from '@/components/service/appRoot';
 
 export interface ProgressProps {
+  /** The current value of the progress bar, expressed as a percentage. The value should be between 0 and 100. */
   value?: number;
 }
 

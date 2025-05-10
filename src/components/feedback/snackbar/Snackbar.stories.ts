@@ -10,6 +10,13 @@ const meta = {
   title: 'Feedback/Snackbar',
   component: Snackbar,
   tags: ['autodocs'],
+  argTypes: {
+    duration: {
+      type: 'number',
+      description:
+        'The duration in milliseconds after which the snackbar will automatically close.',
+    },
+  },
 } satisfies Meta<typeof Snackbar>;
 
 export default meta;
