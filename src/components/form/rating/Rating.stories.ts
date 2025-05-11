@@ -1,8 +1,7 @@
 import { Section, SectionHeader } from '@/components/blocks';
 import Rating from './Rating.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import Heart28Icon from '@/icons/28/heart.svg';
-import { Component } from 'vue';
+import Heart28Icon from '@/icons/28/heart.svg?component';
 import { Text } from '@/components/typography';
 
 const meta = {
@@ -37,7 +36,7 @@ export const WithCustomIcon: Story = {
     components: {
       Section,
       Rating,
-      Heart28Icon: Heart28Icon as unknown as Component,
+      Heart28Icon,
     },
     setup() {
       return { args };
@@ -49,6 +48,6 @@ export const WithCustomIcon: Story = {
     </Section>`,
   }),
   args: {
-    icon: Heart28Icon as unknown as Component,
+    icon: Heart28Icon,
   },
 };

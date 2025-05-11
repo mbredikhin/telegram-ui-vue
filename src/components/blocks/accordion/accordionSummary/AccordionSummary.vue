@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import { type Ref, inject, useAttrs } from 'vue';
-import ChevronDown24Icon from '@/icons/24/chevron_down.svg';
+import ChevronDown24Icon from '@/icons/24/chevron-down.svg';
 import { Cell, CellProps } from '@/components/blocks';
 import { accordionInjectionKey, AccordionInjection } from '../lib';
 

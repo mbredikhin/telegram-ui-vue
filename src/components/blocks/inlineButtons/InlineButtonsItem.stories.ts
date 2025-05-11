@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import InlineButtonsItem from './InlineButtonsItem.vue';
-import { Component } from 'vue';
-import Chat24Icon from '@/icons/24/chat.svg';
+import Chat24Icon from '@/icons/24/chat.svg?component';
 
 const meta = {
   title: 'Blocks/InlineButtons/InlineButtonsItem',
@@ -34,7 +33,7 @@ export const Default: Story = {
   render: (args) => ({
     components: {
       InlineButtonsItem,
-      Chat24Icon: Chat24Icon as unknown as Component,
+      Chat24Icon,
     },
     setup() {
       return { args };

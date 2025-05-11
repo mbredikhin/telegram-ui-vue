@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import InlineButtons from './InlineButtons.vue';
 import InlineButtonsItem from './InlineButtonsItem.vue';
-import { Component } from 'vue';
-import Chat24Icon from '@/icons/24/chat.svg';
-import Notifications24Icon from '@/icons/24/notifications.svg';
-import QR24Icon from '@/icons/24/qr.svg';
+import Chat24Icon from '@/icons/24/chat.svg?component';
+import Notifications24Icon from '@/icons/24/notifications.svg?component';
+import QR24Icon from '@/icons/24/qr.svg?component';
 
 const meta = {
   title: 'Blocks/InlineButtons/InlineButtons',
@@ -29,9 +28,9 @@ export const Default: Story = {
     components: {
       InlineButtons,
       InlineButtonsItem,
-      Chat24Icon: Chat24Icon as unknown as Component,
-      Notifications24Icon: Notifications24Icon as unknown as Component,
-      QR24Icon: QR24Icon as unknown as Component,
+      Chat24Icon,
+      Notifications24Icon,
+      QR24Icon,
     },
     setup() {
       return { args };

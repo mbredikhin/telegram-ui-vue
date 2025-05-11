@@ -79,6 +79,7 @@ export const Default: Story = {
 } satisfies Story;
 
 export const Horizontal: Story = {
+  render: Default.render,
   args: {
     horizontal: true,
     ...Default.args,

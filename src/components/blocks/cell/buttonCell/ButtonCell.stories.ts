@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import ButtonCell from './ButtonCell.vue';
 import { List, Section } from '@/components/blocks';
-import ProfileColoredSquare32Icon from '@/icons/32/profile_colored_square.svg';
-import AddCircle28Icon from '@/icons/28/add_circle.svg';
-import { Component } from 'vue';
+import ProfileColoredSquare32Icon from '@/icons/32/profile-colored-square.svg?component';
+import AddCircle28Icon from '@/icons/28/add-circle.svg?component';
 import Cell from '../Cell.vue';
 
 const meta = {
@@ -36,9 +35,8 @@ export const Default: Story = {
       List,
       Section,
       Cell,
-      ProfileColoredSquare32Icon:
-        ProfileColoredSquare32Icon as unknown as Component,
-      AddCircle28Icon: AddCircle28Icon as unknown as Component,
+      ProfileColoredSquare32Icon,
+      AddCircle28Icon,
     },
     setup() {
       return { args };

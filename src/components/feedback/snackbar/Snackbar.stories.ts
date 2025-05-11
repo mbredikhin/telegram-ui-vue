@@ -1,7 +1,7 @@
 import Snackbar from './Snackbar.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import Archive28Icon from '@/icons/28/archive.svg';
-import { Component, ref } from 'vue';
+import Archive28Icon from '@/icons/28/archive.svg?component';
+import { ref } from 'vue';
 import SnackbarButton from './SnackbarButton.vue';
 import { Link } from '@/components/navigation';
 import { Button } from '@/components/blocks';
@@ -30,7 +30,7 @@ export const Default: Story = {
       SnackbarButton,
       Button,
       Link,
-      Archive28Icon: Archive28Icon as unknown as Component,
+      Archive28Icon,
     },
     setup() {
       const isDeleteSnackbarShown = ref(false);

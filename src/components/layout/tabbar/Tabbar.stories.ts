@@ -1,8 +1,8 @@
 import Tabbar from './Tabbar.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import Devices28Icon from '@/icons/28/devices.svg';
-import Chat28Icon from '@/icons/28/chat.svg';
-import Stats28Icon from '@/icons/28/stats.svg';
+import Devices28Icon from '@/icons/28/devices.svg?component';
+import Chat28Icon from '@/icons/28/chat.svg?component';
+import Stats28Icon from '@/icons/28/stats.svg?component';
 import { ref } from 'vue';
 import TabbarItem from './TabbarItem.vue';
 

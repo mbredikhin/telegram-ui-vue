@@ -11,7 +11,7 @@
       :cy="circleSize"
       :r="circleAttributes.radius"
       stroke-opacity=".1"
-      :stroke-width="circleAttributes.strokeWidth"
+      :stroke-width="circleAttributes['stroke-width']"
       fill="none"
     />
     <circle
@@ -19,7 +19,7 @@
       :cx="circleSize"
       :cy="circleSize"
       :r="circleAttributes.radius"
-      :stroke-width="circleAttributes.strokeWidth"
+      :stroke-width="circleAttributes['stroke-width']"
       stroke-linecap="round"
       :stroke-dasharray="circumference"
       :stroke-dashoffset="circumference * ((100 - progress) / 100)"
@@ -61,28 +61,28 @@ function getCircleAttributes(size: 'small' | 'medium' | 'large') {
     case 'large':
       return {
         size: 56,
-        strokeWidth: 4,
+        'stroke-width': 4,
         radius: 18,
       };
 
     case 'medium':
       return {
         size: 36,
-        strokeWidth: 3,
+        'stroke-width': 3,
         radius: 14,
       };
 
     case 'small':
       return {
         size: 28,
-        strokeWidth: 3,
+        'stroke-width': 3,
         radius: 10,
       };
 
     default:
       return {
         size: 36,
-        strokeWidth: 3,
+        'stroke-width': 3,
         radius: 14,
       };
   }

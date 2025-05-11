@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
-import Devices28Icon from '@/icons/28/devices.svg';
+import Devices28Icon from '@/icons/28/devices.svg?component';
 import TabbarItem from './TabbarItem.vue';
-import { Component } from 'vue';
 
 const meta = {
   title: 'Layout/Tabbar/TabbarItem',
@@ -18,7 +17,7 @@ export const Default: Story = {
   render: (args) => ({
     components: {
       TabbarItem,
-      Devices28Icon: Devices28Icon as unknown as Component,
+      Devices28Icon,
     },
     setup() {
       return { args };

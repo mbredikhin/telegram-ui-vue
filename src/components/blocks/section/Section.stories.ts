@@ -1,8 +1,8 @@
 import Section from './Section.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import Chat28Icon from '@/icons/28/chat.svg';
-import Devices28Icon from '@/icons/28/devices.svg';
-import Stats28Icon from '@/icons/28/stats.svg';
+import Chat28Icon from '@/icons/28/chat.svg?component';
+import Devices28Icon from '@/icons/28/devices.svg?component';
+import Stats28Icon from '@/icons/28/stats.svg?component';
 import List from '../list/List.vue';
 import Cell from '../cell/Cell.vue';
 import { Input } from '@/components/form';

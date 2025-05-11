@@ -1,8 +1,7 @@
 import { Avatar, List } from '@/components/blocks';
 import Chip from './Chip.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { Component } from 'vue';
-import Cancel16Icon from '@/icons/16/cancel.svg';
+import Cancel16Icon from '@/icons/16/cancel.svg?component';
 import Radio from '../radio/Radio.vue';
 
 const meta = {
@@ -51,7 +50,7 @@ export const WithAfter: Story = {
     components: {
       Chip,
       List,
-      Cancel16Icon: Cancel16Icon as unknown as Component,
+      Cancel16Icon,
     },
     setup() {
       return { args, chips };

@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import IconButton from './IconButton.vue';
-import QuestionMark20Icon from '@/icons/20/question_mark.svg';
-import QR24Icon from '@/icons/24/qr.svg';
-import Stats28Icon from '@/icons/28/stats.svg';
-import { Component } from 'vue';
+import QuestionMark20Icon from '@/icons/20/question-mark.svg?component';
+import QR24Icon from '@/icons/24/qr.svg?component';
+import Stats28Icon from '@/icons/28/stats.svg?component';
 
 const meta = {
   title: 'Blocks/IconButton',
@@ -32,9 +31,9 @@ export const Default: Story = {
   render: (args) => ({
     components: {
       IconButton,
-      QuestionMark20Icon: QuestionMark20Icon as unknown as Component,
-      QR24Icon: QR24Icon as unknown as Component,
-      Stats28Icon: Stats28Icon as unknown as Component,
+      QuestionMark20Icon,
+      QR24Icon,
+      Stats28Icon,
     },
     setup() {
       return { args };

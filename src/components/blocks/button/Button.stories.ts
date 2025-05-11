@@ -1,8 +1,7 @@
 import Button from './Button.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import Copy20Icon from '@/icons/20/copy.svg';
-import PersonRemove24Icon from '@/icons/24/person_remove.svg';
-import { Component } from 'vue';
+import Copy20Icon from '@/icons/20/copy.svg?component';
+import PersonRemove24Icon from '@/icons/24/person-remove.svg?component';
 
 const meta = {
   title: 'Blocks/Button',
@@ -76,8 +75,8 @@ export const WithIcon: Story = {
   render: (args) => ({
     components: {
       Button,
-      Copy20Icon: Copy20Icon as unknown as Component,
-      PersonRemove24Icon: PersonRemove24Icon as unknown as Component,
+      Copy20Icon,
+      PersonRemove24Icon,
     },
     setup() {
       return { args };

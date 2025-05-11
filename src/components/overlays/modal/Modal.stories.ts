@@ -3,8 +3,8 @@ import type { Decorator, Meta, StoryObj } from '@storybook/vue3';
 import ModalHeader from './ModalHeader.vue';
 import { Button, Placeholder } from '@/components/blocks';
 import ModalClose from './ModalClose.vue';
-import Close28Icon from '@/icons/28/close.svg';
-import { Component, ref } from 'vue';
+import Close28Icon from '@/icons/28/close.svg?component';
+import { ref } from 'vue';
 
 const meta = {
   title: 'Overlays/Modal',
@@ -31,7 +31,7 @@ export const Default: Story = {
       ModalClose,
       Button,
       Placeholder,
-      Close28Icon: Close28Icon as unknown as Component,
+      Close28Icon,
     },
     setup() {
       return { args };
@@ -118,7 +118,7 @@ export const Controlled: Story = {
       ModalClose,
       Button,
       Placeholder,
-      Close28Icon: Close28Icon as unknown as Component,
+      Close28Icon,
     },
     setup() {
       const isOpen = ref(args.open);

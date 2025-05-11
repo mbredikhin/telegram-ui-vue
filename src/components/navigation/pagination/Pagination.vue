@@ -35,8 +35,8 @@
 import { computed, toRefs } from 'vue';
 import { PaginationType, usePagination, UsePaginationItem } from './lib';
 import Headline from '@/components/typography/headline/Headline.vue';
-import ChevronLeft24Icon from '@/icons/24/chevron_left.svg';
-import ChevronRight24Icon from '@/icons/24/chevron_right.svg';
+import ChevronLeft24Icon from '@/icons/24/chevron-left.svg';
+import ChevronRight24Icon from '@/icons/24/chevron-right.svg';
 
 /**
  * The Pagination component displays a set of navigation controls allowing users to navigate through pages of content.

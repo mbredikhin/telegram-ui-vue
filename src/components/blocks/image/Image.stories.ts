@@ -1,9 +1,8 @@
 import Image from './Image.vue';
 import ImageBadge from './ImageBadge.vue';
-import Quote12Icon from '@/icons/12/quote.svg';
-import Stats28Icon from '@/icons/28/stats.svg';
+import Quote12Icon from '@/icons/12/quote.svg?component';
+import Stats28Icon from '@/icons/28/stats.svg?component';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { Component } from 'vue';
 
 const meta = {
   title: 'Blocks/Image',
@@ -86,8 +85,8 @@ export const WithChildren: Story = {
   render: (args) => ({
     components: {
       Image,
-      Quote12Icon: Quote12Icon as unknown as Component,
-      Stats28Icon: Stats28Icon as unknown as Component,
+      Quote12Icon,
+      Stats28Icon,
     },
     setup() {
       return { args };

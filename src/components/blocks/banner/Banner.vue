@@ -46,7 +46,7 @@ import { Tappable } from '@/components/service';
 import { Caption, Subheadline, Text } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
 import { computed, type VNode } from 'vue';
-import CloseAmbient28Icon from '@/icons/28/close_ambient.svg';
+import CloseAmbient28Icon from '@/icons/28/close-ambient.svg';
 import Cancel24Icon from '@/icons/24/cancel.svg';
 import Close28Icon from '@/icons/28/close.svg';
 

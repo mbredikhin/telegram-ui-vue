@@ -18,8 +18,8 @@
 <script setup lang="ts">
 import { computed, useAttrs } from 'vue';
 import CheckboxIcon from './icons/checkbox.svg';
-import CheckboxCheckedIcon from './icons/checkbox_checked.svg';
-import CheckboxIndeterminateIcon from './icons/checkbox_indeterminate.svg';
+import CheckboxCheckedIcon from './icons/checkbox-checked.svg';
+import CheckboxIndeterminateIcon from './icons/checkbox-indeterminate.svg';
 import { VisuallyHidden } from '@/components/service';
 /**
  * Renders a checkbox input with custom styling and optional indeterminate state.

@@ -1,9 +1,8 @@
 import { List } from '@/components/blocks';
 import Input from './Input.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import Close24Icon from '@/icons/24/close.svg';
+import Close24Icon from '@/icons/24/close.svg?component';
 import { Tappable } from '@/components/service';
-import { Component } from 'vue';
 
 const meta = {
   title: 'Form/Input',
@@ -22,7 +21,7 @@ export const Default: Story = {
       Input,
       List,
       Tappable,
-      Close24Icon: Close24Icon as unknown as Component,
+      Close24Icon,
     },
     setup() {
       return { args };

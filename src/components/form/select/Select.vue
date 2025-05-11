@@ -30,7 +30,7 @@ import { computed, useAttrs } from 'vue';
 import FormInput from '../formInput/FormInput.vue';
 import { usePlatform } from '@/composables/usePlatform';
 import { Subheadline, Text } from '@/components/typography';
-import ChevronDown20Icon from '@/icons/20/chevron_down.svg';
+import ChevronDown20Icon from '@/icons/20/chevron-down.svg';
 
 /**
  * Renders a custom styled select input within a `FormInput` container. This component is designed to integrate seamlessly
