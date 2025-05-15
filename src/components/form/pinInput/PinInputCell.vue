@@ -20,9 +20,10 @@ export default {
 <script setup lang="ts">
 import { VisuallyHidden } from '@/components/service';
 import { usePlatform } from '@/composables/usePlatform';
-import { computed, useAttrs, useTemplateRef } from 'vue';
+import { computed, InputHTMLAttributes, useAttrs, useTemplateRef } from 'vue';
 
-export interface PinInputCellProps {
+export interface PinInputCellProps
+  extends /* @vue-ignore */ InputHTMLAttributes {
   isTyped?: boolean;
 }
 
@@ -31,7 +32,7 @@ const props = withDefaults(defineProps<PinInputCellProps>(), {
 });
 
 const platform = usePlatform();
-const attrs = useAttrs();
+const attrs: InputHTMLAttributes = useAttrs();
 const pinInputCellRef = useTemplateRef('pinInputCell');
 
 const classes = computed(() => ({

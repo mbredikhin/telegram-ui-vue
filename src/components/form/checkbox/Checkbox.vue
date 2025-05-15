@@ -15,18 +15,25 @@
   </label>
 </template>
 
+<script lang="ts">
+export default {
+  inheritAttrs: false,
+};
+</script>
+
 <script setup lang="ts">
-import { computed, useAttrs } from 'vue';
+import { computed, InputHTMLAttributes, useAttrs } from 'vue';
 import CheckboxIcon from './icons/checkbox.svg';
 import CheckboxCheckedIcon from './icons/checkbox-checked.svg';
 import CheckboxIndeterminateIcon from './icons/checkbox-indeterminate.svg';
 import { VisuallyHidden } from '@/components/service';
+
 /**
  * Renders a checkbox input with custom styling and optional indeterminate state.
  * The component visually hides the actual input element for accessibility while providing a custom styled appearance.
  */
 
-export interface CheckboxProps {
+export interface CheckboxProps extends /* @vue-ignore */ InputHTMLAttributes {
   /** If true, displays the checkbox with an indeterminate icon instead of checked or unchecked. */
   indeterminate?: boolean;
 }
@@ -35,7 +42,7 @@ const props = withDefaults(defineProps<CheckboxProps>(), {
   indeterminate: false,
 });
 
-const attrs = useAttrs();
+const attrs: InputHTMLAttributes = useAttrs();
 
 const classes = computed(() => ({
   checkbox: true,

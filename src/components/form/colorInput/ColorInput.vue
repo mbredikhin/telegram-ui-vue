@@ -1,5 +1,5 @@
 <template>
-  <FormInput :status="props.status" :class="classes">
+  <FormInput :status="attrs.status" :class="classes">
     <template #header>
       <slot name="header" />
     </template>
@@ -11,8 +11,8 @@
         <VisuallyHidden
           is="input"
           type="color"
-          :value="inputValue"
           v-bind="attrs"
+          :value="inputValue"
           @input="onChange"
         />
         <div
@@ -38,7 +38,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import FormInput from '../formInput/FormInput.vue';
+import FormInput, { FormInputProps } from '../formInput/FormInput.vue';
 import { VisuallyHidden } from '@/components/service';
 import { Subheadline, Text } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
@@ -49,13 +49,8 @@ import { computed, ref, useAttrs, watch } from 'vue';
  * It adapts the text style based on the platform and supports additional properties like header and status.
  */
 
-export interface ColorInputProps {
-  /** Input value. */
-  value?: string;
-  /** Input default value. */
+export interface ColorInputProps extends /* @vue-ignore */ FormInputProps {
   defaultValue?: string;
-  /** Defines the visual state of the form input (e.g., error, focused). */
-  status?: 'default' | 'error' | 'focused';
 }
 
 const props = withDefaults(defineProps<ColorInputProps>(), {
@@ -71,9 +66,9 @@ defineSlots<{
   before(props?: unknown): unknown;
 }>();
 
-const inputValue = ref(props.value || props.defaultValue);
+const attrs: FormInputProps = useAttrs();
+const inputValue = ref(attrs.value || props.defaultValue);
 const platform = usePlatform();
-const attrs = useAttrs();
 
 watch(
   () => props.value,

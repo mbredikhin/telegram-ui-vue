@@ -19,7 +19,7 @@ export const Default: Story = {
       return { args };
     },
     template: `
-    <List style="width: 240px; background: var(--tgui-secondary-bg-color);">
+    <List style="width: 240px; background: var(--tgui-secondary-bg-color)">
       <Select placeholder="I am usual input, just leave me alone">
         <template #header>Select</template>
         <template #default>

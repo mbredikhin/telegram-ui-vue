@@ -27,47 +27,47 @@ export const Default: Story = {
       return { args };
     },
     template: `
-    <List style="width: 400px; max-width: 100%; margin: auto; background: var(--tgui-secondary-bg-color);">
-        <Input
-          placeholder="I am usual input, just leave me alone"
-        >
-          <template #header>Input</template>
-        </Input>
-        <Input
-          status="error"
-          placeholder="I am error input, don't make my mistakes..."
-        >
-          <template #header>Input</template>
-        </Input>
-        <Input
-          status="focused"
-          placeholder="I am focused input, are u focused on me?"
-        >
-          <template #header>Input</template>
-        </Input>
-        <Input
-          disabled
-          placeholder="I am disabled input"
-        >
-          <template #header>Input</template>
-        </Input>
-        <Input
-          status="focused"
-          placeholder="Write and clean me"
-          :value="args.value"
-          @change="(e) => { args.value = e.target.value; }"
-        >
-          <template #header>Input</template>
-          <template #after>
-            <Tappable
-              style="display: flex"
-              @click="args.value = ''"
-            >
-              <Close24Icon />
-            </Tappable>
-          </template>
-        </Input>
-      </List>`,
+    <List style="width: 400px; max-width: 100%; margin: auto; background: var(--tgui-secondary-bg-color)">
+      <Input
+        placeholder="I am usual input, just leave me alone"
+      >
+        <template #header>Input</template>
+      </Input>
+      <Input
+        status="error"
+        placeholder="I am error input, don't make my mistakes..."
+      >
+        <template #header>Input</template>
+      </Input>
+      <Input
+        status="focused"
+        placeholder="I am focused input, are u focused on me?"
+      >
+        <template #header>Input</template>
+      </Input>
+      <Input
+        disabled
+        placeholder="I am disabled input"
+      >
+        <template #header>Input</template>
+      </Input>
+      <Input
+        status="focused"
+        placeholder="Write and clean me"
+        :value="args.value"
+        @change="args.value = $event.target.value"
+      >
+        <template #header>Input</template>
+        <template #after>
+          <Tappable
+            style="display: flex"
+            @click="args.value = ''"
+          >
+            <Close24Icon />
+          </Tappable>
+        </template>
+      </Input>
+    </List>`,
   }),
   args: {
     value: '',

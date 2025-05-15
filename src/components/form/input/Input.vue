@@ -1,5 +1,5 @@
 <template>
-  <FormInput :status="props.status" :disabled="props.disabled" :class="classes">
+  <FormInput :status="attrs.status" :disabled="attrs.disabled" :class="classes">
     <template #header>
       <slot name="header" />
     </template>
@@ -13,19 +13,16 @@
     <Text
       is="input"
       v-if="platform === 'ios'"
-      Subheadline
       class="input__inner"
-      :type="props.type"
-      :disabled="props.disabled"
-      v-bind="$attrs"
+      type="text"
+      v-bind="attrs"
     />
     <Subheadline
       is="input"
       v-else
       class="input__inner"
-      :type="props.type"
-      :disabled="props.disabled"
-      v-bind="$attrs"
+      type="text"
+      v-bind="attrs"
     />
   </FormInput>
 </template>
@@ -38,8 +35,8 @@ export default {
 
 <script setup lang="ts">
 import { usePlatform } from '@/composables/usePlatform';
-import { computed } from 'vue';
-import FormInput from '../formInput/FormInput.vue';
+import { computed, useAttrs } from 'vue';
+import FormInput, { FormInputProps } from '../formInput/FormInput.vue';
 import { Subheadline, Text } from '@/components/typography';
 
 /**
@@ -47,21 +44,12 @@ import { Subheadline, Text } from '@/components/typography';
  * It automatically adapts typography and layout based on the platform, ensuring a consistent user experience across devices.
  */
 
-export interface InputProps {
-  /** Defines the visual state of the form input (e.g., error, focused). */
-  status?: 'default' | 'error' | 'focused';
-  /** Indicates if the form input is disabled. */
-  disabled?: boolean;
-  /** Input type. */
-  type: string;
-}
+export interface InputProps extends /* @vue-ignore */ FormInputProps {}
 
-const props = withDefaults(defineProps<InputProps>(), {
-  disabled: false,
-  type: 'text',
-});
+defineProps<InputProps>();
 
 const platform = usePlatform();
+const attrs: InputProps = useAttrs();
 
 const classes = computed(() => ({
   ['input-wrapper']: true,

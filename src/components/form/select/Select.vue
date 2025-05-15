@@ -1,5 +1,5 @@
 <template>
-  <FormInput :status="props.status" :class="classes">
+  <FormInput :status="attrs.status" :class="classes">
     <template #header>
       <slot name="header" />
     </template>
@@ -10,8 +10,8 @@
     <TypographyComponent
       is="select"
       class="select"
-      :multiple="false"
       v-bind="attrs"
+      :multiple="false"
     >
       <slot />
     </TypographyComponent>
@@ -26,8 +26,8 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { computed, useAttrs } from 'vue';
-import FormInput from '../formInput/FormInput.vue';
+import { computed, SelectHTMLAttributes, useAttrs } from 'vue';
+import FormInput, { FormInputProps } from '../formInput/FormInput.vue';
 import { usePlatform } from '@/composables/usePlatform';
 import { Subheadline, Text } from '@/components/typography';
 import ChevronDown20Icon from '@/icons/20/chevron-down.svg';
@@ -38,17 +38,11 @@ import ChevronDown20Icon from '@/icons/20/chevron-down.svg';
  * for platform-specific typography. The `FormInput` wrapper facilitates the inclusion of headers and status messages.
  */
 
-export interface SelectProps {
-  /** Defines the visual state of the form input (e.g., error, focused). */
-  status?: 'default' | 'error' | 'focused';
-  /** Indicates if the form input is disabled. */
-  disabled?: boolean;
-}
+export interface Attrs extends FormInputProps, SelectHTMLAttributes {}
 
-const props = withDefaults(defineProps<SelectProps>(), {
-  status: 'default',
-  disabled: false,
-});
+export interface SelectProps extends /* @vue-ignore */ Attrs {}
+
+defineProps<SelectProps>();
 
 defineSlots<{
   /** Typically `option` elements to be rendered within the select. */
@@ -60,7 +54,7 @@ defineSlots<{
 }>();
 
 const platform = usePlatform();
-const attrs = useAttrs();
+const attrs: FormInputProps = useAttrs();
 
 const classes = computed(() => ({
   ['select-wrapper']: true,

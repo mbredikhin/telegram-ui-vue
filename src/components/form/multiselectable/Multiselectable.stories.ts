@@ -6,7 +6,11 @@ const meta = {
   title: 'Form/Multiselectable',
   component: Multiselectable,
   tags: ['autodocs'],
-  argTypes: {},
+  argTypes: {
+    checked: {
+      type: 'boolean',
+    },
+  },
 } satisfies Meta<typeof Multiselectable>;
 
 export default meta;
@@ -28,7 +32,7 @@ export const Default: Story = {
     </Placeholder>`,
   }),
   args: {
-    defaultChecked: true,
+    checked: true,
   },
 };
 

@@ -22,16 +22,14 @@ export const Default: Story = {
     <Placeholder>
       <template #description>This component wraps input with type=checkbox</template>
       <div style="display: flex; gap: 6px;">
-        <Switch v-bind="args" /> <br />
-        <Switch defaultChecked v-bind="args" /> <br />
-        <Switch disabled v-bind="args" /> <br />
-        <Switch disabled checked v-bind="args" /> <br />
+        <Switch :checked="true" v-bind="args" /> <br />
+        <Switch :checked="false" v-bind="args" /> <br />
+        <Switch :disabled="true" :checked="true" v-bind="args" /> <br />
+        <Switch :disabled="true" :checked="false" v-bind="args" /> <br />
       </div>
     </Placeholder>`,
   }),
-  args: {
-    defaultChecked: true,
-  },
+  args: {},
 };
 
 export const WithCell: Story = {

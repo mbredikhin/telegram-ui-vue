@@ -8,7 +8,19 @@ const meta = {
   title: 'Form/Chip',
   component: Chip,
   tags: ['autodocs'],
-  argTypes: {},
+  argTypes: {
+    mode: {
+      control: 'select',
+      options: ['elevated', 'mono', 'outline'],
+      description:
+        'Defines the visual style of the chip, affecting its background, border, and shadow.',
+    },
+    is: {
+      type: 'string',
+      description:
+        'Specifies the HTML tag or component used to render the Chip, defaulting to `div`.',
+    },
+  },
 } satisfies Meta<typeof Chip>;
 
 export default meta;
@@ -98,19 +110,19 @@ export const WithBefore: Story = {
         <Chip mode="elevated">
           Elevated
           <template #before>
-            <Avatar size="20" />
+            <Avatar :size="20" />
           </template>
         </Chip>
         <Chip mode="mono">
           Mono
           <template #before>
-            <Avatar size="20" />
+            <Avatar :size="20" />
           </template>
         </Chip>
         <Chip mode="outline">
           Outline
           <template #before>
-            <Avatar size="20" />
+            <Avatar :size="20" />
           </template>
         </Chip>
       </div>

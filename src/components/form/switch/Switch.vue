@@ -1,12 +1,6 @@
 <template>
   <label :class="classes">
-    <VisuallyHidden
-      v-bind="attrs"
-      is="input"
-      type="checkbox"
-      class="input"
-      :disabled="props.disabled"
-    />
+    <VisuallyHidden v-bind="attrs" is="input" type="checkbox" class="input" />
     <div aria-hidden class="control"></div>
     <slot />
   </label>
@@ -19,7 +13,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { computed, useAttrs } from 'vue';
+import { computed, InputHTMLAttributes, useAttrs } from 'vue';
 import { usePlatform } from '@/composables/usePlatform';
 import { VisuallyHidden } from '@/components/service';
 
@@ -29,16 +23,9 @@ import { VisuallyHidden } from '@/components/service';
  * The appearance of the switch can be customized to match either a base or iOS platform style.
  */
 
-export interface SwitchProps {
-  /** Indicates if the form input is disabled. */
-  disabled?: boolean;
-}
+export interface SwitchProps extends /* @vue-ignore */ InputHTMLAttributes {}
 
-const props = withDefaults(defineProps<SwitchProps>(), {
-  status: 'default',
-  disabled: false,
-  type: 'text',
-});
+defineProps<SwitchProps>();
 
 defineSlots<{
   /** Text. */
@@ -46,13 +33,13 @@ defineSlots<{
 }>();
 
 const platform = usePlatform();
-const attrs = useAttrs();
+const attrs: InputHTMLAttributes = useAttrs();
 
 const classes = computed(() => ({
   ['switch-wrapper']: true,
   ['switch-wrapper--ios']: platform === 'ios',
   ['switch-wrapper--base']: platform === 'base',
-  ['switch-wrapper--disabled']: props.disabled,
+  ['switch-wrapper--disabled']: attrs.disabled,
 }));
 </script>
 

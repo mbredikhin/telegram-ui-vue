@@ -1,9 +1,9 @@
 <template>
-  <div :class="classes" :aria-disabled="props.disabled">
+  <div :class="classes" :aria-disabled="attrs.disabled">
     <label
-      :aria-disabled="props.disabled"
+      v-bind="attrs"
+      :aria-disabled="attrs.disabled"
       class="body"
-      v-bind="$attrs"
       @focusin="onFocus"
       @focusout="onBlur"
     >
@@ -32,7 +32,13 @@ export default {
 
 <script setup lang="ts">
 import { usePlatform } from '@/composables/usePlatform';
-import { computed, ref } from 'vue';
+import {
+  computed,
+  InputHTMLAttributes,
+  LabelHTMLAttributes,
+  ref,
+  useAttrs,
+} from 'vue';
 import FormInputTitle from './FormInputTitle.vue';
 
 /**
@@ -40,16 +46,15 @@ import FormInputTitle from './FormInputTitle.vue';
  * It supports conditional rendering based on the platform and the state of the form element.
  */
 
-export interface FormInputProps {
+export interface Attrs extends InputHTMLAttributes, LabelHTMLAttributes {}
+
+export interface FormInputProps extends /* @vue-ignore */ Attrs {
   /** Defines the visual state of the form input (e.g., error, focused). */
   status?: 'default' | 'error' | 'focused';
-  /** Indicates if the form input is disabled. */
-  disabled?: boolean;
 }
 
 const props = withDefaults(defineProps<FormInputProps>(), {
   status: 'default',
-  disabled: false,
 });
 
 const emit = defineEmits<{
@@ -69,6 +74,7 @@ const slots = defineSlots<{
 
 const isFocused = ref(false);
 const platform = usePlatform();
+const attrs: InputHTMLAttributes = useAttrs();
 
 const formStatus = computed(
   () => props.status || (isFocused.value ? 'focused' : 'default')
@@ -79,12 +85,12 @@ const classes = computed(() => ({
   [`form-input--${platform}`]: true,
   [`form-input--${formStatus.value}`]: true,
   [`form-input--focused`]: isFocused.value,
-  ['form-input--disabled']: props.disabled,
+  ['form-input--disabled']: attrs.disabled,
 }));
 
 function onFocus(event: Event) {
   emit('focus', event);
-  if (props.disabled) {
+  if (attrs.disabled) {
     return;
   }
   isFocused.value = true;

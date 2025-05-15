@@ -1,5 +1,5 @@
 <template>
-  <Tappable is="button" :class="classes" @click="emit('click')">
+  <Tappable v-bind="attrs" is="button" :class="classes" @click="emit('click')">
     <LargeTitle v-if="platform === 'ios'">
       <slot />
     </LargeTitle>
@@ -9,23 +9,22 @@
   </Tappable>
 </template>
 
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-};
-</script>
-
 <script setup lang="ts">
 import { Tappable } from '@/components/service';
 import { LargeTitle, Title } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
-import { computed } from 'vue';
+import { ButtonHTMLAttributes, computed, useAttrs } from 'vue';
+
+interface PinInputButtonProps extends /* @vue-ignore */ ButtonHTMLAttributes {}
+
+defineProps<PinInputButtonProps>();
 
 const emit = defineEmits<{
   (e: 'click'): void;
 }>();
 
 const platform = usePlatform();
+const attrs: ButtonHTMLAttributes = useAttrs();
 
 const classes = computed(() => ({
   ['pin-input-button']: true,

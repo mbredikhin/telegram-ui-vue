@@ -27,7 +27,7 @@ export default {
 <script setup lang="ts">
 import { VisuallyHidden } from '@/components/service';
 import { usePlatform } from '@/composables/usePlatform';
-import { computed, useAttrs } from 'vue';
+import { computed, InputHTMLAttributes, useAttrs } from 'vue';
 import MultiselectableIosIcon from './icons/multiselectable-ios.svg';
 import MultiselectableBaseIcon from './icons/multiselectable.svg';
 import MultiselectableCheckedIosIcon from './icons/multiselectable-checked-ios.svg';
@@ -38,8 +38,13 @@ import MultiselectableCheckedBaseIcon from './icons/multiselectable-checked.svg'
  * Supports all standard input checkbox properties.
  */
 
+export interface MultiselectableProps
+  extends /* @vue-ignore */ InputHTMLAttributes {}
+
+defineProps<MultiselectableProps>();
+
 const platform = usePlatform();
-const attrs = useAttrs();
+const attrs: InputHTMLAttributes = useAttrs();
 
 const classes = computed(() => ({
   multiselectable: true,

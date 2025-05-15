@@ -58,7 +58,7 @@ export default {
 
 <script setup lang="ts">
 import { usePlatform } from '@/composables/usePlatform';
-import { computed, Ref, ref, useAttrs } from 'vue';
+import { computed, InputHTMLAttributes, Ref, ref, useAttrs } from 'vue';
 import { AVAILABLE_PINS, usePinInput } from './lib';
 import { Keys } from '@/helpers/accessibility';
 import { createChunks } from '@/helpers/chunk';
@@ -72,7 +72,7 @@ import { RootRenderer } from '@/components/service';
  * Renders a set of input fields for entering pin codes with a virtual keypad for value entry and deletion.
  */
 
-export interface PinInputProps {
+export interface PinInputProps extends /* @vue-ignore */ InputHTMLAttributes {
   /** Text label displayed above the pin input cells. */
   label?: string;
   /** The number of pin input fields to display, with a minimum of 2. */

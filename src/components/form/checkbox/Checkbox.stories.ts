@@ -6,6 +6,11 @@ const meta = {
   title: 'Form/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
+  argTypes: {
+    checked: {
+      type: 'boolean',
+    },
+  },
 } satisfies Meta<typeof Checkbox>;
 
 export default meta;
@@ -27,7 +32,7 @@ export const Default: Story = {
     </Placeholder>`,
   }),
   args: {
-    defaultChecked: true,
+    checked: true,
   },
 };
 

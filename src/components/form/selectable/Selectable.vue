@@ -1,6 +1,12 @@
 <template>
   <label :class="classes">
-    <VisuallyHidden v-bind="attrs" is="input" type="radio" class="input">
+    <VisuallyHidden
+      v-bind="attrs"
+      is="input"
+      :defaultChecked="props.defaultChecked"
+      type="radio"
+      class="input"
+    >
       <slot />
     </VisuallyHidden>
     <SelectableIosIcon v-if="platform === 'ios'" class="icon" aria-hidden />
@@ -17,7 +23,7 @@ export default {
 <script setup lang="ts">
 import { VisuallyHidden } from '@/components/service';
 import { usePlatform } from '@/composables/usePlatform';
-import { computed, useAttrs } from 'vue';
+import { computed, InputHTMLAttributes, useAttrs } from 'vue';
 import SelectableIosIcon from './icons/selectable-ios.svg';
 import SelectableBaseIcon from './icons/selectable-base.svg';
 
@@ -31,8 +37,16 @@ import SelectableBaseIcon from './icons/selectable-base.svg';
  * fully accessible and functional.
  */
 
+interface SelecatableProps extends /* @vue-ignore */ InputHTMLAttributes {
+  defaultChecked?: boolean;
+}
+
+const props = withDefaults(defineProps<SelecatableProps>(), {
+  defaultChecked: false,
+});
+
 const platform = usePlatform();
-const attrs = useAttrs();
+const attrs: InputHTMLAttributes = useAttrs();
 
 const classes = computed(() => ({
   selectable: true,

@@ -1,10 +1,10 @@
 <template>
-  <FormInput :status="props.status" :class="classes">
+  <FormInput :status="attrs.status" :class="classes">
     <template #header>
       <slot name="header" />
     </template>
 
-    <TypographyComponent is="textarea" class="textarea" v-bind="attrs">
+    <TypographyComponent v-bind="attrs" is="textarea" class="textarea">
       <slot />
     </TypographyComponent>
   </FormInput>
@@ -17,8 +17,8 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { computed, useAttrs } from 'vue';
-import FormInput from '../formInput/FormInput.vue';
+import { computed, TextareaHTMLAttributes, useAttrs } from 'vue';
+import FormInput, { FormInputProps } from '../formInput/FormInput.vue';
 import { usePlatform } from '@/composables/usePlatform';
 import { Subheadline, Text } from '@/components/typography';
 
@@ -28,19 +28,13 @@ import { Subheadline, Text } from '@/components/typography';
  * The appearance and behavior of the textarea can be customized through various props, providing a seamless integration with forms.
  */
 
-export interface TextareaProps {
-  /** Defines the visual state of the form input (e.g., error, focused). */
-  status?: 'default' | 'error' | 'focused';
-  /** Indicates if the form input is disabled. */
-  disabled?: boolean;
-  type?: string;
-}
+export interface Attrs
+  extends Omit<FormInputProps, 'value'>,
+    TextareaHTMLAttributes {}
 
-const props = withDefaults(defineProps<TextareaProps>(), {
-  status: 'default',
-  disabled: false,
-  type: 'text',
-});
+export interface TextareaProps extends /* @vue-ignore */ Attrs {}
+
+defineProps<TextareaProps>();
 
 defineSlots<{
   /** Textarea content. */
@@ -50,7 +44,7 @@ defineSlots<{
 }>();
 
 const platform = usePlatform();
-const attrs = useAttrs();
+const attrs: Attrs = useAttrs();
 
 const classes = computed(() => ({
   ['textarea-wrapper']: true,

@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { ButtonCell } from '@/components/blocks';
 import { VisuallyHidden } from '@/components/service';
-import { useAttrs } from 'vue';
+import { InputHTMLAttributes, useAttrs } from 'vue';
 import Attach28Icon from '@/icons/28/attach.svg';
 
 /**
@@ -24,7 +24,7 @@ import Attach28Icon from '@/icons/28/attach.svg';
  * It leverages the `ButtonCell` component for consistent styling across the application.
  */
 
-export interface FileInputProps {
+export interface FileInputProps extends /* @vue-ignore */ InputHTMLAttributes {
   /** Text label for the file input, used as the button label. */
   label?: string;
 }
