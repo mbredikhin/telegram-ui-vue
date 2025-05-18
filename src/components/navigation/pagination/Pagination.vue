@@ -32,8 +32,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, toRefs } from 'vue';
-import { PaginationType, usePagination, UsePaginationItem } from './lib';
+import { computed, toRefs, UnwrapRef, useAttrs } from 'vue';
+import {
+  PaginationType,
+  usePagination,
+  UsePaginationConfig,
+  UsePaginationItem,
+} from './lib';
 import Headline from '@/components/typography/headline/Headline.vue';
 import ChevronLeft24Icon from '@/icons/24/chevron-left.svg';
 import ChevronRight24Icon from '@/icons/24/chevron-right.svg';
@@ -44,21 +49,10 @@ import ChevronRight24Icon from '@/icons/24/chevron-right.svg';
  * This component can be customized to hide next/previous buttons, specify boundary and sibling count for pagination items, and handle page changes through an `change` event.
  */
 
-export interface PaginationProps {
-  /** Number of always visible pages at the beginning and end. */
-  boundaryCount?: number;
-  /** The total number of pages. */
-  count?: number;
-  /** The page selected by default when the component is uncontrolled */
-  defaultPage?: number;
-  /** If `true`, hide the next-page button. */
-  hideNextButton?: boolean;
-  /** If `true`, hide the previous-page button. */
-  hidePrevButton?: boolean;
-  /** The current page. */
-  page?: number;
-  /** Number of always visible pages before and after the current page. */
-  siblingCount?: number;
+export interface Attrs
+  extends UnwrapRef<Omit<UsePaginationConfig, 'onChange'>> {}
+
+export interface PaginationProps extends /* @vue-ignore */ Attrs {
   /** Controls whether the Pagination component is interactive. */
   disabled?: boolean;
 }
@@ -69,7 +63,9 @@ const emit = defineEmits<{
   (e: 'change', event: Event, page: number): void;
 }>();
 
-const { paginationItems } = usePagination({ ...toRefs(props), onChange });
+// @ts-expect-error type Attrs satisfies the attrs key constraint
+const attrs: Attrs = useAttrs();
+const { paginationItems } = usePagination({ ...toRefs(attrs), onChange });
 
 const classes = computed(() => ({
   pagination: true,

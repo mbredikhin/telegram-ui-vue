@@ -7,6 +7,13 @@ const meta = {
   title: 'Navigation/CompactPagination',
   component: CompactPagination,
   tags: ['autodocs'],
+  argTypes: {
+    mode: {
+      control: 'select',
+      options: ['default', 'ambient', 'white'],
+      description: 'Sets the color theme of the pagination.',
+    },
+  },
 } satisfies Meta<typeof CompactPagination>;
 
 export default meta;
@@ -38,7 +45,6 @@ export const Default: Story = {
           {{ item }}
         </CompactPaginationItem>
       </CompactPagination>
-    </div>
-    `,
+    </div>`,
   }),
 };

@@ -1,5 +1,10 @@
 <template>
-  <Tappable is="button" interactiveAnimation="opacity" :class="classes">
+  <Tappable
+    is="button"
+    interactiveAnimation="opacity"
+    v-bind="attrs"
+    :class="classes"
+  >
     <div v-if="slots.default?.()" class="icon">
       <slot />
     </div>
@@ -18,7 +23,7 @@
 import { Tappable } from '@/components/service';
 import { Caption } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
-import { computed, VNode } from 'vue';
+import { ButtonHTMLAttributes, computed, useAttrs, VNode } from 'vue';
 
 /**
  * Represents an individual tab within a `Tabbar`. Each `TabbarItem` typically contains an icon and optional text.
@@ -26,7 +31,8 @@ import { computed, VNode } from 'vue';
  * The component adapts its styling based on the platform, providing a consistent look and feel across different devices.
  */
 
-export interface TabbarItemProps {
+export interface TabbarItemProps
+  extends /* @vue-ignore */ ButtonHTMLAttributes {
   /** Indicates whether the tab is selected or active. */
   selected?: boolean;
 }
@@ -43,6 +49,7 @@ const slots = defineSlots<{
 }>();
 
 const platform = usePlatform();
+const attrs: ButtonHTMLAttributes = useAttrs();
 
 const classes = computed(() => ({
   ['tabbar-item']: true,

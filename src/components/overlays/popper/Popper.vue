@@ -9,7 +9,7 @@
       :style="floatingStyles"
     >
       <FloatingArrow
-        v-if="props.withArrow"
+        v-if="attrs.withArrow"
         ref="arrow"
         v-bind="arrowProps"
         :coords="middlewareData.arrow"
@@ -33,7 +33,6 @@ import {
   autoUpdate,
   Coords,
   MaybeElement,
-  Middleware,
   Placement,
   ReferenceElement,
   useFloating,
@@ -42,31 +41,27 @@ import DefaultArrowIcon, {
   DEFAULT_ARROW_HEIGHT,
   DEFAULT_ARROW_PADDING,
 } from './floatingArrow/icons/Arrow.vue';
-import { useFloatingMiddlewares } from './lib/useFloatingMiddlewares';
+import {
+  useFloatingMiddlewares,
+  UseFloatingMiddlewaresConfig,
+} from './lib/useFloatingMiddlewares';
 import { RootRenderer } from '@/components/service';
 import FloatingArrow from './floatingArrow/FloatingArrow.vue';
-import { PlacementWithAuto } from './lib/types';
 
 /**
  * Renders a Popper component, leveraging floating UI for dynamic, responsive positioning.
  * Supports advanced configurations like virtual elements, custom arrows, and auto-position updates.
  */
 
-export interface PopperProps {
+export interface Attrs
+  extends Omit<
+    UseFloatingMiddlewaresConfig,
+    'arrowHeight' | 'arrowPadding' | 'arrowRef'
+  > {}
+
+export interface PopperProps extends /* @vue-ignore */ Attrs {
   /** Reference to the anchor element for precise positioning. */
   anchor: MaybeElement<ReferenceElement>;
-  /** By default, the component will automatically choose the best placement */
-  placement?: PlacementWithAuto;
-  /** Offset along the main axis. */
-  offsetByMainAxis?: number;
-  /** Offset along the cross axis. */
-  offsetByCrossAxis?: number;
-  /** Whether to display an arrow pointing to the anchor element. */
-  withArrow?: boolean;
-  /** Sets the width to match the target element. */
-  sameWidth?: boolean;
-  /** An array of custom modifiers for Popper (should be memoized). */
-  customMiddlewares?: Middleware[];
   /** Opt-in feature to automatically update Popper's position when the target element resizes. */
   autoUpdateOnTargetResize?: boolean;
   /** Defines the root element type of the Popper, allowing for semantic customization. */
@@ -89,35 +84,39 @@ export interface PopperProps {
     height?: number;
     /** Optionally override the default arrow padding. */
     padding?: number;
+    classes?: string[];
   };
 }
 
 const props = withDefaults(defineProps<PopperProps>(), {
   is: 'div',
-  placement: 'auto',
-  offsetByMainAxis: 8,
-  offsetByCrossAxis: 0,
-  withArrow: true,
-  customMiddlewares: undefined,
   autoUpdateOnTargetResize: false,
   arrowIcon: DefaultArrowIcon,
   arrowProps: undefined,
 });
 
-const attrs = useAttrs();
 const floatingRef = useTemplateRef<HTMLElement | null>('floating');
 const arrowRef = useTemplateRef<HTMLDivElement | null>('arrow');
 
+const attrs = computed<Attrs>(() => ({
+  placement: 'auto',
+  offsetByMainAxis: 8,
+  offsetByCrossAxis: 0,
+  withArrow: true,
+  customMiddlewares: undefined,
+  ...useAttrs(),
+}));
+
 const { strictPlacement, middlewares } = useFloatingMiddlewares({
-  placement: props.placement,
-  sameWidth: props.sameWidth,
-  withArrow: props.withArrow,
+  placement: attrs.value.placement,
+  sameWidth: attrs.value.sameWidth,
+  withArrow: attrs.value.withArrow,
   arrowRef: arrowRef,
   arrowHeight: props.arrowProps?.height || DEFAULT_ARROW_HEIGHT,
   arrowPadding: props.arrowProps?.padding || DEFAULT_ARROW_PADDING,
-  offsetByMainAxis: props.offsetByMainAxis,
-  offsetByCrossAxis: props.offsetByCrossAxis,
-  customMiddlewares: props.customMiddlewares,
+  offsetByMainAxis: attrs.value.offsetByMainAxis,
+  offsetByCrossAxis: attrs.value.offsetByCrossAxis,
+  customMiddlewares: attrs.value.customMiddlewares,
 });
 
 const anchor = computed(() => props.anchor);

@@ -1,5 +1,5 @@
 <template>
-  <Tappable is="button" role="tab" :class="classes">
+  <Tappable is="button" role="tab" v-bind="attrs" :class="classes">
     <Caption :weight="props.selected ? '2' : '3'">
       <slot />
     </Caption>
@@ -10,14 +10,15 @@
 import { Tappable } from '@/components/service';
 import { Caption } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
-import { computed } from 'vue';
+import { ButtonHTMLAttributes, computed, useAttrs } from 'vue';
 
 /**
  * A component representing an individual item within a SegmentedControl.
  * It leverages the Tappable component for handling interactions and supports platform-specific styles.
  */
 
-export interface SegmentedControlItemProps {
+export interface SegmentedControlItemProps
+  extends /* @vue-ignore */ ButtonHTMLAttributes {
   /** Whether the item is selected. Used by the parent SegmentedControl to style accordingly. */
   selected?: boolean;
 }
@@ -27,6 +28,7 @@ const props = withDefaults(defineProps<SegmentedControlItemProps>(), {
 });
 
 const platform = usePlatform();
+const attrs: ButtonHTMLAttributes = useAttrs();
 
 const classes = computed(() => ({
   ['segmented-control-item']: true,

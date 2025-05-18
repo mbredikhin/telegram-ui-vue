@@ -6,7 +6,17 @@ const meta = {
   title: 'Layout/Tabbar/TabbarItem',
   component: TabbarItem,
   tags: ['autodocs'],
-  argTypes: {},
+  parameters: {
+    controls: {
+      include: ['selected'],
+    },
+  },
+  argTypes: {
+    selected: {
+      type: 'boolean',
+      description: 'Indicates whether the tab is selected or active.',
+    },
+  },
 } satisfies Meta<typeof TabbarItem>;
 
 export default meta;

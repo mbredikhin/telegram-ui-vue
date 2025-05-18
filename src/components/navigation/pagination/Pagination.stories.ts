@@ -5,6 +5,42 @@ const meta = {
   title: 'Navigation/Pagination',
   component: Pagination,
   tags: ['autodocs'],
+  argTypes: {
+    boundaryCount: {
+      type: 'number',
+      description: 'Number of always visible pages at the beginning and end.',
+    },
+    count: {
+      type: 'number',
+      description: 'The total number of pages.',
+    },
+    defaultPage: {
+      type: 'number',
+      description:
+        'The page selected by default when the component is uncontrolled',
+    },
+    hideNextButton: {
+      type: 'boolean',
+      description: 'If `true`, hide the next-page button.',
+    },
+    hidePrevButton: {
+      type: 'boolean',
+      description: 'If `true`, hide the previous-page button.',
+    },
+    page: {
+      type: 'number',
+      description: 'The current page.',
+    },
+    siblingCount: {
+      type: 'number',
+      description:
+        'Number of always visible pages before and after the current page.',
+    },
+    disabled: {
+      type: 'boolean',
+      description: 'Controls whether the Pagination component is interactive.',
+    },
+  },
 } satisfies Meta<typeof Pagination>;
 
 export default meta;

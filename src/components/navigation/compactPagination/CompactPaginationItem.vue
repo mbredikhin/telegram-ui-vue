@@ -1,20 +1,30 @@
 <template>
-  <button type="button" role="tab" :aria-selected="props.selected" :class="classes">
+  <button
+    type="button"
+    role="tab"
+    :aria-selected="props.selected"
+    v-bind="attrs"
+    :class="classes"
+  >
     <VisuallyHidden v-if="hasSlotContent"><slot /></VisuallyHidden>
   </button>
 </template>
 
 <script setup lang="ts">
 import { VisuallyHidden } from '@/components/service';
-import { computed, useSlots } from 'vue';
+import { ButtonHTMLAttributes, computed, useAttrs, useSlots } from 'vue';
 
-export interface CompactPaginationItemProps {
+export interface CompactPaginationItemProps
+  extends /* @vue-ignore */ ButtonHTMLAttributes {
   selected?: boolean;
 }
 
-const props = withDefaults(defineProps<CompactPaginationItemProps>(), { selected: false });
+const props = withDefaults(defineProps<CompactPaginationItemProps>(), {
+  selected: false,
+});
 
 const slots = useSlots();
+const attrs: ButtonHTMLAttributes = useAttrs();
 
 const hasSlotContent = computed(() => !!slots.default?.());
 
@@ -35,7 +45,10 @@ const classes = computed(() => ({
   border-radius: 50%;
   transition: opacity 0.15s ease-in-out;
   opacity: var(--tgui-compact-pagination-dot-opacity--selected, 0.25);
-  background: var(--tgui-compact-pagination-dot-background--selected, var(--tgui-link-color));
+  background: var(
+    --tgui-compact-pagination-dot-background--selected,
+    var(--tgui-link-color)
+  );
 }
 
 .compact-pagination-item--selected {

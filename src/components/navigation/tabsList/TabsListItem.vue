@@ -10,14 +10,15 @@
 import { Tappable } from '@/components/service';
 import { Text } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
-import { computed } from 'vue';
+import { ButtonHTMLAttributes, computed } from 'vue';
 
 /**
  * TabsItem component represents an individual tab within a TabsList.
  * It can be interactively selected to display associated content.
  */
 
-export interface TabsListItemProps {
+export interface TabsListItemProps
+  extends /* @vue-ignore */ ButtonHTMLAttributes {
   /** Indicates if the tab item is currently selected. */
   selected?: boolean;
 }

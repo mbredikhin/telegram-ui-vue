@@ -5,6 +5,15 @@ const meta = {
   title: 'Navigation/TabsList/TabsListItem',
   component: TabsListItem,
   tags: ['autodocs'],
+  parameters: {
+    controls: { include: ['selected'] },
+  },
+  argTypes: {
+    selected: {
+      type: 'boolean',
+      description: 'Indicates if the tab item is currently selected.',
+    },
+  },
 } satisfies Meta<typeof TabsListItem>;
 
 export default meta;

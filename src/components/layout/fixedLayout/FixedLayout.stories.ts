@@ -6,7 +6,19 @@ const meta = {
   title: 'Layout/FixedLayout',
   component: FixedLayout,
   tags: ['autodocs'],
-  argTypes: {},
+  argTypes: {
+    is: {
+      type: 'string',
+      description:
+        "The component type to render, allowing for semantic HTML use. Defaults to 'div'.",
+    },
+    vertical: {
+      control: 'select',
+      options: ['top', 'bottom'],
+      description:
+        "Determines the vertical positioning of the layout within its container. Options are 'top' or 'bottom'.",
+    },
+  },
 } satisfies Meta<typeof FixedLayout>;
 
 export default meta;

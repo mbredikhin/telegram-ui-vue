@@ -5,6 +5,16 @@ const meta = {
   title: 'Navigation/SegmentedControl/SegmentedControlItem',
   component: SegmentedControlItem,
   tags: ['autodocs'],
+  parameters: {
+    controls: { include: ['selected'] },
+  },
+  argTypes: {
+    selected: {
+      type: 'boolean',
+      description:
+        'Whether the item is selected. Used by the parent SegmentedControl to style accordingly.',
+    },
+  },
 } satisfies Meta<typeof SegmentedControlItem>;
 
 export default meta;

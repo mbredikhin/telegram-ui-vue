@@ -29,8 +29,7 @@ export const Default: Story = {
       <BreadcrumbsItem>First</BreadcrumbsItem>
       <BreadcrumbsItem>Second</BreadcrumbsItem>
       <BreadcrumbsItem>Third</BreadcrumbsItem>
-    </Breadcrumbs>
-    `,
+    </Breadcrumbs>`,
   }),
   args: {
     divider: 'dot',
@@ -48,8 +47,7 @@ export const Link: Story = {
       <BreadcrumbsItem is="a" href="https://nohello.net/en/" target="_blank" rel="noreferrer">No</BreadcrumbsItem>
       <BreadcrumbsItem is="a" href="https://nohello.net/en/" target="_blank" rel="noreferrer">Hello</BreadcrumbsItem>
       <BreadcrumbsItem is="a" href="https://nohello.net/en/" target="_blank" rel="noreferrer">Ok?</BreadcrumbsItem>
-    </Breadcrumbs>
-    `,
+    </Breadcrumbs>`,
   }),
   args: {
     divider: 'dot',
