@@ -1,9 +1,13 @@
 <template>
-  <Typography v-bind="props" class="large-title"><slot /></Typography>
+  <Typography v-bind="attrs" class="large-title">
+    <slot />
+  </Typography>
 </template>
 
 <script setup lang="ts">
-import { Typography } from '../';
+import { computed, useAttrs } from 'vue';
+import { Typography, TypographyProps } from '../';
+
 /**
  * The LargeTitle component is designed for prominent display text, typically used for major headings
  * or titles within an application. It encapsulates the Typography component's features, offering
@@ -12,21 +16,15 @@ import { Typography } from '../';
  * making it suitable for primary page titles or significant headings.
  */
 
-export interface LargeTitleProps {
-  /** Controls the font weight of the text, with options ranging from light to bold. */
-  weight?: '1' | '2' | '3';
-  /** If true, transforms the text to uppercase for stylistic emphasis. */
-  caps?: boolean;
-  /** Specifies the HTML tag used to render the text. */
-  is?: string;
-  /** When true, removes the default margins around the text, useful for inline styling or custom layouts. */
-  plain?: boolean;
-}
+export interface LargeTitleProps extends /* @vue-ignore */ TypographyProps {}
 
-const props = withDefaults(defineProps<LargeTitleProps>(), {
+defineProps<LargeTitleProps>();
+
+const attrs = computed<LargeTitleProps>(() => ({
   weight: '3',
   is: 'h1',
-});
+  ...useAttrs(),
+}));
 </script>
 
 <style lang="scss" scoped>

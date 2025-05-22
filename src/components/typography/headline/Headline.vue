@@ -1,9 +1,12 @@
 <template>
-  <Typography v-bind="props" class="headline"><slot /></Typography>
+  <Typography v-bind="attrs" class="headline">
+    <slot />
+  </Typography>
 </template>
 
 <script setup lang="ts">
-import { Typography } from '../';
+import { computed, useAttrs } from 'vue';
+import { Typography, TypographyProps } from '../';
 
 /**
  * The Headline component serves as a wrapper for text that is intended to be displayed prominently,
@@ -13,21 +16,15 @@ import { Typography } from '../';
  * but can be customized as needed.
  */
 
-export interface HeadlineProps {
-  /** Controls the font weight of the text, with options ranging from light to bold. */
-  weight?: '1' | '2' | '3';
-  /** If true, transforms the text to uppercase for stylistic emphasis. */
-  caps?: boolean;
-  /** Specifies the HTML tag used to render the text. */
-  is?: string;
-  /** When true, removes the default margins around the text, useful for inline styling or custom layouts. */
-  plain?: boolean;
-}
+export interface HeadlineProps extends /* @vue-ignore */ TypographyProps {}
 
-const props = withDefaults(defineProps<HeadlineProps>(), {
+defineProps<HeadlineProps>();
+
+const attrs = computed<HeadlineProps>(() => ({
   weight: '3',
   is: 'h5',
-});
+  ...useAttrs(),
+}));
 </script>
 
 <style lang="scss" scoped>

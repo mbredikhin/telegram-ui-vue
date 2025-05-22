@@ -6,10 +6,20 @@ const meta = {
   component: Text,
   tags: ['autodocs'],
   argTypes: {
-    is: { control: 'text' },
     weight: {
       control: 'select',
       options: ['1', '2', '3'],
+      description:
+        'Controls the font weight of the text, with options ranging from light to bold.',
+    },
+    caps: {
+      type: 'boolean',
+      description:
+        'If true, transforms the text to uppercase for stylistic emphasis.',
+    },
+    is: {
+      control: 'text',
+      description: 'Specifies the HTML tag used to render the text.',
     },
     default: {
       control: 'text',

@@ -1,9 +1,12 @@
 <template>
-  <Typography v-bind="props" class="text"><slot /></Typography>
+  <Typography v-bind="attrs" class="text">
+    <slot />
+  </Typography>
 </template>
 
 <script setup lang="ts">
-import { Typography } from '../';
+import { computed, useAttrs } from 'vue';
+import { Typography, TypographyProps } from '../';
 
 /**
  * Text component is designed for general-purpose text rendering,
@@ -13,19 +16,16 @@ import { Typography } from '../';
  * consistent styling across the application.
  */
 
-export interface TextProps {
-  /** Controls the font weight of the text, with options ranging from light to bold. */
-  weight?: '1' | '2' | '3';
-  /** If true, transforms the text to uppercase for stylistic emphasis. */
-  caps?: boolean;
-  /** Specifies the HTML tag used to render the text. */
-  is?: string;
-}
+export interface TextProps
+  extends /* @vue-ignore */ Omit<TypographyProps, 'plain'> {}
 
-const props = withDefaults(defineProps<TextProps>(), {
+defineProps<TextProps>();
+
+const attrs = computed<TextProps>(() => ({
   weight: '3',
   is: 'span',
-});
+  ...useAttrs(),
+}));
 </script>
 
 <style lang="scss" scoped>

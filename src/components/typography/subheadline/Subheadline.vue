@@ -1,10 +1,12 @@
 <template>
-  <Typography v-bind="props" :class="classes"><slot /></Typography>
+  <Typography v-bind="attrs" :class="classes">
+    <slot />
+  </Typography>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import { Typography } from '../';
+import { computed, useAttrs } from 'vue';
+import { Typography, TypographyProps } from '../';
 
 /**
  * The Subheadline component is designed to render text that serves as a secondary heading
@@ -12,26 +14,24 @@ import { Typography } from '../';
  * offering additional control over the text's size through the `level` prop. By default, it renders
  * as an `<h6>` element but can be customized with the `is` prop.
  */
+
 type SubheadlineLevel = '1' | '2';
 
-export interface SubheadlineProps {
-  /** Controls the font weight of the text, with options ranging from light to bold. */
-  weight?: '1' | '2' | '3';
-  /** If true, transforms the text to uppercase for stylistic emphasis. */
-  caps?: boolean;
-  /** Specifies the HTML tag used to render the text. */
-  is?: string;
-  /** When true, removes the default margins around the text, useful for inline styling or custom layouts. */
-  plain?: boolean;
-  /** Determines the size of the subheadline, with `1` being the default and '2' providing a smaller option. */
+export interface SubheadlineProps extends /* @vue-ignore */ TypographyProps {
+  /** Determines the size of the subheadline, with `1` being the default and `2` providing a smaller option. */
   level?: SubheadlineLevel;
 }
 
 const props = withDefaults(defineProps<SubheadlineProps>(), {
-  weight: '3',
   level: '1',
-  is: 'h6',
 });
+
+const attrs = computed<SubheadlineProps>(() => ({
+  ...props,
+  weight: '3',
+  is: 'h6',
+  ...useAttrs(),
+}));
 
 const classes = computed(() => ({
   subheadline: true,

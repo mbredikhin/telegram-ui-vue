@@ -1,5 +1,7 @@
 <template>
-  <component v-bind="props" :is="props.is" :class="classes"><slot /></component>
+  <component v-bind="props" :is="props.is" :class="classes">
+    <slot />
+  </component>
 </template>
 
 <script setup lang="ts">
@@ -11,6 +13,7 @@ import { computed } from 'vue';
  * to facilitate consistent text styling across your application, with support for customization
  * through props. The component is highly reusable and adaptable to various design needs.
  */
+
 export interface TypographyProps {
   /** Controls the font weight of the text, with options ranging from light to bold. */
   weight?: '1' | '2' | '3';

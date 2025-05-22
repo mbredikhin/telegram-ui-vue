@@ -6,14 +6,31 @@ const meta = {
   component: Title,
   tags: ['autodocs'],
   argTypes: {
-    is: { control: 'text' },
-    level: {
-      control: 'select',
-      options: ['1', '2', '3'],
-    },
     weight: {
       control: 'select',
       options: ['1', '2', '3'],
+      description:
+        'Controls the font weight of the text, with options ranging from light to bold.',
+    },
+    caps: {
+      type: 'boolean',
+      description:
+        'If true, transforms the text to uppercase for stylistic emphasis.',
+    },
+    is: {
+      control: 'text',
+      description: 'Specifies the HTML tag used to render the text.',
+    },
+    plain: {
+      type: 'boolean',
+      description:
+        'When true, removes the default margins around the text, useful for inline styling or custom layouts.',
+    },
+    level: {
+      control: 'select',
+      options: ['1', '2', '3'],
+      description:
+        'Determines the size and semantic tag of the title, with options for `h2`, `h3`, or `h4`.',
     },
     default: {
       control: 'text',

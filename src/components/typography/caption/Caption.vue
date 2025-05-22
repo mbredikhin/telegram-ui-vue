@@ -1,10 +1,12 @@
 <template>
-  <Typography v-bind="props" :class="classes"><slot /></Typography>
+  <Typography v-bind="attrs" :class="classes">
+    <slot />
+  </Typography>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import { Typography } from '../';
+import { computed, useAttrs } from 'vue';
+import { Typography, TypographyProps } from '../';
 
 /**
  * The Caption component is a text wrapper that applies specific typographic styles,
@@ -12,24 +14,24 @@ import { Typography } from '../';
  * ensuring consistent text styling across the application. It primarily serves for text
  * that acts as a small, descriptive label or annotation.
  */
+
 type CaptionLevel = '1' | '2';
 
-export interface CaptionProps {
-  /** Controls the font weight of the text, with options ranging from light to bold. */
-  weight?: '1' | '2' | '3';
-  /** If true, transforms the text to uppercase for stylistic emphasis. */
-  caps?: boolean;
-  /** Specifies the HTML tag used to render the text. */
-  is?: string;
+export interface CaptionProps
+  extends /* @vue-ignore */ Omit<TypographyProps, 'plain'> {
   /** The size level of the caption, influencing its styling and typography size. */
   level?: CaptionLevel;
 }
 
 const props = withDefaults(defineProps<CaptionProps>(), {
-  weight: '3',
-  is: 'span',
   level: '1',
 });
+
+const attrs = computed<CaptionProps>(() => ({
+  weight: '3',
+  is: 'span',
+  ...useAttrs(),
+}));
 
 const classes = computed(() => ({
   caption: true,
