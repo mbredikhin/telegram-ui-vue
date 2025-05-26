@@ -16,8 +16,8 @@ export { Textarea, type TextareaProps };
 import Switch, { SwitchProps } from './switch/Switch.vue';
 export { Switch, type SwitchProps };
 
-import Radio from './radio/Radio.vue';
-export { Radio };
+import Radio, { RadioProps } from './radio/Radio.vue';
+export { Radio, type RadioProps };
 
 import Chip, { ChipProps } from './chip/Chip.vue';
 export { Chip, type ChipProps };
@@ -31,8 +31,10 @@ export { FileInput, type FileInputProps };
 import PinInput, { PinInputProps } from './pinInput/PinInput.vue';
 export { PinInput, type PinInputProps };
 
-import Selectable from './selectable/Selectable.vue';
-export { Selectable };
+import Selectable, { SelectableProps } from './selectable/Selectable.vue';
+export { Selectable, type SelectableProps };
 
-import Multiselectable from './multiselectable/Multiselectable.vue';
-export { Multiselectable };
+import Multiselectable, {
+  MultiselectableProps,
+} from './multiselectable/Multiselectable.vue';
+export { Multiselectable, type MultiselectableProps };

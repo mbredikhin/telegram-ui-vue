@@ -24,7 +24,7 @@ import { useEnsuredControl } from '@/composables/useEnsuredControl';
  * It supports all standard properties and events of an HTML input element of type "radio".
  */
 
-interface RadioProps extends /* @vue-ignore */ InputHTMLAttributes {
+export interface RadioProps extends /* @vue-ignore */ InputHTMLAttributes {
   defaultChecked?: boolean;
 }
 

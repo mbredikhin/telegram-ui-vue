@@ -37,11 +37,11 @@ import SelectableBaseIcon from './icons/selectable-base.svg';
  * fully accessible and functional.
  */
 
-interface SelecatableProps extends /* @vue-ignore */ InputHTMLAttributes {
+export interface SelectableProps extends /* @vue-ignore */ InputHTMLAttributes {
   defaultChecked?: boolean;
 }
 
-const props = withDefaults(defineProps<SelecatableProps>(), {
+const props = withDefaults(defineProps<SelectableProps>(), {
   defaultChecked: false,
 });
 

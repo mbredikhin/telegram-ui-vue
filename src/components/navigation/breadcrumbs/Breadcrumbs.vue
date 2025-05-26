@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, useSlots } from 'vue';
+import { computed, VNode } from 'vue';
 import DotIcon from './icons/dot.svg';
 import SlashIcon from './icons/slash.svg';
 import Chevron16Icon from '@/icons/16/chevron.svg';
@@ -24,7 +24,10 @@ export interface BreadcrumbsProps {
 
 const props = withDefaults(defineProps<BreadcrumbsProps>(), { divider: 'dot' });
 
-const slots = useSlots();
+const slots = defineSlots<{
+  /** Content of the breadcrumbs. */
+  default(): VNode[];
+}>();
 
 const slotNodes = computed(() => slots.default?.() ?? []);
 </script>

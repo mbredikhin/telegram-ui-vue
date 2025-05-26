@@ -26,7 +26,7 @@ const props = withDefaults(defineProps<CompactPaginationItemProps>(), {
 const slots = useSlots();
 const attrs: ButtonHTMLAttributes = useAttrs();
 
-const hasSlotContent = computed(() => !!slots.default?.());
+const hasSlotContent = computed(() => !!slots.default?.({}));
 
 const classes = computed(() => ({
   'compact-pagination-item': true,

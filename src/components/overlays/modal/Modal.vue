@@ -4,7 +4,7 @@
     v-bind="props"
     @update:open="(open) => emit('update:open', open)"
   >
-    <DrawerTrigger v-if="$slots.trigger" asChild>
+    <DrawerTrigger v-if="$slots.trigger?.()" asChild>
       <div>
         <slot name="trigger" />
       </div>

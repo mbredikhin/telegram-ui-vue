@@ -1,6 +1,6 @@
 <template>
   <span :class="classes">
-    <template v-if="$slots.default?.() && isNumber">
+    <template v-if="$slots.default?.({}) && isNumber">
       <Subheadline is="span" v-if="props.large" level="2" weight="2">
         <slot />
       </Subheadline>
