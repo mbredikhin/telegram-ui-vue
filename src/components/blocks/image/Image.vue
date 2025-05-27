@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ImgHTMLAttributes, ref, useAttrs } from 'vue';
+import { computed, ImgHTMLAttributes, ref, useAttrs, VNode } from 'vue';
 
 /**
  * Renders an image with optional fallback content. It supports custom sizing and will automatically
@@ -45,9 +45,9 @@ const emit = defineEmits<{
 
 const slots = defineSlots<{
   /** Optional children to render within the image component's container. */
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
   /** An element (often an icon) displayed when the image fails to load or the `src` attribute is not provided. */
-  ['fallback-icon'](props?: unknown): unknown;
+  ['fallback-icon']?: () => VNode[];
 }>();
 
 const loaded = ref(false);

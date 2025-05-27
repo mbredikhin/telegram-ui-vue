@@ -16,13 +16,14 @@
 <script setup lang="ts">
 import { Text } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
+import { VNode } from 'vue';
 
 defineSlots<{
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
   /** Inserts a component before the header text, e.g. Icon */
-  before(props?: unknown): unknown;
+  before?: () => VNode[];
   /** Inserts a component after the header text, e.g. Icon */
-  after(props?: unknown): unknown;
+  after?: () => VNode[];
 }>();
 
 const platform = usePlatform();

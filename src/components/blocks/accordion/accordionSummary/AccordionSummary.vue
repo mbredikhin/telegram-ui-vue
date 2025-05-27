@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { type Ref, inject, useAttrs } from 'vue';
+import { type Ref, VNode, inject, useAttrs } from 'vue';
 import ChevronDown24Icon from '@/icons/24/chevron-down.svg';
 import { Cell, CellProps } from '@/components/blocks';
 import { accordionInjectionKey, AccordionInjection } from '../lib';
@@ -42,21 +42,21 @@ const attrs: CellProps = useAttrs();
 
 const slots = defineSlots<{
   /** Content displayed above the main content as a subheading */
-  subhead(props?: unknown): unknown;
+  subhead?: () => VNode[];
   /** Main content displayed as a header */
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
   /** Content displayed alongside the header as a hint */
-  hint(props?: unknown): unknown;
+  hint?: () => VNode[];
   /** A badge component to be displayed next to the header */
-  ['title-badge'](props?: unknown): unknown;
+  ['title-badge']?: () => VNode[];
   /** Content displayed below the header as a subtitle */
-  subtitle(props?: unknown): unknown;
+  subtitle?: () => VNode[];
   /** Additional description displayed below the subtitle */
-  description(props?: unknown): unknown;
+  description?: () => VNode[];
   /** Content or elements to be displayed on the left side of the cell */
-  before(props?: unknown): unknown;
+  before?: () => VNode[];
   /** Content or elements to be displayed on the right side of the cell */
-  after(props?: unknown): unknown;
+  after?: () => VNode[];
 }>();
 
 const accordionInjection = inject(

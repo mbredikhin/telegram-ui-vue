@@ -17,6 +17,7 @@ import {
   ref,
   Ref,
   useAttrs,
+  VNode,
 } from 'vue';
 import { Tappable } from '@/components/service';
 import { Caption } from '@/components/typography';
@@ -43,7 +44,7 @@ const props = withDefaults(defineProps<InlineButtonsItemProps>(), {
 
 defineSlots<{
   /** Typically an Icon, to be rendered inside the button. */
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
 }>();
 
 const attrs: ButtonHTMLAttributes = useAttrs();

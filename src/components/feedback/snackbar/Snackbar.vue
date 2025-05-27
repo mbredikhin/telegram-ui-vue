@@ -2,21 +2,21 @@
   <RootRenderer>
     <div :class="classes" v-bind="attrs">
       <div class="body">
-        <div v-if="slots.before?.()" class="before">
+        <div v-if="hasSlotContent(slots.before)" class="before">
           <slot name="before" />
         </div>
         <div class="middle">
-          <Caption v-if="slots.default?.()" weight="2">
+          <Caption v-if="hasSlotContent(slots.default)" weight="2">
             <slot />
           </Caption>
-          <Caption v-if="slots.description?.()">
+          <Caption v-if="hasSlotContent(slots.description)">
             <slot name="description" />
           </Caption>
-          <Caption v-if="slots.link?.()">
+          <Caption v-if="hasSlotContent(slots.link)">
             <slot name="link" />
           </Caption>
         </div>
-        <div v-if="slots.after?.()" class="after">
+        <div v-if="hasSlotContent(slots.after)" class="after">
           <slot name="after" />
         </div>
       </div>
@@ -35,7 +35,8 @@ import { RootRenderer } from '@/components/service';
 import { Caption } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
 import { useTimeout } from '@/composables/useTimeout';
-import { computed, ref, useAttrs, onMounted } from 'vue';
+import { hasSlotContent } from '@/helpers/vue';
+import { computed, ref, useAttrs, onMounted, VNode } from 'vue';
 
 /**
  * Displays a brief message at the bottom of the screen, which can contain actions and other content.
@@ -58,15 +59,15 @@ const emit = defineEmits<{
 
 const slots = defineSlots<{
   /** Element or component to be displayed on the left side of the snackbar. */
-  before(props?: unknown): unknown;
+  before?: () => VNode[];
   /** Element or component to be displayed on the right side of the snackbar. */
-  after(props?: unknown): unknown;
+  after?: () => VNode[];
   /** The main content of the snackbar, typically text or a message. */
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
   /** Additional content displayed below the main message. */
-  description(props?: unknown): unknown;
+  description?: () => VNode[];
   /** A link component to be included in the snackbar for user interaction. */
-  link(props?: unknown): unknown;
+  link?: () => VNode[];
 }>();
 
 const TRANSITION_FINISH_DURATION = 320;

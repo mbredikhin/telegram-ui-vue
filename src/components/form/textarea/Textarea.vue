@@ -17,7 +17,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { computed, TextareaHTMLAttributes, useAttrs } from 'vue';
+import { computed, TextareaHTMLAttributes, useAttrs, VNode } from 'vue';
 import FormInput, { FormInputProps } from '../formInput/FormInput.vue';
 import { usePlatform } from '@/composables/usePlatform';
 import { Subheadline, Text } from '@/components/typography';
@@ -38,9 +38,9 @@ defineProps<TextareaProps>();
 
 defineSlots<{
   /** Textarea content. */
-  ['default'](props?: unknown): unknown;
+  default?: () => VNode[];
   /** Optional header content, displayed above the form input on `base` platform. */
-  header(props?: unknown): unknown;
+  header?: () => VNode[];
 }>();
 
 const platform = usePlatform();

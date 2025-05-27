@@ -1,8 +1,8 @@
 <template>
   <section :class="classes">
     <div class="body-with-header">
-      <slot v-if="isComponentPassedToHeader" name="header" />
-      <SectionHeader v-else-if="slots.header?.()">
+      <slot v-if="isComponentPassedToSlot(slots.header)" name="header" />
+      <SectionHeader v-else-if="hasSlotContent(slots.header)">
         <slot name="header" />
       </SectionHeader>
 
@@ -16,8 +16,8 @@
         </template>
       </div>
     </div>
-    <slot v-if="isComponentPassedToFooter" name="footer" />
-    <SectionFooter v-else-if="slots.footer?.()">
+    <slot v-if="isComponentPassedToSlot(slots.footer)" name="footer" />
+    <SectionFooter v-else-if="hasSlotContent(slots.footer)">
       <slot name="footer" />
     </SectionFooter>
   </section>
@@ -29,6 +29,7 @@ import { computed, VNode } from 'vue';
 import SectionHeader from './SectionHeader.vue';
 import SectionFooter from './SectionFooter.vue';
 import { Divider } from '@/components/misc';
+import { hasSlotContent, isComponentPassedToSlot } from '@/helpers/vue';
 
 /**
  * Organizes content into distinct sections with optional headers and footers. It automatically wraps
@@ -37,17 +38,18 @@ import { Divider } from '@/components/misc';
  */
 
 const slots = defineSlots<{
-  default(props?: unknown): unknown;
+  /** The content for the section body. */
+  default?: () => VNode[];
   /**
    * The content for the section header. If a string is passed, `SectionHeader` is automatically used.
    * For more control or a large title, use `<SectionHeader large>{{ headerText }}</SectionHeader>`.
    */
-  header(props?: unknown): unknown;
+  header?: () => VNode[];
   /**
    * The content for the section footer. If a string is passed, `SectionFooter` is automatically used.
    * For a centered footer, use `<SectionFooter centered>{{ footerText }}</SectionFooter>`.
    */
-  footer(props?: unknown): unknown;
+  footer?: () => VNode[];
 }>();
 
 const platform = usePlatform();
@@ -58,23 +60,7 @@ const classes = computed(() => ({
   ['section--ios']: platform === 'ios',
 }));
 
-const defaultSlotContent = computed(() => (slots.default?.() as VNode[]) ?? []);
-
-const isComponentPassedToHeader = computed(() => {
-  const vnode = (slots.header?.() as VNode[])?.at(0);
-  if (!vnode) {
-    return false;
-  }
-  return ['object', 'function'].includes(typeof vnode.type);
-});
-
-const isComponentPassedToFooter = computed(() => {
-  const vnode = (slots.header?.() as VNode[])?.at(0);
-  if (!vnode) {
-    return false;
-  }
-  return ['object', 'function'].includes(typeof vnode.type);
-});
+const defaultSlotContent = computed(() => slots.default?.() ?? []);
 </script>
 
 <style lang="scss" scoped>

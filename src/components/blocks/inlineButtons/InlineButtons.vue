@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, provide } from 'vue';
+import { computed, provide, VNode } from 'vue';
 import { InlineButtonsInjection, inlineButtonsInjectionKey } from './lib';
 import { usePlatform } from '@/composables/usePlatform';
 
@@ -28,7 +28,7 @@ defineSlots<{
    * Should be a list of `InlineButtonsItem` components. Each child will inherit the `mode`
    * from this parent, ensuring consistent styling across all items.
    */
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
 }>();
 
 const platform = usePlatform();

@@ -6,13 +6,16 @@
     v-bind="attrs"
     :class="classes"
   >
-    <VisuallyHidden v-if="hasSlotContent"><slot /></VisuallyHidden>
+    <VisuallyHidden v-if="hasSlotContent(slots.default)">
+      <slot />
+    </VisuallyHidden>
   </button>
 </template>
 
 <script setup lang="ts">
 import { VisuallyHidden } from '@/components/service';
-import { ButtonHTMLAttributes, computed, useAttrs, useSlots } from 'vue';
+import { hasSlotContent } from '@/helpers/vue';
+import { ButtonHTMLAttributes, computed, useAttrs, VNode } from 'vue';
 
 export interface CompactPaginationItemProps
   extends /* @vue-ignore */ ButtonHTMLAttributes {
@@ -23,10 +26,12 @@ const props = withDefaults(defineProps<CompactPaginationItemProps>(), {
   selected: false,
 });
 
-const slots = useSlots();
-const attrs: ButtonHTMLAttributes = useAttrs();
+const slots = defineSlots<{
+  /** Content of the compact pagination item component.  */
+  default?: () => VNode[];
+}>();
 
-const hasSlotContent = computed(() => !!slots.default?.({}));
+const attrs: ButtonHTMLAttributes = useAttrs();
 
 const classes = computed(() => ({
   'compact-pagination-item': true,

@@ -1,11 +1,11 @@
 <template>
   <Tappable v-bind="attrs" :is="props.is" :class="classes">
-    <div v-if="slots.before?.()" class="before">
+    <div v-if="hasSlotContent(slots.before)" class="before">
       <slot name="before" />
     </div>
     <div class="middle">
       <Subheadline
-        v-if="slots.subhead?.()"
+        v-if="hasSlotContent(slots.subhead)"
         class="subhead"
         level="2"
         weight="3"
@@ -14,20 +14,24 @@
       </Subheadline>
       <component
         :is="platform === 'ios' ? Text : Subheadline"
-        v-if="slots.default?.() || slots.hint?.() || slots['title-badge']?.()"
+        v-if="
+          hasSlotContent(slots.default) ||
+          hasSlotContent(slots.hint) ||
+          slots['title-badge']?.()
+        "
         v-bind="platform === 'ios' ? {} : { level: '1' }"
         class="head"
       >
-        <span v-if="slots.default?.()" class="title">
+        <span v-if="hasSlotContent(slots.default)" class="title">
           <slot />
         </span>
-        <span v-if="slots.hint?.()" class="hint">
+        <span v-if="hasSlotContent(slots.hint)" class="hint">
           <slot name="hint" />
         </span>
         <slot name="title-badge" />
       </component>
       <Subheadline
-        v-if="slots.subtitle?.()"
+        v-if="hasSlotContent(slots.subtitle)"
         class="subtitle"
         level="2"
         weight="3"
@@ -36,14 +40,14 @@
       </Subheadline>
       <component
         :is="platform === 'ios' ? Caption : Subheadline"
-        v-if="slots.description?.()"
+        v-if="hasSlotContent(slots.description)"
         v-bind="platform === 'ios' ? {} : { level: '2' }"
         class="description"
       >
         <slot name="description" />
       </component>
     </div>
-    <div v-if="slots.after?.()" class="after">
+    <div v-if="hasSlotContent(slots.after)" class="after">
       <slot name="after" />
     </div>
   </Tappable>
@@ -53,7 +57,8 @@
 import { Tappable, TappableProps } from '@/components/service';
 import { Caption, Subheadline, Text } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
-import { type Component, computed, useAttrs } from 'vue';
+import { hasSlotContent } from '@/helpers/vue';
+import { type Component, computed, useAttrs, VNode } from 'vue';
 
 /**
  * `Cell` component acts as a flexible and interactive container for various types of content,
@@ -76,21 +81,21 @@ const props = defineProps<CellProps>();
 
 const slots = defineSlots<{
   /** Content displayed above the main content as a subheading */
-  subhead(props?: unknown): unknown;
+  subhead?: () => VNode[];
   /** Main content displayed as a header */
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
   /** Content displayed alongside the header as a hint */
-  hint(props?: unknown): unknown;
+  hint?: () => VNode[];
   /** A badge component to be displayed next to the header */
-  ['title-badge'](props?: unknown): unknown;
+  ['title-badge']?: () => VNode[];
   /** Content displayed below the header as a subtitle */
-  subtitle(props?: unknown): unknown;
+  subtitle?: () => VNode[];
   /** Additional description displayed below the subtitle */
-  description(props?: unknown): unknown;
+  description?: () => VNode[];
   /** Content or elements to be displayed on the left side of the cell */
-  before(props?: unknown): unknown;
+  before?: () => VNode[];
   /** Content or elements to be displayed on the right side of the cell */
-  after(props?: unknown): unknown;
+  after?: () => VNode[];
 }>();
 
 const attrs: Attrs = useAttrs();

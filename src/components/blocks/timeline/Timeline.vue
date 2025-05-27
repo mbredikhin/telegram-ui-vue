@@ -33,7 +33,7 @@ const props = defineProps<TimelineProps>();
 
 const slots = defineSlots<{
   /** The default slot of the Timeline, expected to be a collection of `TimelineItem` components. */
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
 }>();
 
 const classes = computed(() => ({
@@ -41,7 +41,7 @@ const classes = computed(() => ({
   ['timeline--horizontal']: props.horizontal,
 }));
 
-const defaultSlotContent = computed(() => (slots.default?.() as VNode[]) ?? []);
+const defaultSlotContent = computed(() => slots.default?.() ?? []);
 
 function getChildMode(childNumber: number): TimelineItemProps['mode'] {
   if (!props.active) {

@@ -6,24 +6,32 @@
     <slot name="before" />
 
     <div class="middle">
-      <Subheadline v-if="slots.callout?.()" class="subheader" level="2">
+      <Subheadline
+        v-if="hasSlotContent(slots.callout)"
+        class="subheader"
+        level="2"
+      >
         <slot name="callout" />
       </Subheadline>
-      <Text v-if="slots.header?.()" class="title" weight="2">
+      <Text v-if="hasSlotContent(slots.header)" class="title" weight="2">
         <slot name="header" />
       </Text>
-      <Subheadline v-if="slots.subheader?.()" class="subheader" level="2">
+      <Subheadline
+        v-if="hasSlotContent(slots.subheader)"
+        class="subheader"
+        level="2"
+      >
         <slot name="subheader" />
       </Subheadline>
       <component
         :is="platform === 'ios' ? Caption : Subheadline"
-        v-if="slots.description?.()"
+        v-if="hasSlotContent(slots.description)"
         class="description"
         :level="platform === 'ios' ? '1' : '2'"
       >
         <slot name="description" />
       </component>
-      <div v-if="slots.default?.()" class="buttons">
+      <div v-if="hasSlotContent(slots.default)" class="buttons">
         <slot />
       </div>
     </div>
@@ -49,6 +57,7 @@ import { computed, type VNode } from 'vue';
 import CloseAmbient28Icon from '@/icons/28/close-ambient.svg';
 import Cancel24Icon from '@/icons/24/cancel.svg';
 import Close28Icon from '@/icons/28/close.svg';
+import { hasSlotContent } from '@/helpers/vue';
 
 /**
  * The `Banner` component renders a prominent graphical element, typically displayed at the top of a page or section,
@@ -70,19 +79,19 @@ const props = withDefaults(defineProps<BannerProps>(), {
 
 const slots = defineSlots<{
   /** Element(s) to be placed on the left side of the banner, typically an icon or an image. */
-  before(props?: unknown): unknown;
+  before?: () => VNode[];
   /** Content displayed above the main content as a subheading */
-  callout(props?: unknown): unknown;
+  callout?: () => VNode[];
   /** The main text or title displayed in the banner. */
-  header(props?: unknown): unknown;
+  header?: () => VNode[];
   /** Additional information or subtext displayed below the header. */
-  subheader(props?: unknown): unknown;
+  subheader?: () => VNode[];
   /** Further details or description provided under the subheader. */
-  description(props?: unknown): unknown;
+  description?: () => VNode[];
   /** Custom background component or design, such as an image or gradient, that covers the banner's area. */
-  background(props?: unknown): unknown;
+  background?: () => VNode[];
   /** Content or components, such as buttons, displayed within the banner. */
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
 }>();
 
 const emit = defineEmits<{
@@ -92,7 +101,7 @@ const emit = defineEmits<{
 
 const platform = usePlatform();
 
-const hasBackground = computed(() => !!(slots.background?.() as VNode[]));
+const hasBackground = computed(() => hasSlotContent(slots.background));
 
 const classes = computed(() => ({
   banner: true,

@@ -1,6 +1,6 @@
 <template>
   <span :class="classes">
-    <template v-if="$slots.default?.({}) && isNumber">
+    <template v-if="hasSlotContent(slots.default) && isNumber">
       <Subheadline is="span" v-if="props.large" level="2" weight="2">
         <slot />
       </Subheadline>
@@ -13,7 +13,9 @@
 
 <script setup lang="ts">
 import { Caption, Subheadline } from '@/components/typography';
-import { computed } from 'vue';
+import { hasSlotContent } from '@/helpers/vue';
+import { computed, VNode } from 'vue';
+
 /**
  * The `Badge` component renders a small numeric or dot indicator, typically used for notifications, statuses, or counts.
  * It supports several visual modes for different contexts (e.g., critical, primary) and can be sized normally or enlarged.
@@ -32,6 +34,11 @@ const props = withDefaults(defineProps<BadgeProps>(), {
   mode: 'primary',
   large: false,
 });
+
+const slots = defineSlots<{
+  /** Text content of the badge. */
+  default?: () => VNode[];
+}>();
 
 const isNumber = computed(() => props.type === 'number');
 

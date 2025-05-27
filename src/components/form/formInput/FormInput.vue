@@ -7,16 +7,16 @@
       @focusin="onFocus"
       @focusout="onBlur"
     >
-      <div v-if="slots.before?.()" class="before">
+      <div v-if="hasSlotContent(slots.before)" class="before">
         <slot name="before" />
       </div>
       <slot />
-      <div v-if="slots.after?.()" class="after">
+      <div v-if="hasSlotContent(slots.after)" class="after">
         <slot name="after" />
       </div>
     </label>
     <FormInputTitle
-      v-if="slots.header?.() && platform === 'base'"
+      v-if="hasSlotContent(slots.header) && platform === 'base'"
       class="title"
     >
       <slot name="header" />
@@ -38,8 +38,10 @@ import {
   LabelHTMLAttributes,
   ref,
   useAttrs,
+  VNode,
 } from 'vue';
 import FormInputTitle from './FormInputTitle.vue';
+import { hasSlotContent } from '@/helpers/vue';
 
 /**
  * Wraps an input element with additional layout for headers, icons, or actions, providing a consistent look and feel across the form.
@@ -63,13 +65,13 @@ const emit = defineEmits<{
 }>();
 
 const slots = defineSlots<{
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
   /** Optional header content, displayed above the form input on `base` platform. */
-  header(props?: unknown): unknown;
+  header?: () => VNode[];
   /** Content to be displayed before the form input, such as icons or labels. */
-  before(props?: unknown): unknown;
+  before?: () => VNode[];
   /** Content to be displayed after the form input, often used for action icons or additional information. */
-  after(props?: unknown): unknown;
+  after?: () => VNode[];
 }>();
 
 const isFocused = ref(false);

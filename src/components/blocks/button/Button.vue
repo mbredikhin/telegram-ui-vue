@@ -6,7 +6,7 @@
     :class="classes"
   >
     <Spinner v-if="props.loading" class="spinner" size="s" />
-    <div v-if="slots.before?.()" class="before">
+    <div v-if="hasSlotContent(slots.before)" class="before">
       <slot name="before" />
     </div>
     <ButtonTypography
@@ -16,7 +16,7 @@
     >
       <slot />
     </ButtonTypography>
-    <div v-if="slots.after?.()" class="after">
+    <div v-if="hasSlotContent(slots.after)" class="after">
       <slot name="after" />
     </div>
   </Tappable>
@@ -26,8 +26,15 @@
 import { Spinner } from '@/components/feedback';
 import { Tappable } from '@/components/service';
 import { usePlatform } from '@/composables/usePlatform';
-import { ButtonHTMLAttributes, computed, useAttrs, type Component } from 'vue';
+import {
+  ButtonHTMLAttributes,
+  computed,
+  useAttrs,
+  VNode,
+  type Component,
+} from 'vue';
 import ButtonTypography from './ButtonTypography.vue';
+import { hasSlotContent } from '@/helpers/vue';
 
 export interface ButtonProps
   extends /* @vue-ignore */ Omit<ButtonHTMLAttributes, 'is'> {
@@ -53,11 +60,11 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 
 const slots = defineSlots<{
   /** Inserts a component before the button text, typically an icon. */
-  before(props?: unknown): unknown;
+  before?: () => VNode[];
   /** Inserts a component after the button text, such as a badge or indicator. */
-  after(props?: unknown): unknown;
+  after?: () => VNode[];
   /** Main content of a button. */
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
 }>();
 
 const platform = usePlatform();

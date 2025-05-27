@@ -1,7 +1,7 @@
 <template>
   <Tappable :is="props.is" v-bind="attrs" :class="classes">
     <slot name="before" />
-    <Typography v-if="slots.default?.()">
+    <Typography v-if="hasSlotContent(slots.default)">
       <slot />
     </Typography>
     <slot name="after" />
@@ -12,7 +12,8 @@
 import { Tappable, TappableProps } from '@/components/service';
 import { Typography } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
-import { type Component, computed, useAttrs } from 'vue';
+import { hasSlotContent } from '@/helpers/vue';
+import { type Component, computed, useAttrs, VNode } from 'vue';
 
 /**
  * Renders an interactive cell component with optional leading and trailing elements. Designed to be flexible,
@@ -35,11 +36,11 @@ const props = withDefaults(defineProps<ButtonCellProps>(), {
 
 const slots = defineSlots<{
   /** Element or component displayed before the main content, adding visual context or functionality. */
-  before(props?: unknown): unknown;
+  before?: () => VNode[];
   /** Element or component displayed after the main content, typically indicating a possible action or outcome. */
-  after(props?: unknown): unknown;
+  after?: () => VNode[];
   /** The content within the button cell, usually text. */
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
 }>();
 
 const platform = usePlatform();

@@ -1,8 +1,8 @@
 <template>
   <div class="breadcrumbs">
-    <template v-for="(vnode, index) in slotNodes" :key="index">
+    <template v-for="(vnode, index) in defaultSlotContent" :key="index">
       <component :is="vnode" />
-      <div v-if="index < slotNodes.length - 1" class="divider">
+      <div v-if="index < defaultSlotContent.length - 1" class="divider">
         <DotIcon v-if="props.divider === 'dot'" />
         <SlashIcon v-if="props.divider === 'slash'" />
         <Chevron16Icon v-if="props.divider === 'chevron'" class="chevron" />
@@ -26,10 +26,10 @@ const props = withDefaults(defineProps<BreadcrumbsProps>(), { divider: 'dot' });
 
 const slots = defineSlots<{
   /** Content of the breadcrumbs. */
-  default(): VNode[];
+  default?: () => VNode[];
 }>();
 
-const slotNodes = computed(() => slots.default?.() ?? []);
+const defaultSlotContent = computed(() => slots.default?.() ?? []);
 </script>
 
 <style lang="scss" scoped>

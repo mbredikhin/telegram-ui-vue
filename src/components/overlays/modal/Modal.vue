@@ -4,7 +4,7 @@
     v-bind="props"
     @update:open="(open) => emit('update:open', open)"
   >
-    <DrawerTrigger v-if="$slots.trigger?.()" asChild>
+    <DrawerTrigger v-if="hasSlotContent(slots.trigger)" asChild>
       <div>
         <slot name="trigger" />
       </div>
@@ -43,8 +43,9 @@ import {
   DrawerRootNested,
   DrawerTrigger,
 } from 'vaul-vue';
-import { Ref, useAttrs } from 'vue';
+import { Ref, useAttrs, VNode } from 'vue';
 import ModalOverlay from './ModalOverlay.vue';
+import { hasSlotContent } from '@/helpers/vue';
 
 export interface ModalProps {
   activeSnapPoint?: number | string | null;
@@ -137,15 +138,15 @@ const emit = defineEmits<{
   (e: 'update:open', open: boolean): void;
 }>();
 
-defineSlots<{
+const slots = defineSlots<{
   /** Modal content. */
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
   /** Custom header component to display at the top of the modal. */
-  header(props?: unknown): unknown;
+  header?: () => VNode[];
   /** Custom component for the modal's overlay backdrop. */
-  overlay(props?: unknown): unknown;
+  overlay?: () => VNode[];
   /** Component or element used to trigger the modal's visibility. */
-  trigger(props?: unknown): unknown;
+  trigger?: () => VNode[];
 }>();
 
 const attrs = useAttrs();

@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ImgHTMLAttributes, useAttrs } from 'vue';
+import { computed, ImgHTMLAttributes, useAttrs, VNode } from 'vue';
 import { Image, ImageProps } from '@/components/blocks';
 import AvatarAcronym from './AvatarAcronym.vue';
 
@@ -31,9 +31,9 @@ const props = defineProps<AvatarProps>();
 
 defineSlots<{
   /** Optional children to render within the image component's container. */
-  ['default'](props?: unknown): unknown;
+  default?: () => VNode[];
   /** An element (often an icon) displayed `acronym` props is not provided. */
-  ['fallback-icon'](props?: unknown): unknown;
+  ['fallback-icon']?: () => VNode[];
 }>();
 
 const attrs: Attrs = useAttrs();

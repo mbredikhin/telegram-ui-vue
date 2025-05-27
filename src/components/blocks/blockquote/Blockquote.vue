@@ -16,6 +16,7 @@
 import { Subheadline } from '@/components/typography';
 import { IconContainer } from '@/components/blocks';
 import Quote12Icon from '@/icons/12/quote.svg';
+import { VNode } from 'vue';
 
 /**
  * Renders a stylized blockquote element, typically used for quotations or special text. The component can include an
@@ -31,9 +32,9 @@ const props = withDefaults(defineProps<BlockquoteProps>(), { type: 'text' });
 
 defineSlots<{
   /** The main content of the blockquote. When `type` is 'text', this content is wrapped in a typography component. */
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
   /** An optional icon displayed in the top right corner of the blockquote. Defaults to a quote icon. */
-  ['top-right-icon'](props?: unknown): unknown;
+  ['top-right-icon']?: () => VNode[];
 }>();
 </script>
 

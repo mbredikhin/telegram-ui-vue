@@ -3,12 +3,12 @@
     <template v-for="(_, slot) of slots" #[slot]>
       <slot :name="slot" />
     </template>
-    <template v-if="slots.subtitle?.()" #subtitle>
+    <template v-if="hasSlotContent(slots.subtitle)" #subtitle>
       <span class="subtitle">
         <slot name="subtitle" />
       </span>
     </template>
-    <template v-if="slots.default?.()" #default>
+    <template v-if="hasSlotContent(slots.default)" #default>
       <span class="header">
         <slot />
       </span>
@@ -17,9 +17,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, useAttrs } from 'vue';
+import { computed, inject, useAttrs, VNode } from 'vue';
 import { cardInjectionKey } from './lib';
 import { Cell, CellProps } from '@/components/blocks';
+import { hasSlotContent } from '@/helpers/vue';
 
 export interface CardCellProps extends /* @vue-ignore */ CellProps {}
 
@@ -27,21 +28,21 @@ defineProps<CardCellProps>();
 
 const slots = defineSlots<{
   /** Content displayed above the main content as a subheading */
-  subhead(props?: unknown): unknown;
+  subhead?: () => VNode[];
   /** Main content displayed as a header */
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
   /** Content displayed alongside the header as a hint */
-  hint(props?: unknown): unknown;
+  hint?: () => VNode[];
   /** A badge component to be displayed next to the header */
-  ['title-badge'](props?: unknown): unknown;
+  ['title-badge']?: () => VNode[];
   /** Content displayed below the header as a subtitle */
-  subtitle(props?: unknown): unknown;
+  subtitle?: () => VNode[];
   /** Additional description displayed below the subtitle */
-  description(props?: unknown): unknown;
+  description?: () => VNode[];
   /** Content or elements to be displayed on the left side of the cell */
-  before(props?: unknown): unknown;
+  before?: () => VNode[];
   /** Content or elements to be displayed on the right side of the cell */
-  after(props?: unknown): unknown;
+  after?: () => VNode[];
 }>();
 
 const attrs: CellProps = useAttrs();

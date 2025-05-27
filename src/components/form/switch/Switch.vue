@@ -13,7 +13,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { computed, InputHTMLAttributes, useAttrs } from 'vue';
+import { computed, InputHTMLAttributes, useAttrs, VNode } from 'vue';
 import { usePlatform } from '@/composables/usePlatform';
 import { VisuallyHidden } from '@/components/service';
 
@@ -29,7 +29,7 @@ defineProps<SwitchProps>();
 
 defineSlots<{
   /** Text. */
-  ['default'](props?: unknown): unknown;
+  ['default']?: () => VNode[];
 }>();
 
 const platform = usePlatform();

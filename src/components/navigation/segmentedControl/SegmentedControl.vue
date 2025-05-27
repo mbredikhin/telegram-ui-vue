@@ -27,7 +27,7 @@ import { computed, VNode, VNodeArrayChildren } from 'vue';
 
 const slots = defineSlots<{
   /** Children should be SegmentedControlItem components to render within the control. */
-  default(): VNode[];
+  default?: () => VNode[];
 }>();
 
 const platform = usePlatform();

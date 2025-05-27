@@ -42,7 +42,7 @@ import FormInput, { FormInputProps } from '../formInput/FormInput.vue';
 import { VisuallyHidden } from '@/components/service';
 import { Subheadline, Text } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
-import { computed, ref, useAttrs, watch } from 'vue';
+import { computed, ref, useAttrs, VNode, watch } from 'vue';
 
 /**
  * Renders a color picker input within a form structure, displaying the selected color value.
@@ -61,9 +61,9 @@ const props = withDefaults(defineProps<ColorInputProps>(), {
 
 defineSlots<{
   /** Optional header content, displayed above the form input on `base` platform. */
-  header(props?: unknown): unknown;
+  header?: () => VNode[];
   /** Content to be displayed before the form input, such as icons or labels. */
-  before(props?: unknown): unknown;
+  before?: () => VNode[];
 }>();
 
 const attrs: FormInputProps = useAttrs();

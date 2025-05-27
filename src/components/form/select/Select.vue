@@ -26,7 +26,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { computed, SelectHTMLAttributes, useAttrs } from 'vue';
+import { computed, SelectHTMLAttributes, useAttrs, VNode } from 'vue';
 import FormInput, { FormInputProps } from '../formInput/FormInput.vue';
 import { usePlatform } from '@/composables/usePlatform';
 import { Subheadline, Text } from '@/components/typography';
@@ -46,11 +46,11 @@ defineProps<SelectProps>();
 
 defineSlots<{
   /** Typically `option` elements to be rendered within the select. */
-  ['default'](props?: unknown): unknown;
+  default?: () => VNode[];
   /** Optional header content, displayed above the form input on `base` platform. */
-  header(props?: unknown): unknown;
+  header?: () => VNode[];
   /** Content to be displayed before the form input, such as icons or labels. */
-  before(props?: unknown): unknown;
+  before?: () => VNode[];
 }>();
 
 const platform = usePlatform();

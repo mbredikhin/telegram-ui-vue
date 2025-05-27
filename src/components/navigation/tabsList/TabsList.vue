@@ -23,7 +23,7 @@ import { computed, VNode, VNodeArrayChildren } from 'vue';
 
 const slots = defineSlots<{
   /** Children should be TabsListItem components to be rendered as tabs. */
-  default(): VNode[];
+  default?: () => VNode[];
 }>();
 
 const items = computed<VNodeArrayChildren>(

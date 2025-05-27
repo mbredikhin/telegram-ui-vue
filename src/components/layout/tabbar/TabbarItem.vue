@@ -5,11 +5,11 @@
     v-bind="attrs"
     :class="classes"
   >
-    <div v-if="slots.default?.()" class="icon">
+    <div v-if="hasSlotContent(slots.default)" class="icon">
       <slot />
     </div>
     <Caption
-      v-if="slots.text?.()"
+      v-if="hasSlotContent(slots.text)"
       class="text"
       weight="2"
       :level="platform === 'ios' ? '2' : '1'"
@@ -23,6 +23,7 @@
 import { Tappable } from '@/components/service';
 import { Caption } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
+import { hasSlotContent } from '@/helpers/vue';
 import { ButtonHTMLAttributes, computed, useAttrs, VNode } from 'vue';
 
 /**
@@ -43,9 +44,9 @@ const props = withDefaults(defineProps<TabbarItemProps>(), {
 
 const slots = defineSlots<{
   /** The icon displayed on the tab. It should have dimensions of 28x28. */
-  default(): VNode;
+  default?: () => VNode[];
   /** The text displayed on the tab. */
-  text(): VNode;
+  text?: () => VNode[];
 }>();
 
 const platform = usePlatform();

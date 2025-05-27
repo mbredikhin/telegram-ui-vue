@@ -5,12 +5,12 @@
       name="avatar-stack"
     />
 
-    <Text v-if="slots.default?.()">
+    <Text v-if="hasSlotContent(slots.default)">
       <slot />
     </Text>
 
     <Subheadline
-      v-if="isText && slots.subtitle?.()"
+      v-if="isText && hasSlotContent(slots.subtitle)"
       class="subtitle"
       level="2"
       :plain="false"
@@ -22,7 +22,8 @@
 
 <script setup lang="ts">
 import { Subheadline, Text } from '@/components/typography';
-import { computed } from 'vue';
+import { hasSlotContent } from '@/helpers/vue';
+import { computed, VNode } from 'vue';
 
 /**
  * A versatile component designed to display either text information with an optional subtitle or a stack of avatars.
@@ -43,11 +44,11 @@ const props = withDefaults(defineProps<InfoProps>(), {
 
 const slots = defineSlots<{
   /** An `AvatarStack` component to display when the `type` is 'avatarStack', showcasing multiple avatars. */
-  ['avatar-stack'](props?: unknown): unknown;
+  ['avatar-stack']?: () => VNode[];
   /** Main content displayed as a header */
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
   /** Content displayed below the header as a subtitle */
-  subtitle(props?: unknown): unknown;
+  subtitle?: () => VNode[];
 }>();
 
 const isAvatarStack = computed(() => props.type === 'avatarStack');

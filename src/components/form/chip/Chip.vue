@@ -1,6 +1,6 @@
 <template>
   <Tappable :is="props.is" interactiveAnimation="opacity" :class="classes">
-    <div v-if="slots.before?.()" class="before">
+    <div v-if="hasSlotContent(slots.before)" class="before">
       <slot name="before" />
     </div>
     <Subheadline
@@ -10,7 +10,7 @@
     >
       <slot />
     </Subheadline>
-    <div v-if="slots.after?.()" class="after">
+    <div v-if="hasSlotContent(slots.after)" class="after">
       <slot name="after" />
     </div>
   </Tappable>
@@ -20,7 +20,8 @@
 import { Tappable } from '@/components/service';
 import { Subheadline } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
-import { type Component, computed } from 'vue';
+import { hasSlotContent } from '@/helpers/vue';
+import { type Component, computed, VNode } from 'vue';
 
 export interface ChipProps {
   /** Defines the visual style of the chip, affecting its background, border, and shadow. */
@@ -36,11 +37,11 @@ const props = withDefaults(defineProps<ChipProps>(), {
 
 const slots = defineSlots<{
   /** Content or component to be placed before the main text, typically an icon or avatar. */
-  before(props?: unknown): unknown;
+  before?: () => VNode[];
   /** Content or component to be placed after the main text, such as an icon indicating an action. */
-  after(props?: unknown): unknown;
+  after?: () => VNode[];
   /** The main text content of the chip. */
-  default(props?: unknown): unknown;
+  default?: () => VNode[];
 }>();
 
 const platform = usePlatform();
