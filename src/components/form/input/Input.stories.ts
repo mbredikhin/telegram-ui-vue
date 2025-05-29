@@ -46,7 +46,7 @@ export const Default: Story = {
         <template #header>Input</template>
       </Input>
       <Input
-        disabled
+        :disabled="true"
         placeholder="I am disabled input"
       >
         <template #header>Input</template>

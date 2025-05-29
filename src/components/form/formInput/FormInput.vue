@@ -86,7 +86,7 @@ const classes = computed(() => ({
   ['form-input']: true,
   [`form-input--${platform}`]: true,
   [`form-input--${formStatus.value}`]: true,
-  [`form-input--focused`]: isFocused.value,
+  ['form-input--focused']: isFocused.value,
   ['form-input--disabled']: attrs.disabled,
 }));
 
@@ -128,7 +128,7 @@ function onBlur(event: Event) {
 
 .form-input--disabled {
   position: relative;
-  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .form-input--ios.form-input--disabled {
