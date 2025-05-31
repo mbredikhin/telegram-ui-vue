@@ -9,17 +9,29 @@ import { provide, computed, useTemplateRef } from 'vue';
 import {
   type AppRootInjection,
   appRootInjectionKey,
-  getInitialPlatform,
-} from './lib';
+} from './lib/AppRootInjection';
+import { usePlatform } from './lib/usePlatform';
 
+export interface AppRootProps {
+  /** Application platform, determined automatically if nothing passed */
+  platform?: AppRootInjection['platform'];
+  /** Application appearance, determined automatically if nothing passed */
+  appearance?: AppRootInjection['appearance'];
+  /** Rewriting teleport container for rendering, AppRoot container as default */
+  teleportContainer?: AppRootInjection['teleportContainer'];
+}
+
+const props = defineProps<AppRootProps>();
+
+const platform = usePlatform(props.platform);
 const appRootRef = useTemplateRef('appRoot');
 
 const appRootInjection = computed(
   () =>
     ({
+      platform,
       isRendered: true,
       appearance: 'light',
-      platform: getInitialPlatform(),
       teleportContainer: appRootRef.value,
     }) as AppRootInjection
 );

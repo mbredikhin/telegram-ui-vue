@@ -1,4 +1,4 @@
-import { InjectionKey, Ref } from 'vue';
+import { inject, InjectionKey, Ref } from 'vue';
 
 export interface AppRootInjection {
   platform: 'base' | 'ios';
@@ -10,3 +10,13 @@ export interface AppRootInjection {
 export const appRootInjectionKey = Symbol() as InjectionKey<
   Ref<AppRootInjection>
 >;
+
+export const useAppRootInjection = () => {
+  const injection = inject(appRootInjectionKey);
+
+  if (!injection?.value?.isRendered) {
+    throw new Error('[TGUI] Wrap your app with <AppRoot> component');
+  }
+
+  return injection;
+};
