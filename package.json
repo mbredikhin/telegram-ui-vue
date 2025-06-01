@@ -1,8 +1,36 @@
 {
   "name": "telegram-ui-vue",
-  "private": false,
   "version": "0.0.0",
   "type": "module",
+  "private": false,
+  "description": "Vue UI kit for Telegram Mini Apps inspired by Telegram interface.",
+  "keywords": [
+    "ui",
+    "ui kit",
+    "design system",
+    "telegram",
+    "telegram mini apps",
+    "telegram ui",
+    "vue",
+    "vue components",
+    "components",
+    "accessibility"
+  ],
+  "homepage": "https://github.com/mbredikhin/telegram-ui-vue",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbredikhin/telegram-ui-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mbredikhin/telegram-ui-vue/issues"
+  },
+  "author": "Maxim Bredikhin",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.6.0"
+  },
+  "packageManager": "pnpm@10.11.0",
   "scripts": {
     "dev": "storybook dev -p 6006 --docs",
     "build-stories": "storybook build --docs",
