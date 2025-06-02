@@ -80,6 +80,7 @@ import { AppRoot, Placeholder } from 'telegram-ui-vue';
 
 - Run `pnpm build` to run build `telegram-ui-vue` locally
 - Run `pnpm build-stories` to build stories locally
+- Run `pnpm test` to run unit tests
 
 ## Releases
 

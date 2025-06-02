@@ -51,5 +51,10 @@ export default defineConfig(() => {
         external: [...Object.keys(pkg.dependencies ?? {})],
       },
     },
+    test: {
+      environment: 'happy-dom',
+      globals: true,
+      watch: false,
+    },
   } as UserConfig;
 });
