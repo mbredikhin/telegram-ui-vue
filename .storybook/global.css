@@ -1,0 +1,11 @@
+.appearance-decorator {
+  padding: 16px;
+}
+
+.appearance-decorator--light {
+  background-color: #ffffff;
+}
+
+.appearance-decorator--dark {
+  background-color: #212121;
+}

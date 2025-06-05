@@ -1,6 +1,5 @@
 import { getTelegramData } from '@/helpers/telegram';
-import { AppRootInjection, appRootInjectionKey } from './AppRootInjection';
-import { inject } from 'vue';
+import { AppRootInjection } from './AppRootInjection';
 
 export const getInitialPlatform = () => {
   const telegramData = getTelegramData();
@@ -20,14 +19,6 @@ export const usePlatform = (
 ): NonNullable<AppRootInjection['platform']> => {
   if (platform !== undefined) {
     return platform;
-  }
-
-  const appRootInjection = inject(appRootInjectionKey);
-  if (
-    appRootInjection?.value?.isRendered &&
-    appRootInjection?.value?.platform !== undefined
-  ) {
-    return appRootInjection?.value?.platform;
   }
 
   return getInitialPlatform();

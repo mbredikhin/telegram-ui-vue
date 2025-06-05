@@ -11,6 +11,7 @@ import {
   appRootInjectionKey,
 } from './lib/AppRootInjection';
 import { usePlatform } from './lib/usePlatform';
+import { useAppearance } from './lib/useAppearance';
 
 export interface AppRootProps {
   /** Application platform, determined automatically if nothing passed */
@@ -24,6 +25,7 @@ export interface AppRootProps {
 const props = defineProps<AppRootProps>();
 
 const platform = usePlatform(props.platform);
+const appearance = useAppearance(props.appearance);
 const appRootRef = useTemplateRef('appRoot');
 
 const appRootInjection = computed(
@@ -31,7 +33,7 @@ const appRootInjection = computed(
     ({
       platform,
       isRendered: true,
-      appearance: 'light',
+      appearance: appearance.value,
       teleportContainer: appRootRef.value,
     }) as AppRootInjection
 );
@@ -133,6 +135,8 @@ const classes = computed<string[]>(() => [
     --tgui-z-index-simple: 1;
     --tgui-z-index-skeleton: 2;
     --tgui-z-index-overlay: 3;
+
+    color: var(--tgui-text-color);
 
     &--dark {
       --tgui-bg-color: #212121;
