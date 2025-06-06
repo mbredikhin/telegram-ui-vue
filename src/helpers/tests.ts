@@ -1,29 +1,29 @@
+import { appRootInjectionKey } from '@/components/service/appRoot';
 import AppRoot from '@/components/service/appRoot/AppRoot.vue';
 import {
   ComponentMountingOptions,
   mount as mountComponent,
 } from '@vue/test-utils';
-import { Component, defineComponent, h } from 'vue';
+import { Component, ref } from 'vue';
 
 export function mount<T>(
   component: Component,
   options: ComponentMountingOptions<T>
 ) {
-  const WrappedComponent = defineComponent({
-    name: (component as Component & { __name: string }).__name,
-    setup() {
-      return () =>
-        h(
-          AppRoot,
-          {},
-          {
-            default: () => h(component, options?.props),
-          }
-        );
+  return mountComponent(component, {
+    parentComponent: AppRoot,
+    ...options,
+    global: {
+      provide: {
+        [appRootInjectionKey]: ref({
+          platform: 'base',
+          appearance: 'light',
+          isRendered: true,
+        }),
+      },
+      ...options.global,
     },
   });
-
-  return mountComponent(WrappedComponent, options);
 }
 
 export const randomString = (length = 10) => {
