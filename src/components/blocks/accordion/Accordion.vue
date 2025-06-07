@@ -3,12 +3,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, provide } from 'vue';
+import { computed, provide, VNode } from 'vue';
 import {
   AccordionInjection,
   accordionInjectionKey,
   useAccordionId,
 } from './lib';
+import { useEnsuredControl } from '@/composables/useEnsuredControl';
 
 export interface AccordionProps {
   /**
@@ -19,7 +20,7 @@ export interface AccordionProps {
    */
   id?: string;
   /** Determines whether the accordion is currently expanded or collapsed. */
-  expanded: boolean;
+  expanded?: boolean;
 }
 
 const props = defineProps<AccordionProps>();
@@ -29,7 +30,7 @@ defineSlots<{
    * Content of the Accordion component. Pass `AccordionSummary` and
    * `AccordionContent` to create a functional accordion structure.
    */
-  default(props: unknown): unknown;
+  default?: () => VNode[];
 }>();
 
 const emit = defineEmits<{
@@ -39,12 +40,21 @@ const emit = defineEmits<{
 
 const { labelId, contentId } = useAccordionId(props.id);
 
+const [expanded, setExpanded] = useEnsuredControl({
+  defaultValue: props.expanded ?? false,
+  onChange,
+});
+
 const accordionInjection = computed<AccordionInjection>(() => ({
   labelId,
   contentId,
-  expanded: props.expanded,
-  onChange: (expanded) => emit('change', !!expanded),
+  expanded: expanded.value,
+  onChange: setExpanded,
 }));
 
 provide(accordionInjectionKey, accordionInjection);
+
+function onChange(expanded?: boolean) {
+  emit('change', !!expanded);
+}
 </script>
