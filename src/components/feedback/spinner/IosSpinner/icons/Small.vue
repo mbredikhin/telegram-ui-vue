@@ -1,93 +1,45 @@
 <template>
   <svg
-    id="s151_1947"
     width="24"
     height="24"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
-      <clipPath
-        id="s151_1947_clipPath"
-        x="-50%"
-        y="-50%"
-        width="200%"
-        height="200%"
-      >
-        <path d="M0,0h24v0v24v0h-24v0v-24z" fill="white" clip-rule="nonzero" />
+      <clipPath id="a">
+        <path d="M0 0h24v24H0z" fill="#fff" />
       </clipPath>
     </defs>
-    <g clip-path="url(#s151_1947_clipPath)">
-      <!-- Replacing all IDs with safe versions -->
-      <g transform="matrix(-0.7071,-0.7071,0.7071,-0.7071,5.64,19.78)">
-        <g id="s151_1985" opacity="0.837">
-          <path
-            d="M1,0c0.5523,0 1,0.4477 1,1v5c0,0.5523 -0.4477,1 -1,1c-0.5523,0 -1,-0.4477 -1,-1v-5c0,-0.5523 0.4477,-1 1,-1z"
-            fill="currentColor"
-          />
-        </g>
-      </g>
-      <g transform="translate(11,15)">
-        <g id="s151_1980" opacity="0.467">
-          <path
-            d="M1,0c0.5523,0 1,0.4477 1,1v5c0,0.5523 -0.4477,1 -1,1c-0.5523,0 -1,-0.4477 -1,-1v-5c0,-0.5523 0.4477,-1 1,-1z"
-            fill="currentColor"
-          />
-        </g>
-      </g>
-      <g transform="matrix(0.7071,-0.7071,0.7071,0.7071,13.41,14.83)">
-        <g id="s151_1982" opacity="0.153">
-          <path
-            d="M1,0c0.5523,0 1,0.4477 1,1v5c0,0.5523 -0.4477,1 -1,1c-0.5523,0 -1,-0.4477 -1,-1v-5c0,-0.5523 0.4477,-1 1,-1z"
-            fill="currentColor"
-          />
-        </g>
-      </g>
-      <g transform="matrix(0,-1,1,0,15,13)">
-        <g id="s151_1984" opacity="0.049">
-          <path
-            d="M1,0c0.5523,0 1,0.4477 1,1v5c0,0.5523 -0.4477,1 -1,1c-0.5523,0 -1,-0.4477 -1,-1v-5c0,-0.5523 0.4477,-1 1,-1z"
-            fill="currentColor"
-          />
-        </g>
-      </g>
-      <g transform="translate(13.41,4.22)">
-        <g id="s597_11660" opacity="0">
-          <path
-            d="M2.0341,6.01101c-0.4653,0.4653 -1.2198,0.4653 -1.6851,0c-0.4653,-0.4653 -0.4653,-1.2198 0,-1.6851l3.9769,-3.9769c0.4653,-0.4653 1.2198,-0.4653 1.6851,0c0.4653,0.4653 0.4653,1.2198 0,1.6851z"
-            fill="currentColor"
-          />
-        </g>
-      </g>
-      <g transform="translate(11,1.9998)">
-        <g id="s151_1979" opacity="0">
-          <path
-            d="M1,0c0.5523,0 1,0.4477 1,1v5c0,0.5523 -0.4477,1 -1,1c-0.5523,0 -1,-0.4477 -1,-1v-5c0,-0.5523 0.4477,-1 1,-1z"
-            fill="currentColor"
-          />
-        </g>
-      </g>
-      <g transform="matrix(0.7071,-0.7071,0.7071,0.7071,4.22,5.64)">
-        <g id="s151_1981" opacity="0">
-          <path
-            d="M1,0c0.5523,0 1,0.4477 1,1v5c0,0.5523 -0.4477,1 -1,1c-0.5523,0 -1,-0.4477 -1,-1v-5c0,-0.5523 0.4477,-1 1,-1z"
-            fill="currentColor"
-          />
-        </g>
-      </g>
-      <g transform="matrix(0,-1,1,0,2.0003,13)">
-        <g id="s151_1983" opacity="1">
-          <path
-            d="M1,0c0.5523,0 1,0.4477 1,1v5c0,0.5523 -0.4477,1 -1,1c-0.5523,0 -1,-0.4477 -1,-1v-5c0,-0.5523 0.4477,-1 1,-1z"
-            fill="currentColor"
-          />
-        </g>
-      </g>
+    <g clip-path="url(#a)">
+      <path
+        d="M4.933 19.073a1 1 0 0 1 0-1.414l3.536-3.535a1 1 0 1 1 1.414 1.414l-3.535 3.535a1 1 0 0 1-1.415 0"
+        fill="currentColor"
+        opacity=".837"
+      />
+      <path
+        d="M12 15a1 1 0 0 1 1 1v5a1 1 0 1 1-2 0v-5a1 1 0 0 1 1-1"
+        fill="currentColor"
+        opacity=".467"
+      />
+      <path
+        d="M14.117 14.124a1 1 0 0 1 1.415 0l3.535 3.535a1 1 0 1 1-1.414 1.414l-3.536-3.535a1 1 0 0 1 0-1.414"
+        fill="currentColor"
+        opacity=".153"
+      />
+      <path
+        d="M15 12a1 1 0 0 1 1-1h5a1 1 0 1 1 0 2h-5a1 1 0 0 1-1-1"
+        fill="currentColor"
+        opacity=".049"
+      />
+      <g transform="translate(13.41 4.22)" />
+      <g transform="translate(11 2)" />
+      <g transform="rotate(-45.001 8.918 -2.274)" />
+      <path
+        d="M2 12a1 1 0 0 1 1-1h5a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1"
+        fill="currentColor"
+      />
     </g>
-
-    <!-- Animate sections with updated IDs -->
     <animate
-      href="#s151_1985"
       attributeName="opacity"
       values="0.837;0;1;0.8366;0;0"
       dur="0.8s"
@@ -98,7 +50,6 @@
       fill="freeze"
     />
     <animate
-      href="#s151_1980"
       attributeName="opacity"
       values="0.467;0;1;0.4669;0;0"
       dur="0.8s"
@@ -109,7 +60,6 @@
       fill="freeze"
     />
     <animate
-      href="#s151_1982"
       attributeName="opacity"
       values="0.153;0.05;1;0.1534;0;0"
       dur="0.8s"
@@ -120,7 +70,6 @@
       fill="freeze"
     />
     <animate
-      href="#s151_1984"
       attributeName="opacity"
       values="0.049;0;1;0.0493;0;0"
       dur="0.8s"
@@ -131,7 +80,6 @@
       fill="freeze"
     />
     <animate
-      href="#s597_11660"
       attributeName="opacity"
       values="0;0;1;0"
       dur="0.8s"
@@ -142,7 +90,6 @@
       fill="freeze"
     />
     <animate
-      href="#s151_1979"
       attributeName="opacity"
       values="0;0;1;0"
       dur="0.8s"
@@ -153,7 +100,6 @@
       fill="freeze"
     />
     <animate
-      href="#s151_1981"
       attributeName="opacity"
       values="0;1;0;0"
       dur="0.8s"
@@ -164,7 +110,6 @@
       fill="freeze"
     />
     <animate
-      href="#s151_1983"
       attributeName="opacity"
       values="1;0;1"
       dur="0.8s"

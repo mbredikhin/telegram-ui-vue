@@ -6,35 +6,21 @@
     viewBox="0 0 32 32"
   >
     <defs>
-      <clipPath id="clipPath1">
-        <path d="M0,0h32v0v32v0h-32v0v-32z" fill="white" clip-rule="nonzero" />
+      <clipPath id="a">
+        <path d="M0 0h32v32H0z" fill="#fff" />
       </clipPath>
     </defs>
-    <g clip-path="url(#clipPath1)">
-      <!-- Each element group goes here -->
-      <!-- I'm using clean IDs like id="g1", "g2" etc. -->
-      <g
-        id="g1"
-        transform="matrix(-0.7071,-0.7071,0.7071,-0.7071,6.7429,27.3137)"
-        opacity="0.837"
-      >
-        <path
-          d="M1.5,0c0.8284,0 1.5,0.6716 1.5,1.5v7.1818c0,0.8284 -0.6716,1.5 -1.5,1.5s-1.5,-0.6716 -1.5,-1.5v-7.1818c0,-0.8284 0.6716,-1.5 1.5,-1.5z"
-          fill="currentColor"
-        />
-      </g>
-      <g id="g2" transform="matrix(1,0,0,1,14.5454,21.0909)" opacity="0.467">
-        <path
-          d="M1.5,0c0.8284,0 1.5,0.6716 1.5,1.5v6.4545c0,0.8284 -0.6716,1.5 -1.5,1.5s-1.5,-0.6716 -1.5,-1.5v-6.4545c0,-0.8284 0.6716,-1.5 1.5,-1.5z"
-          fill="currentColor"
-        />
-      </g>
-      <!-- Add the rest of your path groups here and ensure unique IDs -->
+    <g clip-path="url(#a)" fill="currentColor">
+      <path
+        d="M5.682 26.252a1.5 1.5 0 0 1 0-2.121l5.078-5.079a1.5 1.5 0 0 1 2.122 2.122l-5.079 5.078a1.5 1.5 0 0 1-2.121 0"
+        opacity=".837"
+      />
+      <path
+        d="M16.045 21.09a1.5 1.5 0 0 1 1.5 1.5v6.455a1.5 1.5 0 0 1-3 0V22.59a1.5 1.5 0 0 1 1.5-1.5"
+        opacity=".467"
+      />
     </g>
-
-    <!-- Animation: Reference the cleaned IDs like #g1, #g2, etc. -->
     <animate
-      href="#g1"
       attributeName="opacity"
       values="0.837;0;1;0.8366;0;0"
       dur="0.8s"
@@ -46,7 +32,6 @@
       fill="freeze"
     />
     <animate
-      href="#g2"
       attributeName="opacity"
       values="0.467;0;1;0.4669;0;0"
       dur="0.8s"
