@@ -14,14 +14,15 @@ export function mount<T>(
     parentComponent: AppRoot,
     ...options,
     global: {
+      ...options.global,
       provide: {
         [appRootInjectionKey]: ref({
           platform: 'base',
           appearance: 'light',
           isRendered: true,
         }),
+        ...(options.global?.provide ?? {}),
       },
-      ...options.global,
     },
   });
 }

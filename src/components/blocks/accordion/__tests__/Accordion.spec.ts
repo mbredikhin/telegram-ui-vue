@@ -50,4 +50,50 @@ describe('Accordion', () => {
 
     expect((content.element as HTMLElement).style.maxHeight).toBe('0px');
   });
+
+  test('provides expanded state and emits change on toggle', async () => {
+    const wrapper = mount(Accordion, {
+      props: {
+        expanded: false,
+      },
+      slots: {
+        default: `
+          <AccordionSummary>Summary</AccordionSummary>
+          <AccordionContent>Content</AccordionContent>
+        `,
+      },
+      global: {
+        components: { AccordionSummary, AccordionContent },
+      },
+    });
+
+    const summary = wrapper.findComponent(AccordionSummary);
+    await summary.trigger('click');
+
+    expect(wrapper.emitted('change')).toBeTruthy();
+    expect(wrapper.emitted('change')![0]).toEqual([true]);
+  });
+
+  test('generates IDs if not provided', () => {
+    const wrapper = mount(Accordion, {
+      props: { expanded: true },
+      slots: {
+        default: `
+          <AccordionSummary>Summary</AccordionSummary>
+          <AccordionContent>Content</AccordionContent>
+        `,
+      },
+      global: {
+        components: { AccordionSummary, AccordionContent },
+      },
+    });
+
+    const summary = wrapper.find('[aria-expanded]');
+    const content = wrapper.find('[role="region"]');
+
+    expect(summary.attributes('aria-controls')).toBe(content.attributes('id'));
+    expect(content.attributes('aria-labelledby')).toBe(
+      summary.attributes('id')
+    );
+  });
 });
