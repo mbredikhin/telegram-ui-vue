@@ -60,8 +60,8 @@ export default {
 import { usePlatform } from '@/composables/usePlatform';
 import { computed, InputHTMLAttributes, Ref, ref, useAttrs } from 'vue';
 import { AVAILABLE_PINS, usePinInput } from './lib';
-import { Keys } from '@/helpers/accessibility';
-import { createChunks } from '@/helpers/chunk';
+import { Keys } from '@/lib/accessibility';
+import { createChunks } from '@/lib/chunk';
 import Backspace36Icon from '@/icons/36/backspace.svg';
 import PinInputCell from './PinInputCell.vue';
 import { Headline } from '@/components/typography';

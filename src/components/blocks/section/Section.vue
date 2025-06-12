@@ -29,7 +29,7 @@ import { computed, VNode } from 'vue';
 import SectionHeader from './SectionHeader.vue';
 import SectionFooter from './SectionFooter.vue';
 import { Divider } from '@/components/misc';
-import { hasSlotContent, isComponentPassedToSlot } from '@/helpers/vue';
+import { hasSlotContent, isComponentPassedToSlot } from '@/lib/vue';
 
 /**
  * Organizes content into distinct sections with optional headers and footers. It automatically wraps

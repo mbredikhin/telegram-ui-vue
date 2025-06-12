@@ -1,4 +1,4 @@
-import { mount } from '@/helpers/tests';
+import { mount } from '@/lib/tests';
 import AvatarStack from '../AvatarStack.vue';
 
 describe('AvatarStack', () => {

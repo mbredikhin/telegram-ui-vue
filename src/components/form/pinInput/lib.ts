@@ -1,5 +1,5 @@
-import { Keys } from '@/helpers/accessibility';
-import { clamp } from '@/helpers/math';
+import { Keys } from '@/lib/accessibility';
+import { clamp } from '@/lib/math';
 import { useEnsuredControl } from '@/composables/useEnsuredControl';
 import { MaybeRef, Ref, toValue } from 'vue';
 

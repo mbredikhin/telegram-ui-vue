@@ -1,5 +1,5 @@
 import AvatarBadge from '../AvatarBadge.vue';
-import { mount } from '@/helpers/tests';
+import { mount } from '@/lib/tests';
 
 describe('AvatarBadge', () => {
   test('renders when type is "number"', () => {

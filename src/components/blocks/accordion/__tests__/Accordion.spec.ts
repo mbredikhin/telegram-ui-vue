@@ -1,5 +1,5 @@
 import Accordion from '../Accordion.vue';
-import { mount, randomString } from '@/helpers/tests';
+import { mount, randomString } from '@/lib/tests';
 import AccordionSummary from '../accordionSummary/AccordionSummary.vue';
 import AccordionContent from '../accordionContent/AccordionContent.vue';
 

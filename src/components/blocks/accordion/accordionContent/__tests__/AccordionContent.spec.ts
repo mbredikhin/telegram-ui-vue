@@ -1,7 +1,7 @@
 import AccordionContent from '../AccordionContent.vue';
 import { AccordionInjection, accordionInjectionKey } from '../../lib';
 import { Ref, ref } from 'vue';
-import { mount } from '@/helpers/tests';
+import { mount } from '@/lib/tests';
 
 describe('AccordionContent', () => {
   let injection: Ref<AccordionInjection>;

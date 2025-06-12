@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { Text, Title } from '@/components/typography';
-import { hasSlotContent } from '@/helpers/vue';
+import { hasSlotContent } from '@/lib/vue';
 import { VNode } from 'vue';
 
 /** A versatile component designed to display a placeholder with optional text, images, and actions. */

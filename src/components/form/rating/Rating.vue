@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { VisuallyHidden } from '@/components/service';
 import { useEnsuredControl } from '@/composables/useEnsuredControl';
-import { clamp } from '@/helpers/math';
+import { clamp } from '@/lib/math';
 import { type Component, computed } from 'vue';
 import StarIcon from './icons/star.svg';
 

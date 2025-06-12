@@ -35,7 +35,7 @@ import { RootRenderer } from '@/components/service';
 import { Caption } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
 import { useTimeout } from '@/composables/useTimeout';
-import { hasSlotContent } from '@/helpers/vue';
+import { hasSlotContent } from '@/lib/vue';
 import { computed, ref, useAttrs, onMounted, VNode } from 'vue';
 
 /**

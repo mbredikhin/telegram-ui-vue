@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { Caption, Subheadline } from '@/components/typography';
-import { hasSlotContent } from '@/helpers/vue';
+import { hasSlotContent } from '@/lib/vue';
 import { computed, VNode } from 'vue';
 
 /**

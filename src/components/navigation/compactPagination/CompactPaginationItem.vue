@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import { VisuallyHidden } from '@/components/service';
-import { hasSlotContent } from '@/helpers/vue';
+import { hasSlotContent } from '@/lib/vue';
 import { ButtonHTMLAttributes, computed, useAttrs, VNode } from 'vue';
 
 export interface CompactPaginationItemProps

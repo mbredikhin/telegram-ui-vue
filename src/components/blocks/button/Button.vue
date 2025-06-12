@@ -34,7 +34,7 @@ import {
   type Component,
 } from 'vue';
 import ButtonTypography from './ButtonTypography.vue';
-import { hasSlotContent } from '@/helpers/vue';
+import { hasSlotContent } from '@/lib/vue';
 
 export interface ButtonProps
   extends /* @vue-ignore */ Omit<ButtonHTMLAttributes, 'is'> {

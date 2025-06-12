@@ -12,7 +12,7 @@
 import { Tappable, TappableProps } from '@/components/service';
 import { Typography } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
-import { hasSlotContent } from '@/helpers/vue';
+import { hasSlotContent } from '@/lib/vue';
 import { type Component, computed, useAttrs, VNode } from 'vue';
 
 /**

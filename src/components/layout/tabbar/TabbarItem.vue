@@ -23,7 +23,7 @@
 import { Tappable } from '@/components/service';
 import { Caption } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
-import { hasSlotContent } from '@/helpers/vue';
+import { hasSlotContent } from '@/lib/vue';
 import { ButtonHTMLAttributes, computed, useAttrs, VNode } from 'vue';
 
 /**

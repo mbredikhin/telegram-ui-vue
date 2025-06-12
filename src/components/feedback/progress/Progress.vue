@@ -16,7 +16,7 @@
  * Renders a linear progress bar that visually represents completion percentage towards a goal.
  */
 import { computed, inject, type Ref } from 'vue';
-import { clamp } from '@/helpers/math';
+import { clamp } from '@/lib/math';
 import {
   type AppRootInjection,
   appRootInjectionKey,

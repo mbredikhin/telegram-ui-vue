@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { Subheadline, Text } from '@/components/typography';
-import { hasSlotContent } from '@/helpers/vue';
+import { hasSlotContent } from '@/lib/vue';
 import { computed, VNode } from 'vue';
 
 /**

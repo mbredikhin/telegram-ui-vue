@@ -1,7 +1,7 @@
 import { Ref, ref, watch } from 'vue';
 import { AppRootInjection } from './AppRootInjection';
-import { canUseDOM } from '@/helpers/dom';
-import { getTelegramData } from '@/helpers/telegram';
+import { canUseDOM } from '@/lib/dom';
+import { getTelegramData } from '@/lib/telegram';
 
 export const getInitialAppearance = () => {
   if (

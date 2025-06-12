@@ -12,8 +12,8 @@ import {
   AppRootInjection,
   useAppRootInjection,
 } from '@/components/service/appRoot';
-import { hexToRGB } from '@/helpers/color';
-import { getTelegramData } from '@/helpers/telegram';
+import { hexToRGB } from '@/lib/color';
+import { getTelegramData } from '@/lib/telegram';
 import { DrawerOverlay } from 'vaul-vue';
 import { computed, Ref } from 'vue';
 

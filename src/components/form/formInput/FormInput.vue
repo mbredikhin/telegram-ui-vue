@@ -41,7 +41,7 @@ import {
   VNode,
 } from 'vue';
 import FormInputTitle from './FormInputTitle.vue';
-import { hasSlotContent } from '@/helpers/vue';
+import { hasSlotContent } from '@/lib/vue';
 
 /**
  * Wraps an input element with additional layout for headers, icons, or actions, providing a consistent look and feel across the form.

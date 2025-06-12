@@ -1,5 +1,5 @@
 import { useEnsuredControl } from '@/composables/useEnsuredControl';
-import { range } from '@/helpers/array';
+import { range } from '@/lib/array';
 import { computed, watch, ComputedRef, MaybeRef, toValue } from 'vue';
 
 export enum PaginationType {

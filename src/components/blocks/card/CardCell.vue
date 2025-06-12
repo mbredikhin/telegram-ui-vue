@@ -20,7 +20,7 @@
 import { computed, inject, useAttrs, VNode } from 'vue';
 import { cardInjectionKey } from './lib';
 import { Cell, CellProps } from '@/components/blocks';
-import { hasSlotContent } from '@/helpers/vue';
+import { hasSlotContent } from '@/lib/vue';
 
 export interface CardCellProps extends /* @vue-ignore */ CellProps {}
 

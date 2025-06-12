@@ -45,7 +45,7 @@ import {
 } from 'vaul-vue';
 import { Ref, useAttrs, VNode } from 'vue';
 import ModalOverlay from './ModalOverlay.vue';
-import { hasSlotContent } from '@/helpers/vue';
+import { hasSlotContent } from '@/lib/vue';
 
 export interface ModalProps {
   activeSnapPoint?: number | string | null;

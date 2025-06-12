@@ -1,5 +1,5 @@
 import Avatar from '../Avatar.vue';
-import { mount, randomString } from '@/helpers/tests';
+import { mount, randomString } from '@/lib/tests';
 
 describe('Avatar', () => {
   test('displays acronym as fallback', () => {

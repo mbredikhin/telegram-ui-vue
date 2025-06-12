@@ -1,5 +1,5 @@
 import AvatarAcronym from '../AvatarAcronym.vue';
-import { mount, randomString } from '@/helpers/tests';
+import { mount, randomString } from '@/lib/tests';
 
 describe('AvatarAcronym', () => {
   test('displays slot content', () => {

@@ -20,7 +20,7 @@
 import { Tappable } from '@/components/service';
 import { Subheadline } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
-import { hasSlotContent } from '@/helpers/vue';
+import { hasSlotContent } from '@/lib/vue';
 import { type Component, computed, VNode } from 'vue';
 
 export interface ChipProps {

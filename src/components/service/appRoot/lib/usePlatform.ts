@@ -1,4 +1,4 @@
-import { getTelegramData } from '@/helpers/telegram';
+import { getTelegramData } from '@/lib/telegram';
 import { AppRootInjection } from './AppRootInjection';
 
 export const getInitialPlatform = () => {

@@ -57,7 +57,7 @@ import { computed, type VNode } from 'vue';
 import CloseAmbient28Icon from '@/icons/28/close-ambient.svg';
 import Cancel24Icon from '@/icons/24/cancel.svg';
 import Close28Icon from '@/icons/28/close.svg';
-import { hasSlotContent } from '@/helpers/vue';
+import { hasSlotContent } from '@/lib/vue';
 
 /**
  * The `Banner` component renders a prominent graphical element, typically displayed at the top of a page or section,

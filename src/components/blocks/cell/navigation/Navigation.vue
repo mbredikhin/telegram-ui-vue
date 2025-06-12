@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { Text } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
-import { hasSlotContent } from '@/helpers/vue';
+import { hasSlotContent } from '@/lib/vue';
 import Chevron16Icon from '@/icons/16/chevron.svg';
 import { VNode } from 'vue';
 
