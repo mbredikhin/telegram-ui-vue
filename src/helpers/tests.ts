@@ -8,7 +8,7 @@ import { Component, ref } from 'vue';
 
 export function mount<T>(
   component: Component,
-  options: ComponentMountingOptions<T>
+  options = {} as ComponentMountingOptions<T>
 ) {
   return mountComponent(component, {
     parentComponent: AppRoot,
