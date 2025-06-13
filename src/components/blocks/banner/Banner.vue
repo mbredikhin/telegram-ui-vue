@@ -43,7 +43,7 @@
       @click="emit('close')"
     >
       <CloseAmbient28Icon v-if="hasBackground" />
-      <Cancel24Icon v-if="platform === 'ios'" />
+      <Cancel24Icon v-if="platform === 'ios'" data-test-id="cancel-icon" />
       <Close28Icon v-else />
     </Tappable>
   </section>
