@@ -75,8 +75,8 @@ const classes = computed(() => ({
   [`button--${props.mode}`]: true,
   [`button--${props.size}`]: true,
   [`button--ios`]: platform === 'ios',
-  [`button--${props.stretched}`]: props.stretched,
-  [`button--${props.loading}`]: props.loading,
+  [`button--stretched`]: props.stretched,
+  [`button--loading`]: props.loading,
 }));
 </script>
 
