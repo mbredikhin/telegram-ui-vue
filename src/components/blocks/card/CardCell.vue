@@ -55,13 +55,13 @@ const classes = computed(() => ({
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
+.card-cell {
   --tgui-cell-middle-padding: 16px 0;
   padding: 0 20px;
   background: var(--tgui-card-bg-color);
 }
 
-.wrapper--ambient {
+.card-cell--ambient {
   --tgui-text-color: var(--tgui-white);
   --tgui-hint-color: rgba(255, 255, 255, 0.75);
 
