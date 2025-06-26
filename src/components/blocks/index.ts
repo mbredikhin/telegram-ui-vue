@@ -31,10 +31,14 @@ export { Placeholder };
 import Section from './section/Section.vue';
 export { Section };
 
-import SectionHeader, { SectionHeaderProps } from './section/SectionHeader.vue';
+import SectionHeader, {
+  SectionHeaderProps,
+} from './section/SectionHeader/SectionHeader.vue';
 export { SectionHeader, type SectionHeaderProps };
 
-import SectionFooter, { SectionFooterProps } from './section/SectionFooter.vue';
+import SectionFooter, {
+  SectionFooterProps,
+} from './section/SectionFooter/SectionFooter.vue';
 export { SectionFooter, type SectionFooterProps };
 
 import Steps, { StepsProps } from './steps/Steps.vue';

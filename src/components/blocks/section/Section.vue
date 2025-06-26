@@ -26,8 +26,8 @@
 <script setup lang="ts">
 import { usePlatform } from '@/composables/usePlatform';
 import { computed, VNode } from 'vue';
-import SectionHeader from './SectionHeader.vue';
-import SectionFooter from './SectionFooter.vue';
+import SectionHeader from './SectionHeader/SectionHeader.vue';
+import SectionFooter from './SectionFooter/SectionFooter.vue';
 import { Divider } from '@/components/misc';
 import { hasSlotContent, isComponentPassedToSlot } from '@/lib/vue';
 
