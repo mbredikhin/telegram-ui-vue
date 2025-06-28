@@ -1,5 +1,5 @@
 <template>
-  <li :class="classes" v-bind="attrs">
+  <li :class="classes">
     <div class="side">
       <div class="line"></div>
       <div class="dot"></div>
@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { Subheadline, Text } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
-import { computed, LiHTMLAttributes, useAttrs } from 'vue';
+import { computed, LiHTMLAttributes, VNode } from 'vue';
 
 export interface TimelineItemProps extends /* @vue-ignore */ LiHTMLAttributes {
   /** Internal prop, but you can change it. Marks line and dot of the item */
@@ -31,10 +31,9 @@ const props = defineProps<TimelineItemProps>();
 
 defineSlots<{
   /** Description of the item */
-  default(props: unknown): unknown;
+  default?: () => VNode[];
 }>();
 
-const attrs: LiHTMLAttributes = useAttrs();
 const platform = usePlatform();
 
 const classes = computed(() => ({
