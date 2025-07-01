@@ -12,15 +12,13 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
+import { clamp } from '@/lib/math';
+import { usePlatform } from '@/composables/usePlatform';
+
 /**
  * Renders a linear progress bar that visually represents completion percentage towards a goal.
  */
-import { computed, inject, type Ref } from 'vue';
-import { clamp } from '@/lib/math';
-import {
-  type AppRootInjection,
-  appRootInjectionKey,
-} from '@/components/service/appRoot';
 
 export interface ProgressProps {
   /** The current value of the progress bar, expressed as a percentage. The value should be between 0 and 100. */
@@ -33,7 +31,7 @@ const props = withDefaults(defineProps<ProgressProps>(), {
 
 const PROGRESS_MIN_VALUE = 0;
 const PROGRESS_MAX_VALUE = 100;
-const appRootInjection = inject(appRootInjectionKey) as Ref<AppRootInjection>;
+const platform = usePlatform();
 
 const progress = computed<number>(() =>
   clamp(props.value, PROGRESS_MIN_VALUE, PROGRESS_MAX_VALUE)
@@ -43,10 +41,7 @@ const title = computed<string>(
   () => `${progress.value} / ${PROGRESS_MAX_VALUE}`
 );
 
-const classes = computed<string[]>(() => [
-  'progress',
-  `progress--${appRootInjection.value.platform}`,
-]);
+const classes = computed<string[]>(() => ['progress', `progress--${platform}`]);
 
 const progressLineStyle = computed<Record<string, string>>(() => ({
   width: progress.value + '%',
