@@ -1,0 +1,1 @@
+export const TRANSITION_FINISH_DURATION = 320;

@@ -1,6 +1,6 @@
 <template>
   <RootRenderer>
-    <div :class="classes" v-bind="attrs">
+    <div data-test-id="snackbar" :class="classes" v-bind="attrs">
       <div class="body">
         <div v-if="hasSlotContent(slots.before)" class="before">
           <slot name="before" />
@@ -37,6 +37,7 @@ import { usePlatform } from '@/composables/usePlatform';
 import { useTimeout } from '@/composables/useTimeout';
 import { hasSlotContent } from '@/lib/vue';
 import { computed, ref, useAttrs, onMounted, VNode } from 'vue';
+import { TRANSITION_FINISH_DURATION } from './lib';
 
 /**
  * Displays a brief message at the bottom of the screen, which can contain actions and other content.
@@ -70,7 +71,6 @@ const slots = defineSlots<{
   link?: () => VNode[];
 }>();
 
-const TRANSITION_FINISH_DURATION = 320;
 const platform = usePlatform();
 const closing = ref(false);
 const attrs = useAttrs();
