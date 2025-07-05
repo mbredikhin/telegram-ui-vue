@@ -34,7 +34,7 @@ const appRootInjection = computed(
       platform,
       isRendered: true,
       appearance: appearance.value,
-      teleportContainer: appRootRef.value,
+      teleportContainer: props.teleportContainer ?? appRootRef.value,
     }) as AppRootInjection
 );
 
