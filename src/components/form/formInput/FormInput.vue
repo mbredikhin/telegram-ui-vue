@@ -88,6 +88,7 @@ const classes = computed(() => ({
   [`form-input--${formStatus.value}`]: true,
   ['form-input--focused']: isFocused.value,
   ['form-input--disabled']: attrs.disabled,
+  [attrs.class]: true,
 }));
 
 function onFocus(event: Event) {
