@@ -46,13 +46,13 @@ describe('Banner', () => {
     });
 
     expect(
-      wrapper.find('.title [data-test-id]="callout-content"').exists()
+      wrapper.find('.subheader [data-test-id="callout-content"]').exists()
     ).toBe(true);
     expect(
-      wrapper.find('.title [data-test-id]="header-content"').exists()
+      wrapper.find('.title [data-test-id="header-content"]').exists()
     ).toBe(true);
     expect(
-      wrapper.find('.subheader [data-test-id]="subheader-content"').exists()
+      wrapper.find('.subheader [data-test-id="subheader-content"]').exists()
     ).toBe(true);
     expect(wrapper.find('.description').exists()).toBe(true);
     expect(wrapper.find('.buttons .action').exists()).toBe(true);
@@ -65,7 +65,7 @@ describe('Banner', () => {
       },
     });
 
-    expect(wrapper.find('[data-test-id]="before-content"').exists()).toBe(true);
+    expect(wrapper.find('[data-test-id="before-content"]').exists()).toBe(true);
   });
 
   test('renders correct close icon and emits close on click (base platform)', async () => {
@@ -92,6 +92,6 @@ describe('Banner', () => {
     });
 
     expect(wrapper.classes()).toContain('banner--ios');
-    expect(wrapper.find('[data-test-id]="cancel-icon"').exists()).toBe(true);
+    expect(wrapper.find('[data-test-id="cancel-icon"]').exists()).toBe(true);
   });
 });
