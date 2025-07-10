@@ -3,18 +3,30 @@
     <VisuallyHidden v-bind="attrs" is="input" type="checkbox" class="input">
       <slot />
     </VisuallyHidden>
-    <MultiselectableIosIcon
-      v-if="platform === 'ios'"
-      class="icon"
-      aria-hidden
-    />
-    <MultiselectableBaseIcon v-else class="icon" aria-hidden />
-    <MultiselectableCheckedIosIcon
-      v-if="platform === 'ios'"
-      class="icon--checked"
-      aria-hidden
-    />
-    <MultiselectableCheckedBaseIcon v-else class="icon--checked" aria-hidden />
+    <template v-if="platform === 'ios'">
+      <MultiselectableIosIcon
+        data-test-id="multiselectable-ios-icon"
+        class="icon"
+        aria-hidden
+      />
+      <MultiselectableCheckedIosIcon
+        data-test-id="multiselectable-checked-ios-icon"
+        class="icon--checked"
+        aria-hidden
+      />
+    </template>
+    <template v-else>
+      <MultiselectableBaseIcon
+        data-test-id="multiselectable-base-icon"
+        class="icon"
+        aria-hidden
+      />
+      <MultiselectableCheckedBaseIcon
+        data-test-id="multiselectable-checked-base-icon"
+        class="icon--checked"
+        aria-hidden
+      />
+    </template>
   </label>
 </template>
 
