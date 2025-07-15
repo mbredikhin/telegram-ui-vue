@@ -50,6 +50,7 @@ import { computed, ref, useAttrs, VNode, watch } from 'vue';
  */
 
 export interface ColorInputProps extends /* @vue-ignore */ FormInputProps {
+  value?: string;
   defaultValue?: string;
 }
 
@@ -67,7 +68,7 @@ defineSlots<{
 }>();
 
 const attrs: FormInputProps = useAttrs();
-const inputValue = ref(attrs.value || props.defaultValue);
+const inputValue = ref(props.value || props.defaultValue);
 const platform = usePlatform();
 
 watch(
