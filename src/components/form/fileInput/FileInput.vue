@@ -3,7 +3,7 @@
     <slot />
     <ButtonCell is="label">
       <template #before>
-        <Attach28Icon />
+        <Attach28Icon data-test-id="attach-icon" />
       </template>
       <VisuallyHidden>
         <input type="file" :placeholder="props.label" v-bind="attrs" />
