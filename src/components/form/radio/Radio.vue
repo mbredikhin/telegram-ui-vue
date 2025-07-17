@@ -7,8 +7,12 @@
       class="input"
       :checked="checked"
     />
-    <RadioIcon class="icon" aria-hidden />
-    <RadioCheckedIcon class="icon--checked" aria-hidden />
+    <RadioIcon data-test-id="radio-icon" class="icon" aria-hidden />
+    <RadioCheckedIcon
+      data-test-id="radio-checked-icon"
+      class="icon--checked"
+      aria-hidden
+    />
   </label>
 </template>
 
