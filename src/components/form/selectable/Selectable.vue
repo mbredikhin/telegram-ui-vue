@@ -9,8 +9,18 @@
     >
       <slot />
     </VisuallyHidden>
-    <SelectableIosIcon v-if="platform === 'ios'" class="icon" aria-hidden />
-    <SelectableBaseIcon v-else class="icon" aria-hidden />
+    <SelectableIosIcon
+      v-if="platform === 'ios'"
+      data-test-id="selectable-ios-icon"
+      class="icon"
+      aria-hidden
+    />
+    <SelectableBaseIcon
+      v-else
+      data-test-id="selectable-base-icon"
+      class="icon"
+      aria-hidden
+    />
   </label>
 </template>
 
