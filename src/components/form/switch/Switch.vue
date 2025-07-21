@@ -28,8 +28,8 @@ export interface SwitchProps extends /* @vue-ignore */ InputHTMLAttributes {}
 defineProps<SwitchProps>();
 
 defineSlots<{
-  /** Text. */
-  ['default']?: () => VNode[];
+  /** Switch label. */
+  default?: () => VNode[];
 }>();
 
 const platform = usePlatform();
