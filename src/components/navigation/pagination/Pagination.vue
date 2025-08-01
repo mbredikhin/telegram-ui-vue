@@ -57,7 +57,7 @@ export interface PaginationProps extends /* @vue-ignore */ Attrs {}
 const props = defineProps<PaginationProps>();
 
 const emit = defineEmits<{
-  (e: 'change', event: Event, page: number): void;
+  (e: 'change', page: number, event: Event): void;
 }>();
 
 // @ts-expect-error type Attrs satisfies the attrs key constraint
@@ -77,7 +77,7 @@ const isItemEllipsis = computed(
 );
 
 function onChange(event: Event, page: number) {
-  emit('change', event, page);
+  emit('change', page, event);
 }
 </script>
 
