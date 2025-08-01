@@ -1,6 +1,13 @@
 import { useEnsuredControl } from '@/composables/useEnsuredControl';
 import { range } from '@/lib/array';
-import { computed, watch, ComputedRef, MaybeRef, toValue } from 'vue';
+import {
+  computed,
+  watch,
+  ComputedRef,
+  MaybeRef,
+  toValue,
+  UnwrapRef,
+} from 'vue';
 
 export enum PaginationType {
   Page = 'page',
@@ -14,21 +21,23 @@ export type OnChange = (event: Event, page: number) => void;
 
 export interface UsePaginationConfig {
   /** Number of always visible pages at the beginning and end. */
-  boundaryCount: MaybeRef<number | undefined>;
+  boundaryCount: MaybeRef<number>;
   /** The total number of pages. */
-  count: MaybeRef<number | undefined>;
+  count: MaybeRef<number>;
   /** The page selected by default when the component is uncontrolled */
-  defaultPage: MaybeRef<number | undefined>;
+  defaultPage: MaybeRef<number>;
   /** If `true`, hide the next-page button. */
-  hideNextButton: MaybeRef<boolean | undefined>;
+  hideNextButton: MaybeRef<boolean>;
   /** If `true`, hide the previous-page button. */
-  hidePrevButton: MaybeRef<boolean | undefined>;
+  hidePrevButton: MaybeRef<boolean>;
   /** The current page. */
-  page: MaybeRef<number | undefined>;
+  page: MaybeRef<number>;
   /** Number of always visible pages before and after the current page. */
-  siblingCount: MaybeRef<number | undefined>;
+  siblingCount: MaybeRef<number>;
+  /** Controls whether the Pagination component is interactive. */
+  disabled: MaybeRef<boolean>;
   /** Callback to be fired when value changed. */
-  onChange?: OnChange;
+  onChange: OnChange;
 }
 
 export interface UsePaginationResult {
@@ -44,19 +53,26 @@ export interface UsePaginationItem {
   onClick: (event: Event) => void;
 }
 
-export function usePagination(props: UsePaginationConfig): UsePaginationResult {
-  const config = computed(() => ({
-    boundaryCount: toValue(props.boundaryCount) ?? 1,
-    count: toValue(props.count) ?? 1,
-    defaultPage: toValue(props.defaultPage) ?? 1,
-    hideNextButton: toValue(props.hideNextButton) ?? false,
-    hidePrevButton: toValue(props.hidePrevButton) ?? false,
-    page: toValue(props.page),
-    siblingCount: toValue(props.siblingCount) ?? 1,
-  }));
+export function usePagination(
+  props: Partial<UsePaginationConfig>
+): UsePaginationResult {
+  const config = computed<UnwrapRef<Omit<UsePaginationConfig, 'onChange'>>>(
+    () => ({
+      boundaryCount: toValue(props.boundaryCount) ?? 1,
+      count: toValue(props.count) ?? 1,
+      defaultPage: toValue(props.defaultPage) ?? 1,
+      hideNextButton: toValue(props.hideNextButton) ?? false,
+      hidePrevButton: toValue(props.hidePrevButton) ?? false,
+      page: toValue(props.page) ?? 0,
+      siblingCount: toValue(props.siblingCount) ?? 1,
+      disabled: toValue(props.disabled) ?? false,
+    })
+  );
 
   const [page, setPage] = useEnsuredControl({
-    value: config.value.page,
+    value: computed(() =>
+      config.value.page ? config.value.page : undefined
+    ) as ComputedRef<number>,
     defaultValue: config.value.defaultPage,
   });
 
@@ -167,7 +183,7 @@ export function usePagination(props: UsePaginationConfig): UsePaginationResult {
           type: PaginationType.Page,
           page: typeOrPageNumber,
           selected: typeOrPageNumber === page.value,
-          disabled: false,
+          disabled: config.value.disabled,
           'aria-current': typeOrPageNumber === page.value ? 'true' : undefined,
           onClick: (event) => handleClick(event, typeOrPageNumber),
         };
@@ -178,12 +194,13 @@ export function usePagination(props: UsePaginationConfig): UsePaginationResult {
         page: buttonToPage(typeOrPageNumber),
         selected: false,
         disabled:
-          ![PaginationType.StartEllipsis, PaginationType.EndEllipsis].includes(
+          config.value.disabled ||
+          (![PaginationType.StartEllipsis, PaginationType.EndEllipsis].includes(
             typeOrPageNumber
           ) &&
-          (typeOrPageNumber === PaginationType.Next
-            ? page.value >= config.value.count
-            : page.value <= 1),
+            (typeOrPageNumber === PaginationType.Next
+              ? page.value >= config.value.count
+              : page.value <= 1)),
         onClick: (event) =>
           handleClick(event, buttonToPage(typeOrPageNumber) || 0),
       };

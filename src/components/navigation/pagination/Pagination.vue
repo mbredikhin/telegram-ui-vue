@@ -52,10 +52,7 @@ import ChevronRight24Icon from '@/icons/24/chevron-right.svg';
 export interface Attrs
   extends UnwrapRef<Omit<UsePaginationConfig, 'onChange'>> {}
 
-export interface PaginationProps extends /* @vue-ignore */ Attrs {
-  /** Controls whether the Pagination component is interactive. */
-  disabled?: boolean;
-}
+export interface PaginationProps extends /* @vue-ignore */ Attrs {}
 
 const props = defineProps<PaginationProps>();
 
