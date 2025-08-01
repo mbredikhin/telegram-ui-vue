@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 import Pagination from './Pagination.vue';
+import { ref, watch } from 'vue';
 
 const meta = {
   title: 'Navigation/Pagination',
@@ -51,9 +52,24 @@ export const Default: Story = {
   render: (args) => ({
     components: { Pagination },
     setup() {
-      return { args };
+      const page = ref(args.page);
+
+      watch(
+        () => args.page,
+        (value) => (page.value = value)
+      );
+
+      function changePage(value: number) {
+        page.value = value;
+      }
+
+      return {
+        args,
+        page,
+        changePage,
+      };
     },
-    template: `<Pagination v-bind="args"></Pagination>`,
+    template: `<Pagination v-bind="args" :page="page" @change="changePage"></Pagination>`,
   }),
   args: {
     boundaryCount: 2,
@@ -62,5 +78,6 @@ export const Default: Story = {
     hideNextButton: false,
     hidePrevButton: false,
     siblingCount: 1,
+    disabled: false,
   },
 };
