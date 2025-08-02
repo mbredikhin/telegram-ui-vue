@@ -17,7 +17,7 @@ import BaseSpinner from './BaseSpinner/BaseSpinner.vue';
 
 export interface SpinnerProps {
   /** Determines the size of the spinner. Can be 'small' (s), 'medium' (m), or 'large' (l), with 'medium' being the default size. */
-  size: 's' | 'm' | 'l';
+  size?: 's' | 'm' | 'l';
 }
 
 const props = withDefaults(defineProps<SpinnerProps>(), {
