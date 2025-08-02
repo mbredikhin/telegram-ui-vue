@@ -1,5 +1,6 @@
 import { mount, randomString } from '@/lib/tests';
 import FixedLayout from '../FixedLayout.vue';
+import { h } from 'vue';
 
 describe('FixedLayout', () => {
   test('renders as default div with bottom positioning', () => {
@@ -43,21 +44,18 @@ describe('FixedLayout', () => {
   });
 
   test('renders using a custom component', () => {
-    const CustomComponent = {
-      template: '<section class="test-custom-component"><slot /></section>',
-    };
     const content = randomString();
 
     const wrapper = mount(FixedLayout, {
       props: {
-        is: CustomComponent,
+        is: h('section', () => '<slot />'),
       },
       slots: {
         default: content,
       },
     });
 
-    expect(wrapper.find('.test-custom-component').exists()).toBe(true);
+    expect(wrapper.find('section').exists()).toBe(true);
     expect(wrapper.text()).toContain(content);
   });
 });
