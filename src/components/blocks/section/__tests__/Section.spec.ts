@@ -52,7 +52,7 @@ describe('Section', () => {
   test('does not wrap into SectionHeader if content is component', () => {
     const wrapper = mount(Section, {
       slots: {
-        header: h(Text, 'Header'),
+        header: h(Text, () => 'Header'),
       },
     });
 
@@ -75,7 +75,7 @@ describe('Section', () => {
   test('does not wrap into SectionFooter if content is component', () => {
     const wrapper = mount(Section, {
       slots: {
-        footer: h(Text, 'Footer'),
+        footer: h(Text, () => 'Footer'),
       },
     });
 
