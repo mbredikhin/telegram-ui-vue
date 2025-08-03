@@ -1,5 +1,5 @@
 <template>
-  <div role="tablist" :aria-disabled="props.disabled" :class="classes">
+  <div role="tablist" :aria-disabled="attrs.disabled" :class="classes">
     <Headline
       :is="isItemEllipsis(item) ? 'div' : 'button'"
       v-for="item of paginationItems"
@@ -66,7 +66,7 @@ const { paginationItems } = usePagination({ ...toRefs(attrs), onChange });
 
 const classes = computed(() => ({
   pagination: true,
-  'pagination--disabled': props.disabled,
+  'pagination--disabled': attrs.disabled,
 }));
 
 const isItemEllipsis = computed(
