@@ -30,6 +30,7 @@ describe('Card', () => {
     });
 
     const cell = wrapper.findComponent(CardCell);
+
     expect(cell.exists()).toBe(true);
     expect(cell.classes()).toContain('card-cell');
     expect(cell.classes()).toContain('card-cell--ambient');
@@ -46,6 +47,7 @@ describe('Card', () => {
     });
 
     const cell = wrapper.findComponent(CardCell);
+
     expect(cell.exists()).toBe(true);
     expect(cell.classes()).toContain('card-cell');
     expect(cell.classes()).not.toContain('card-cell--ambient');
@@ -69,6 +71,7 @@ describe('Card', () => {
     });
 
     const chip = wrapper.findComponent(CardChip);
+
     expect(chip.exists()).toBe(true);
     expect(chip.classes()).toContain('card-chip');
     expect(chip.text()).toBe(content);

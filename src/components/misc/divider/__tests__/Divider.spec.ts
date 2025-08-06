@@ -6,6 +6,7 @@ describe('Divider', () => {
     const wrapper = mount(Divider);
 
     const hr = wrapper.find('hr');
+
     expect(hr.exists()).toBe(true);
     expect(hr.classes()).toContain('divider');
   });
@@ -20,6 +21,7 @@ describe('Divider', () => {
     });
 
     const hr = wrapper.find('hr');
+
     expect(hr.attributes('id')).toBe(id);
     expect(hr.attributes('aria-hidden')).toBe('true');
   });

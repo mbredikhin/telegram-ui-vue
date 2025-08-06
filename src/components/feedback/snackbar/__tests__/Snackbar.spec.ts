@@ -1,8 +1,8 @@
 import { mount, randomString } from '@/lib/tests';
 import Snackbar from '../Snackbar.vue';
 import { nextTick } from 'vue';
-import { Mock } from 'vitest';
 import { TRANSITION_FINISH_DURATION } from '../lib';
+import { usePlatform } from '@/composables/usePlatform';
 
 vi.mock('@/composables/usePlatform', () => ({
   usePlatform: vi.fn(() => 'base'),
@@ -11,6 +11,10 @@ vi.mock('@/composables/usePlatform', () => ({
 vi.useFakeTimers();
 
 describe('Snackbar', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
   test('renders all slot sections', () => {
     const beforeContent = randomString();
     const mainContent = randomString();
@@ -36,11 +40,10 @@ describe('Snackbar', () => {
     expect(wrapper.text()).toContain(afterContent);
   });
 
-  test('applies ios class when platform is ios', async () => {
-    const { usePlatform } = await import('@/composables/usePlatform');
-    (usePlatform as Mock).mockReturnValue('ios');
-
+  test('applies ios class when platform is ios', () => {
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(Snackbar);
+
     const el = wrapper.find('[data-test-id="snackbar"]');
 
     expect(el.classes()).toContain('snackbar--ios');
@@ -55,9 +58,9 @@ describe('Snackbar', () => {
     });
 
     vi.advanceTimersByTime(duration);
-
     await nextTick();
     const el = wrapper.find('[data-test-id="snackbar"]');
+
     expect(el.classes()).toContain('snackbar--closing');
 
     vi.advanceTimersByTime(TRANSITION_FINISH_DURATION);
@@ -75,6 +78,7 @@ describe('Snackbar', () => {
     });
 
     const root = wrapper.find('.snackbar');
+
     expect(root.attributes('id')).toBe('snack');
     expect(root.attributes('aria-live')).toBe('polite');
   });

@@ -6,6 +6,7 @@ import CheckedIcon from '../icons/checkbox-checked.svg';
 describe('Checkbox', () => {
   test('renders the checkbox input and icons', () => {
     const wrapper = mount(Checkbox);
+
     expect(wrapper.find('input[type="checkbox"]').exists()).toBe(true);
     expect(wrapper.find('.icon').exists()).toBe(true);
     expect(wrapper.find('.checked-icon').exists()).toBe(true);
@@ -17,9 +18,11 @@ describe('Checkbox', () => {
     });
 
     const indeterminateIcon = wrapper.findComponent(IndeterminateIcon);
+
     expect(indeterminateIcon.exists()).toBe(true);
 
     const checkedIcon = wrapper.findComponent(CheckedIcon);
+
     expect(checkedIcon.exists()).toBe(false);
   });
 
@@ -30,6 +33,7 @@ describe('Checkbox', () => {
 
     const input = wrapper.find('input');
     await input.setValue(true);
+
     expect(wrapper.find('.checked-icon').exists()).toBe(true);
   });
 
@@ -39,9 +43,11 @@ describe('Checkbox', () => {
     });
 
     const checkedIcon = wrapper.findComponent(CheckedIcon);
+
     expect(checkedIcon.exists()).toBe(true);
 
     const indeterminateIcon = wrapper.findComponent(IndeterminateIcon);
+
     expect(indeterminateIcon.exists()).toBe(false);
   });
 
@@ -49,6 +55,7 @@ describe('Checkbox', () => {
     const wrapper = mount(Checkbox, {
       attrs: { disabled: true },
     });
+
     expect(wrapper.classes()).toContain('checkbox--disabled');
   });
 });

@@ -6,14 +6,15 @@ vi.mock('@/composables/usePlatform', () => ({
   usePlatform: vi.fn(() => 'base'),
 }));
 
-beforeEach(() => {
-  vi.restoreAllMocks();
-});
-
 describe('CompactPaginationItem', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
   test('renders a button with correct default classes and role', () => {
     const wrapper = mount(CompactPaginationItem);
-    const button = wrapper.get('button');
+
+    const button = wrapper.find('button');
 
     expect(button.attributes('role')).toBe('tab');
     expect(button.classes()).toContain('compact-pagination-item');
@@ -26,7 +27,8 @@ describe('CompactPaginationItem', () => {
       props: { selected: true },
     });
 
-    const button = wrapper.get('button');
+    const button = wrapper.find('button');
+
     expect(button.classes()).toContain('compact-pagination-item--selected');
     expect(button.attributes('aria-selected')).toBe('true');
   });
@@ -40,6 +42,7 @@ describe('CompactPaginationItem', () => {
     });
 
     const visuallyHidden = wrapper.findComponent({ name: 'VisuallyHidden' });
+
     expect(visuallyHidden.exists()).toBe(true);
     expect(visuallyHidden.text()).toBe(label);
   });
@@ -52,7 +55,8 @@ describe('CompactPaginationItem', () => {
       },
     });
 
-    const button = wrapper.get('button');
+    const button = wrapper.find('button');
+
     expect(button.attributes('data-test')).toBe(testAttr);
   });
 });

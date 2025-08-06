@@ -30,6 +30,7 @@ describe('Timeline', () => {
     });
 
     const items = wrapper.findAll('.timeline-item');
+
     expect(items[0].classes()).toContain('timeline-item--active');
     expect(items[1].classes()).toContain('timeline-item--pre-active');
     expect(items[2].classes()).not.toContain('timeline-item--active');
@@ -48,7 +49,9 @@ describe('Timeline', () => {
     });
 
     expect(wrapper.classes()).toContain('timeline--horizontal');
+
     const items = wrapper.findAll('.timeline-item');
+
     for (const item of items) {
       expect(item.classes()).toContain('timeline-item--horizontal');
     }
@@ -62,6 +65,7 @@ describe('Timeline', () => {
     });
 
     const items = wrapper.findAll('.timeline-item');
+
     expect(items[0].classes()).not.toContain('timeline-item--active');
     expect(items[0].classes()).not.toContain('timeline-item--pre-active');
   });
@@ -86,6 +90,7 @@ describe('Timeline', () => {
     const raw = wrapper
       .findAll('li')
       .filter((el) => !el.classes().includes('timeline-item'));
+
     expect(raw.length).toBe(0); // raw strings shouldn't be rendered as li elements
     expect(wrapper.text()).toContain(textNodeContent);
   });

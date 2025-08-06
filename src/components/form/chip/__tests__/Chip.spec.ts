@@ -1,8 +1,17 @@
 import { mount, randomString } from '@/lib/tests';
 import Chip from '../Chip.vue';
 import { h } from 'vue';
+import { usePlatform } from '@/composables/usePlatform';
+
+vi.mock('@/composables/usePlatform', () => ({
+  usePlatform: vi.fn(() => 'base'),
+}));
 
 describe('Chip', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
   test('renders default slot content', () => {
     const content = randomString();
     const wrapper = mount(Chip, {
@@ -60,10 +69,7 @@ describe('Chip', () => {
   });
 
   test('applies Subheadline with correct level based on platform', () => {
-    vi.mock('@/composables/usePlatform', () => ({
-      usePlatform: () => 'ios',
-    }));
-
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const content = randomString();
     const wrapper = mount(Chip, {
       slots: {
@@ -72,6 +78,7 @@ describe('Chip', () => {
     });
 
     const sub = wrapper.findComponent({ name: 'Subheadline' });
+
     expect(sub.exists()).toBe(true);
     expect(sub.attributes('level')).toBe('2');
   });

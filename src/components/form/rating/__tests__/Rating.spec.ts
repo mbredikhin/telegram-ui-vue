@@ -32,8 +32,11 @@ test('renders fractional picked width for non-integer value', () => {
   });
 
   const picked = wrapper.findAll('.element--picked');
+
   expect(picked).toHaveLength(3);
+
   const last = picked[2];
+
   expect(last.attributes('style')).toContain('width: 50%');
 });
 

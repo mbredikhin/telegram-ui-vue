@@ -5,6 +5,7 @@ import Link from '../Link.vue';
 describe('Link', () => {
   test('renders an anchor with base class', () => {
     const wrapper = mount(Link);
+
     const anchor = wrapper.find('a');
 
     expect(anchor.exists()).toBe(true);

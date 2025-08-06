@@ -21,6 +21,7 @@ describe('AccordionSummary', () => {
     });
 
     const cell = wrapper.find('[aria-expanded]');
+
     expect(cell.attributes('aria-expanded')).toBe('false');
     expect(cell.attributes('aria-controls')).toBe('content-id');
     expect(cell.attributes('id')).toBe('label-id');
@@ -36,10 +37,11 @@ describe('AccordionSummary', () => {
     });
 
     await wrapper.trigger('click');
+
     expect(injection.value.onChange).toHaveBeenCalledWith(true);
   });
 
-  test('renders chevron and updates class when expanded', async () => {
+  test('renders chevron and updates class when expanded', () => {
     injection.value.expanded = true;
     const wrapper = mount(AccordionSummary, {
       global: {
@@ -50,6 +52,7 @@ describe('AccordionSummary', () => {
     });
 
     const chevron = wrapper.find('.chevron');
+
     expect(chevron.exists()).toBe(true);
     expect(chevron.classes()).toContain('chevron--expanded');
   });

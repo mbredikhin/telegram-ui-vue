@@ -1,6 +1,10 @@
 import { mount, randomString } from '@/lib/tests';
 import SectionHeader from '../SectionHeader.vue';
-import * as platformComposable from '@/composables/usePlatform';
+import { usePlatform } from '@/composables/usePlatform';
+
+vi.mock('@/composables/usePlatform', () => ({
+  usePlatform: vi.fn(() => 'base'),
+}));
 
 describe('SectionHeader', () => {
   beforeEach(() => {
@@ -8,8 +12,7 @@ describe('SectionHeader', () => {
   });
 
   test('renders small Caption on iOS platform', () => {
-    vi.spyOn(platformComposable, 'usePlatform').mockReturnValue('ios');
-
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const text = randomString();
     const wrapper = mount(SectionHeader, {
       slots: {
@@ -23,8 +26,6 @@ describe('SectionHeader', () => {
   });
 
   test('renders small Subheadline on base platform', () => {
-    vi.spyOn(platformComposable, 'usePlatform').mockReturnValue('base');
-
     const text = randomString();
     const wrapper = mount(SectionHeader, {
       slots: {
@@ -37,8 +38,7 @@ describe('SectionHeader', () => {
   });
 
   test('renders large Subheadline or Text correctly base on platform', () => {
-    vi.spyOn(platformComposable, 'usePlatform').mockReturnValue('ios');
-
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const text = randomString();
     const wrapperIOS = mount(SectionHeader, {
       props: { large: true },
@@ -53,7 +53,7 @@ describe('SectionHeader', () => {
     expect(wrapperIOS.classes()).toContain('section-header--large');
     expect(wrapperIOS.find('.title').text()).toBe(text);
 
-    vi.spyOn(platformComposable, 'usePlatform').mockReturnValue('base');
+    vi.mocked(usePlatform).mockReturnValue('base');
 
     const wrapperBase = mount(SectionHeader, {
       props: { large: true },

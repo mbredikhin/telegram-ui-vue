@@ -1,6 +1,6 @@
 import { mount, randomString } from '@/lib/tests';
 import SegmentedControlItem from '../SegmentedControlItem.vue';
-import { Mock } from 'vitest';
+import { usePlatform } from '@/composables/usePlatform';
 
 vi.mock('@/composables/usePlatform', () => ({
   usePlatform: vi.fn(() => 'base'),
@@ -13,14 +13,14 @@ describe('SegmentedControlItem', () => {
 
   test('renders with base class', () => {
     const wrapper = mount(SegmentedControlItem, {});
+
     expect(wrapper.classes()).toContain('segmented-control-item');
   });
 
   test('adds ios class on iOS platform', async () => {
-    const { usePlatform } = await import('@/composables/usePlatform');
-    (usePlatform as Mock).mockReturnValue('ios');
-
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(SegmentedControlItem, {});
+
     expect(wrapper.classes()).toContain('segmented-control-item--ios');
   });
 
@@ -29,6 +29,7 @@ describe('SegmentedControlItem', () => {
     const wrapper = mount(SegmentedControlItem, {
       attrs: { id },
     });
+
     expect(wrapper.attributes('id')).toBe(id);
   });
 });

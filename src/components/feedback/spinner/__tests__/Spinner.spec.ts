@@ -2,7 +2,7 @@ import { mount } from '@/lib/tests';
 import Spinner from '../Spinner.vue';
 import BaseSpinner from '../BaseSpinner/BaseSpinner.vue';
 import IosSpinner from '../IosSpinner/IosSpinner.vue';
-import { Mock } from 'vitest';
+import { usePlatform } from '@/composables/usePlatform';
 
 vi.mock('@/composables/usePlatform', () => ({
   usePlatform: vi.fn(() => 'base'),
@@ -25,9 +25,7 @@ describe('Spinner', () => {
   });
 
   test('renders IosSpinner on iOS platform', async () => {
-    const { usePlatform } = await import('@/composables/usePlatform');
-    (usePlatform as Mock).mockReturnValue('ios');
-
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(Spinner, {
       props: { size: 's' },
     });

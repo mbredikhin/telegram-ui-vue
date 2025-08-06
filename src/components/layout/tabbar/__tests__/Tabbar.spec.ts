@@ -1,7 +1,6 @@
 import { mount, randomString } from '@/lib/tests';
 import Tabbar from '../Tabbar.vue';
 import { usePlatform } from '@/composables/usePlatform';
-import { Mock } from 'vitest';
 
 vi.mock('@/composables/usePlatform', () => ({
   usePlatform: vi.fn(() => 'base'),
@@ -21,8 +20,7 @@ describe('Tabbar', () => {
   });
 
   test('adds ios class on ios platform', () => {
-    (usePlatform as Mock).mockReturnValue('ios');
-
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(Tabbar);
 
     expect(wrapper.classes()).toContain('tabbar');
@@ -45,6 +43,7 @@ describe('Tabbar', () => {
     const wrapper = mount(Tabbar);
 
     const fixedLayout = wrapper.findComponent({ name: 'FixedLayout' });
+
     expect(fixedLayout.exists()).toBe(true);
   });
 });

@@ -35,6 +35,7 @@ describe('BaseSpinner', () => {
     });
 
     const animateTransformEl = wrapper.find('animateTransform');
+
     expect(animateTransformEl.exists()).toBe(true);
     expect(animateTransformEl.attributes('attributeName')).toBe('transform');
     expect(animateTransformEl.attributes('type')).toBe('rotate');

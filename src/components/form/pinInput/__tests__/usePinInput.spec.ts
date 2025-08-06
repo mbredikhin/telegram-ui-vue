@@ -1,5 +1,4 @@
 import { ref } from 'vue';
-import { describe, vi, expect, beforeEach } from 'vitest';
 import { usePinInput } from '../lib';
 import { Keys } from '@/lib/accessibility';
 
@@ -12,6 +11,7 @@ describe('usePinInput', () => {
   let onChange: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
+    vi.restoreAllMocks();
     onChange = vi.fn();
     inputRefs.value = [];
   });
@@ -27,7 +27,7 @@ describe('usePinInput', () => {
     vi.unstubAllGlobals();
   });
 
-  test('sets value and calls focusByIndex when handleClickValue is called', async () => {
+  test('sets value and calls focusByIndex when handleClickValue is called', () => {
     const input = document.createElement('input');
     input.focus = vi.fn();
     inputRefs.value = [null, input, null];
@@ -95,9 +95,11 @@ describe('usePinInput', () => {
     });
 
     handleButton(2, Keys.ARROW_LEFT);
+
     expect(input.focus).toHaveBeenCalledTimes(1);
 
     handleButton(0, Keys.ARROW_RIGHT);
+
     expect(input.focus).toHaveBeenCalledTimes(2);
   });
 

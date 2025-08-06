@@ -10,6 +10,7 @@ describe('Avatar', () => {
         acronym,
       },
     });
+
     const fallback = wrapper.find('.fallback > .typography');
 
     expect(fallback.text()).toBe(acronym);
@@ -47,6 +48,7 @@ describe('Avatar', () => {
     });
 
     const image = wrapper.findComponent({ name: 'Image' });
+
     expect(image.classes()).toContain('avatar');
     expect(image.classes()).toContain('avatar--with-acronym');
   });
@@ -59,6 +61,7 @@ describe('Avatar', () => {
     });
 
     const image = wrapper.findComponent({ name: 'Image' });
+
     expect(image.classes()).toContain('avatar');
     expect(image.classes()).not.toContain('avatar--with-acronym');
   });

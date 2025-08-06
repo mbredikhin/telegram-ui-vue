@@ -1,14 +1,19 @@
 import { mount } from '@/lib/tests';
 import Banner from '../Banner.vue';
-import { Mock } from 'vitest';
+import { usePlatform } from '@/composables/usePlatform';
 
 vi.mock('@/composables/usePlatform', () => ({
   usePlatform: vi.fn(() => 'base'),
 }));
 
 describe('Banner', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
   test('renders base classes correctly', () => {
     const wrapper = mount(Banner);
+
     expect(wrapper.classes()).toContain('banner');
     expect(wrapper.classes()).toContain('banner--base');
   });
@@ -76,15 +81,14 @@ describe('Banner', () => {
     });
 
     expect(wrapper.find('.close').exists()).toBe(true);
+
     await wrapper.find('.close').trigger('click');
 
     expect(wrapper.emitted()).toHaveProperty('close');
   });
 
-  test('renders cancel icon on iOS platform', async () => {
-    const { usePlatform } = await import('@/composables/usePlatform');
-    (usePlatform as Mock).mockReturnValue('ios');
-
+  test('renders cancel icon on iOS platform', () => {
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(Banner, {
       props: {
         showCloseIcon: true,

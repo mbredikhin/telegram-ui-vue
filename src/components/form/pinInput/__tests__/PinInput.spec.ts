@@ -20,7 +20,7 @@ describe('PinInput', () => {
     expect(wrapper.findAllComponents(PinInputCell)).toHaveLength(6);
   });
 
-  test('displays input dots when values are typed (simulated)', async () => {
+  test('displays input dots when values are typed (simulated)', () => {
     const wrapper = mount(PinInput, {
       props: { value: [1, 2] },
     });

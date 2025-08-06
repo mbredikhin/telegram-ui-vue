@@ -3,7 +3,6 @@ import Section from '../Section.vue';
 import SectionHeader from '../SectionHeader/SectionHeader.vue';
 import SectionFooter from '../SectionFooter/SectionFooter.vue';
 import { Divider } from '@/components/misc';
-import { Mock } from 'vitest';
 import { h } from 'vue';
 import { Text } from '@/components/typography';
 import { usePlatform } from '@/composables/usePlatform';
@@ -24,7 +23,7 @@ describe('Section', () => {
   });
 
   test('applies ios platform class', () => {
-    (usePlatform as Mock).mockReturnValue('ios');
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(Section);
 
     expect(wrapper.classes()).toContain('section--ios');
@@ -95,6 +94,7 @@ describe('Section', () => {
     });
 
     const divs = wrapper.findAll('.body > *:not(.divider)');
+
     expect(divs).toHaveLength(3);
     expect(wrapper.findAllComponents(Divider)).toHaveLength(2);
   });

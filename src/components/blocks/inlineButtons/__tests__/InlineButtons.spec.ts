@@ -25,6 +25,7 @@ describe('InlineButtons', () => {
     });
 
     const items = wrapper.findAllComponents(InlineButtonsItem);
+
     expect(items.length).toBe(2);
     for (const item of items) {
       expect(item.classes()).toContain('inline-buttons-item--gray');

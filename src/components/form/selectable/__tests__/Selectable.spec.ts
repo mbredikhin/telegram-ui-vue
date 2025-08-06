@@ -2,7 +2,6 @@ import Selectable from '../Selectable.vue';
 import { DOMWrapper } from '@vue/test-utils';
 import { mount } from '@/lib/tests';
 import { usePlatform } from '@/composables/usePlatform';
-import { Mock } from 'vitest';
 import { randomString } from '@/lib/tests';
 
 vi.mock('@/composables/usePlatform', () => ({
@@ -15,8 +14,6 @@ describe('Selectable', () => {
   });
 
   test('renders correctly on base platform with correct icon', () => {
-    (usePlatform as Mock).mockReturnValue('base');
-
     const wrapper = mount(Selectable);
 
     expect(wrapper.find('[data-test-id="selectable-ios-icon"]').exists()).toBe(
@@ -28,12 +25,10 @@ describe('Selectable', () => {
   });
 
   test('renders correctly on iOS', () => {
-    (usePlatform as Mock).mockReturnValue('ios');
-
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const name = randomString();
     const value = randomString();
     const content = randomString();
-
     const wrapper = mount(Selectable, {
       attrs: {
         name,
@@ -65,7 +60,7 @@ describe('Selectable', () => {
     expect(wrapper.classes()).toContain('selectable--disabled');
   });
 
-  test('input is checked if defaultChecked is true', async () => {
+  test('input is checked if defaultChecked is true', () => {
     const wrapper = mount(Selectable, {
       props: {
         defaultChecked: true,
@@ -80,11 +75,9 @@ describe('Selectable', () => {
   });
 
   test('forwards arbitrary attributes to input', () => {
-    (usePlatform as Mock).mockReturnValue('ios');
-
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const name = randomString();
     const value = randomString();
-
     const wrapper = mount(Selectable, {
       attrs: {
         name,

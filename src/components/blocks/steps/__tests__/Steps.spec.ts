@@ -11,6 +11,7 @@ describe('Steps', () => {
     });
 
     const steps = wrapper.findAll('.step');
+
     expect(steps).toHaveLength(5);
   });
 
@@ -42,6 +43,7 @@ describe('Steps', () => {
     });
 
     const activeSteps = wrapper.findAll('.step--active');
+
     expect(activeSteps).toHaveLength(0);
   });
 
@@ -54,6 +56,7 @@ describe('Steps', () => {
     });
 
     const activeSteps = wrapper.findAll('.step--active');
+
     expect(activeSteps).toHaveLength(4);
   });
 });

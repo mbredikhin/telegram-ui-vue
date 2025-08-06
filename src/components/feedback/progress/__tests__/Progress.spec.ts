@@ -1,14 +1,19 @@
 import { mount } from '@/lib/tests';
 import Progress from '../Progress.vue';
-import { Mock } from 'vitest';
+import { usePlatform } from '@/composables/usePlatform';
 
 vi.mock('@/composables/usePlatform', () => ({
   usePlatform: vi.fn(() => 'base'),
 }));
 
 describe('Progress', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
   test('renders with default props', () => {
     const wrapper = mount(Progress);
+
     const el = wrapper.find('[role="progressbar"]');
 
     expect(el.exists()).toBe(true);
@@ -28,6 +33,7 @@ describe('Progress', () => {
     });
 
     const line = wrapper.find('.progress__line');
+
     expect(line.attributes('style')).toContain('width: 25%');
   });
 
@@ -46,6 +52,7 @@ describe('Progress', () => {
     );
 
     await wrapper.setProps({ value: 200 });
+
     expect(
       wrapper.find('[role="progressbar"]').attributes('aria-valuenow')
     ).toBe('100');
@@ -54,10 +61,8 @@ describe('Progress', () => {
     );
   });
 
-  test('shows correct platform class', async () => {
-    const { usePlatform } = await import('@/composables/usePlatform');
-    (usePlatform as Mock).mockReturnValue('ios');
-
+  test('shows correct platform class', () => {
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(Progress, {
       props: {
         value: -25,
@@ -69,7 +74,7 @@ describe('Progress', () => {
     );
   });
 
-  test('updates aria attributes and title correctly', async () => {
+  test('updates aria attributes and title correctly', () => {
     const wrapper = mount(Progress, {
       props: {
         value: 42,
@@ -77,6 +82,7 @@ describe('Progress', () => {
     });
 
     const el = wrapper.find('[role="progressbar"]');
+
     expect(el.attributes('aria-valuenow')).toBe('42');
     expect(el.attributes('title')).toBe('42 / 100');
   });

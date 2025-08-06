@@ -4,6 +4,7 @@ import IconContainer from '../IconContainer.vue';
 describe('IconContainer', () => {
   test('renders with correct base class', () => {
     const wrapper = mount(IconContainer);
+
     expect(wrapper.classes()).toContain('icon-container');
   });
 

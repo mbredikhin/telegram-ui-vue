@@ -1,7 +1,7 @@
 import Multiselectable from '../Multiselectable.vue';
 import { nextTick } from 'vue';
-import { Mock } from 'vitest';
 import { mount, randomString } from '@/lib/tests';
+import { usePlatform } from '@/composables/usePlatform';
 
 vi.mock('@/composables/usePlatform', () => ({
   usePlatform: vi.fn(() => 'base'),
@@ -30,10 +30,8 @@ describe('Multiselectable', () => {
     expect(checkedIosIcon.exists()).toBe(false);
   });
 
-  test('renders the ios icons if platform is ios', async () => {
-    const { usePlatform } = await import('@/composables/usePlatform');
-    (usePlatform as Mock).mockReturnValue('ios');
-
+  test('renders the ios icons if platform is ios', () => {
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(Multiselectable);
 
     const baseIcon = wrapper.find('[data-test-id="multiselectable-base-icon"]');
@@ -82,6 +80,7 @@ describe('Multiselectable', () => {
     });
 
     const input = wrapper.find('input[type="checkbox"]');
+
     expect((input.element as HTMLInputElement).checked).toBe(attrs.checked);
     expect(input.attributes('name')).toBe(attrs.name);
     expect(input.attributes('value')).toBe(attrs.value);
@@ -93,7 +92,6 @@ describe('Multiselectable', () => {
 
     await input.setValue(true);
     await nextTick();
-
     const checkedIcon = wrapper.find('.icon--checked');
     const uncheckedIcon = wrapper.find('.icon');
 

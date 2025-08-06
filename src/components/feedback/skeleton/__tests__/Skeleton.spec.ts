@@ -4,6 +4,7 @@ import Skeleton from '../Skeleton.vue';
 describe('Skeleton', () => {
   test('renders the default skeleton with base class', () => {
     const wrapper = mount(Skeleton);
+
     const el = wrapper.find('div');
 
     expect(el.classes()).toContain('skeleton');

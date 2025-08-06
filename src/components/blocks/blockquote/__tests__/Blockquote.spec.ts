@@ -14,6 +14,7 @@ describe('Blockquote', () => {
     });
 
     const subheadline = wrapper.findComponent({ name: 'Subheadline' });
+
     expect(subheadline.exists()).toBe(true);
     expect(subheadline.text()).toBe(content);
   });
@@ -33,6 +34,7 @@ describe('Blockquote', () => {
   test('shows default quote icon when top-right-icon slot is not provided', () => {
     const wrapper = mount(Blockquote);
     const icon = wrapper.findComponent(Quote12Icon);
+
     expect(icon.exists()).toBe(true);
   });
 
@@ -41,7 +43,6 @@ describe('Blockquote', () => {
       name: 'CustomIcon',
       template: '<svg class="custom-icon" />',
     };
-
     const wrapper = mount(Blockquote, {
       slots: {
         'top-right-icon': h(CustomIcon),

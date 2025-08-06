@@ -4,10 +4,9 @@ import AccordionSummary from '../accordionSummary/AccordionSummary.vue';
 import AccordionContent from '../accordionContent/AccordionContent.vue';
 
 describe('Accordion', () => {
-  test('displays content and summary', async () => {
+  test('displays content and summary', () => {
     const summaryText = randomString();
     const contentText = randomString();
-
     const wrapper = mount(Accordion, {
       props: {
         expanded: true,
@@ -21,6 +20,7 @@ describe('Accordion', () => {
         components: { AccordionSummary, AccordionContent },
       },
     });
+
     const summary = wrapper.find('.cell .title');
     const content = wrapper.find('.accordion-content .body');
 
@@ -29,10 +29,9 @@ describe('Accordion', () => {
     expect(content.text()).toBe(contentText);
   });
 
-  test('content is hidden if the accordion is not expanded', async () => {
+  test('content is hidden if the accordion is not expanded', () => {
     const summaryText = randomString();
     const contentText = randomString();
-
     const wrapper = mount(Accordion, {
       props: {
         expanded: false,
@@ -46,6 +45,7 @@ describe('Accordion', () => {
         components: { AccordionSummary, AccordionContent },
       },
     });
+
     const content = wrapper.find('.accordion-content .body');
 
     expect((content.element as HTMLElement).style.maxHeight).toBe('0px');

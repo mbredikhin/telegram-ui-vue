@@ -1,6 +1,6 @@
 import { mount, randomString } from '@/lib/tests';
 import Select from '../Select.vue';
-import { Mock } from 'vitest';
+import { usePlatform } from '@/composables/usePlatform';
 
 vi.mock('@/composables/usePlatform', () => ({
   usePlatform: vi.fn(() => 'base'),
@@ -13,14 +13,14 @@ describe('Select', () => {
 
   test('renders with default classes', () => {
     const wrapper = mount(Select);
+
     expect(wrapper.classes()).toContain('select-wrapper');
   });
 
   test('renders with ios class if platform is ios', async () => {
-    const { usePlatform } = await import('@/composables/usePlatform');
-    (usePlatform as Mock).mockReturnValue('ios');
-
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(Select);
+
     expect(wrapper.classes()).toContain('select-wrapper--ios');
   });
 
@@ -33,18 +33,21 @@ describe('Select', () => {
     });
 
     const select = wrapper.find('select');
+
     expect(select.exists()).toBe(true);
 
     const optionElements = select.findAll('option');
-    expect(options).toHaveLength(2);
 
+    expect(options).toHaveLength(2);
     expect(optionElements[0].text()).toBe(options[0]);
     expect(optionElements[1].text()).toBe(options[1]);
   });
 
   test('renders chevron icon', () => {
     const wrapper = mount(Select);
+
     const chevron = wrapper.find('.chevron');
+
     expect(chevron.exists()).toBe(true);
   });
 
@@ -57,6 +60,7 @@ describe('Select', () => {
     });
 
     const select = wrapper.find('select');
+
     expect(select.attributes('disabled')).toBe('');
     expect(select.attributes('name')).toBe('fruit');
   });

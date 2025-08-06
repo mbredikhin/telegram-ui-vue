@@ -21,6 +21,7 @@ describe('Breadcrumbs', () => {
     });
 
     const items = wrapper.findAllComponents(BreadcrumbsItem);
+
     expect(items).toHaveLength(3);
     expect(wrapper.findAllComponents(DotIcon)).toHaveLength(2);
     expect(wrapper.findAllComponents(SlashIcon)).toHaveLength(0);
@@ -49,7 +50,9 @@ describe('Breadcrumbs', () => {
     });
 
     const chevrons = wrapper.findAllComponents(Chevron16Icon);
+
     expect(chevrons).toHaveLength(2);
+
     chevrons.forEach((icon) => {
       expect(icon.classes()).toContain('chevron');
     });

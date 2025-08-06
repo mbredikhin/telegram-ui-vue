@@ -13,6 +13,7 @@ describe('AvatarStack', () => {
     });
 
     const avatars = wrapper.findAll('.avatar');
+
     expect(avatars).toHaveLength(2);
     expect(avatars[0].text()).toBe('A');
     expect(avatars[1].text()).toBe('B');

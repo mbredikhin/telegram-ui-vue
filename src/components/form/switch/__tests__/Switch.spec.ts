@@ -1,7 +1,6 @@
 import { mount, randomString } from '@/lib/tests';
 import Switch from '../Switch.vue';
 import { usePlatform } from '@/composables/usePlatform';
-import { Mock } from 'vitest';
 
 vi.mock('@/composables/usePlatform', () => ({
   usePlatform: vi.fn(() => 'base'),
@@ -25,9 +24,9 @@ describe('Switch', () => {
   });
 
   test('applies ios class when platform is ios', () => {
-    (usePlatform as Mock).mockReturnValue('ios');
-
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(Switch);
+
     expect(wrapper.classes()).toContain('switch-wrapper--ios');
   });
 
@@ -37,13 +36,13 @@ describe('Switch', () => {
         disabled: true,
       },
     });
+
     expect(wrapper.classes()).toContain('switch-wrapper--disabled');
     expect(wrapper.find('input').attributes('disabled')).toBeDefined();
   });
 
   test('renders label', () => {
     const label = randomString();
-
     const wrapper = mount(Switch, {
       slots: {
         default: label,
@@ -68,7 +67,6 @@ describe('Switch', () => {
   test('forwards extra attributes to input', () => {
     const name = randomString();
     const label = randomString();
-
     const wrapper = mount(Switch, {
       attrs: {
         name,

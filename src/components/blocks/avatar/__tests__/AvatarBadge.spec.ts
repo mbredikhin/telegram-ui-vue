@@ -18,7 +18,6 @@ describe('AvatarBadge', () => {
 
   test('does not render when type is not "number"', () => {
     const spy = vi.spyOn(console, 'error').mockImplementation(() => {});
-
     const wrapper = mount(AvatarBadge, {
       attrs: {
         type: 'text',
@@ -34,6 +33,7 @@ describe('AvatarBadge', () => {
     expect(spy).toHaveBeenCalledWith(
       '[AvatarBadge]: Component supports only type="number"'
     );
+
     spy.mockRestore();
   });
 });

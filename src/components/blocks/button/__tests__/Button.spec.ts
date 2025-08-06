@@ -2,18 +2,24 @@ import { mount } from '@/lib/tests';
 import Button from '../Button.vue';
 import { Spinner } from '@/components/feedback';
 import ButtonTypography from '../ButtonTypography.vue';
+import { usePlatform } from '@/composables/usePlatform';
 
 vi.mock('@/composables/usePlatform', () => ({
-  usePlatform: () => 'ios',
+  usePlatform: vi.fn(() => 'base'),
 }));
 
 describe('Button', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
   test('renders default slot content', () => {
     const wrapper = mount(Button, {
       slots: {
         default: 'Click me',
       },
     });
+
     expect(wrapper.text()).toContain('Click me');
     expect(wrapper.classes()).toContain('button');
   });
@@ -74,7 +80,9 @@ describe('Button', () => {
   });
 
   test('applies ios platform class', () => {
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(Button);
+
     expect(wrapper.classes()).toContain('button--ios');
   });
 
@@ -84,6 +92,7 @@ describe('Button', () => {
         stretched: true,
       },
     });
+
     expect(wrapper.classes()).toContain('button--stretched');
   });
 
@@ -96,6 +105,7 @@ describe('Button', () => {
     });
 
     const typography = wrapper.findComponent(ButtonTypography);
+
     expect(typography.exists()).toBe(true);
     expect(typography.props('size')).toBe('l');
   });

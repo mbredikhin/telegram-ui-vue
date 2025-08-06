@@ -1,6 +1,10 @@
 import { mount, randomString } from '@/lib/tests';
 import SectionFooter from '../SectionFooter.vue';
-import * as platformComposable from '@/composables/usePlatform';
+import { usePlatform } from '@/composables/usePlatform';
+
+vi.mock('@/composables/usePlatform', () => ({
+  usePlatform: vi.fn(() => 'base'),
+}));
 
 describe('SectionFooter', () => {
   beforeEach(() => {
@@ -8,8 +12,7 @@ describe('SectionFooter', () => {
   });
 
   test('renders Caption on iOS platform', () => {
-    vi.spyOn(platformComposable, 'usePlatform').mockReturnValue('ios');
-
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const text = randomString();
     const wrapper = mount(SectionFooter, {
       slots: {
@@ -23,8 +26,6 @@ describe('SectionFooter', () => {
   });
 
   test('renders Subheadline on base platform', () => {
-    vi.spyOn(platformComposable, 'usePlatform').mockReturnValue('base');
-
     const text = randomString();
     const wrapper = mount(SectionFooter, {
       slots: {
@@ -38,8 +39,7 @@ describe('SectionFooter', () => {
   });
 
   test('applies centered class when prop is set', () => {
-    vi.spyOn(platformComposable, 'usePlatform').mockReturnValue('ios');
-
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const text = randomString();
     const wrapper = mount(SectionFooter, {
       props: { centered: true },

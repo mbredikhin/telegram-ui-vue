@@ -1,7 +1,7 @@
 import { mount } from '@/lib/tests';
 import FormInput from '../FormInput.vue';
 import FormInputTitle from '../FormInputTitle.vue';
-import { Mock } from 'vitest';
+import { usePlatform } from '@/composables/usePlatform';
 
 vi.mock('@/composables/usePlatform', () => ({
   usePlatform: vi.fn(() => 'base'),
@@ -20,9 +20,8 @@ describe('FormInput', () => {
     expect(wrapper.classes()).toContain('form-input--default');
   });
 
-  test('applies iOS-specific classes', async () => {
-    const { usePlatform } = await import('@/composables/usePlatform');
-    (usePlatform as Mock).mockReturnValue('ios');
+  test('applies iOS-specific classes', () => {
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(FormInput);
 
     expect(wrapper.classes()).toContain('form-input--ios');
@@ -42,6 +41,7 @@ describe('FormInput', () => {
 
   test('does not render before and after if slots are missing', () => {
     const wrapper = mount(FormInput);
+
     expect(wrapper.find('.before').exists()).toBe(false);
     expect(wrapper.find('.after').exists()).toBe(false);
   });
@@ -59,6 +59,7 @@ describe('FormInput', () => {
 
   test('does not render FormInputTitle if header is missing', () => {
     const wrapper = mount(FormInput);
+
     expect(wrapper.findComponent(FormInputTitle).exists()).toBe(false);
   });
 
@@ -66,6 +67,7 @@ describe('FormInput', () => {
     const wrapper = mount(FormInput, {
       props: { status: 'error' },
     });
+
     expect(wrapper.classes()).toContain('form-input--error');
   });
 
@@ -80,12 +82,14 @@ describe('FormInput', () => {
 
   test('handles focus and blur events and sets internal focus state', async () => {
     const wrapper = mount(FormInput);
-    const label = wrapper.find('label');
 
+    const label = wrapper.find('label');
     await label.trigger('focusin');
+
     expect(wrapper.classes()).toContain('form-input--focused');
 
     await label.trigger('focusout');
+
     expect(wrapper.classes()).not.toContain('form-input--focused');
   });
 
@@ -96,6 +100,7 @@ describe('FormInput', () => {
 
     const label = wrapper.find('label');
     await label.trigger('focusin');
+
     expect(wrapper.classes()).not.toContain('form-input--focused');
   });
 

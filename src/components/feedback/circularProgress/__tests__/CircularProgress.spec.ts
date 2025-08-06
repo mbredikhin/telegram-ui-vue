@@ -6,11 +6,13 @@ describe('CircularProgress', () => {
     const wrapper = mount(CircularProgress);
 
     const svg = wrapper.find('svg.circular-progress');
+
     expect(svg.exists()).toBe(true);
     expect(svg.attributes('width')).toBe('36');
     expect(svg.attributes('height')).toBe('36');
 
     const circles = wrapper.findAll('circle');
+
     expect(circles).toHaveLength(2);
   });
 
@@ -26,10 +28,12 @@ describe('CircularProgress', () => {
       });
 
       const svg = wrapper.find('svg');
+
       expect(svg.attributes('width')).toBe(String(expectedSize));
       expect(svg.attributes('height')).toBe(String(expectedSize));
 
       const circles = wrapper.findAll('circle');
+
       for (const circle of circles) {
         expect(circle.attributes('cx')).toBe(String(expectedSize / 2));
         expect(circle.attributes('cy')).toBe(String(expectedSize / 2));
@@ -57,6 +61,7 @@ describe('CircularProgress', () => {
       progressCircle.attributes('stroke-dashoffset') ?? ''
     );
     const expected = circumference * ratio;
+
     expect(actual).toBeCloseTo(expected, 2);
   });
 });

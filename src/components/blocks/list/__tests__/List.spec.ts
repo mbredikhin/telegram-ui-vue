@@ -1,13 +1,17 @@
 import List from '../List.vue';
 import { mount } from '@/lib/tests';
-import { Mock } from 'vitest';
 import { h } from 'vue';
+import { usePlatform } from '@/composables/usePlatform';
 
 vi.mock('@/composables/usePlatform', () => ({
   usePlatform: vi.fn(() => 'base'),
 }));
 
 describe('List', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
   test('renders as div by default', () => {
     const wrapper = mount(List, {
       slots: {
@@ -33,16 +37,14 @@ describe('List', () => {
     expect(wrapper.html()).toContain('<li>List item</li>');
   });
 
-  test('does not add ios class on base platform', async () => {
+  test('does not add ios class on base platform', () => {
     const wrapper = mount(List);
 
     expect(wrapper.classes()).not.toContain('list--ios');
   });
 
-  test('adds ios class when platform is ios', async () => {
-    const { usePlatform } = await import('@/composables/usePlatform');
-    (usePlatform as Mock).mockReturnValue('ios');
-
+  test('adds ios class when platform is ios', () => {
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(List);
 
     expect(wrapper.classes()).toContain('list--ios');

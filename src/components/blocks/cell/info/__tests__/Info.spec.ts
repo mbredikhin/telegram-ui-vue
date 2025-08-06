@@ -12,6 +12,7 @@ describe('Info', () => {
         subtitle: subtitle,
       },
     });
+
     expect(wrapper.text()).toContain(content);
     expect(wrapper.text()).toContain(subtitle);
   });
@@ -23,11 +24,13 @@ describe('Info', () => {
         'avatar-stack': '<div class="test-stack"></div>',
       },
     });
+
     expect(wrapper.find('.test-stack').exists()).toBe(true);
   });
 
   test('applies correct class based on type', () => {
     const wrapper = mount(Info, { props: { type: 'avatarStack' } });
+
     expect(wrapper.classes()).toContain('info--avatarStack');
   });
 });

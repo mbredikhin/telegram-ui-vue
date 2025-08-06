@@ -44,6 +44,7 @@ describe('FileInput', () => {
         default: `<div class="test-slot-content">${content}</div>`,
       },
     });
+
     expect(wrapper.find('.test-slot-content').exists()).toBe(true);
     expect(wrapper.html()).toContain(content);
   });

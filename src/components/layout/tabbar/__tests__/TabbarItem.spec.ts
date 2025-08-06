@@ -1,7 +1,6 @@
 import { mount, randomString } from '@/lib/tests';
 import TabbarItem from '../TabbarItem.vue';
 import { usePlatform } from '@/composables/usePlatform';
-import { Mock } from 'vitest';
 
 vi.mock('@/composables/usePlatform', () => ({
   usePlatform: vi.fn(() => 'base'),
@@ -30,8 +29,7 @@ describe('TabbarItem', () => {
   });
 
   test('adds ios class when platform is ios', () => {
-    (usePlatform as Mock).mockReturnValue('ios');
-
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(TabbarItem);
 
     expect(wrapper.classes()).toContain('tabbar-item--ios');
@@ -46,6 +44,7 @@ describe('TabbarItem', () => {
     });
 
     const icon = wrapper.find('.icon');
+
     expect(icon.exists()).toBe(true);
     expect(icon.text()).toContain(iconContent);
   });
@@ -59,6 +58,7 @@ describe('TabbarItem', () => {
     });
 
     const caption = wrapper.findComponent({ name: 'Caption' });
+
     expect(caption.exists()).toBe(true);
     expect(wrapper.find('.text').text()).toContain(text);
   });
@@ -74,6 +74,7 @@ describe('TabbarItem', () => {
     });
 
     const tappable = wrapper.find('button');
+
     expect(tappable.attributes('aria-label')).toBe(label);
     expect(tappable.attributes('title')).toBe(title);
   });

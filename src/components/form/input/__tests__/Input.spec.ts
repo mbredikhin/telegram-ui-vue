@@ -1,6 +1,6 @@
 import { mount, randomString } from '@/lib/tests';
 import Input from '../Input.vue';
-import { Mock } from 'vitest';
+import { usePlatform } from '@/composables/usePlatform';
 
 vi.mock('@/composables/usePlatform', () => ({
   usePlatform: vi.fn(() => 'base'),
@@ -24,12 +24,9 @@ describe('Input', () => {
     expect(wrapper.classes()).not.toContain('input-wrapper--ios');
   });
 
-  test('renders with ios platform and uses Text as input', async () => {
-    const { usePlatform } = await import('@/composables/usePlatform');
-    (usePlatform as Mock).mockReturnValue('ios');
-
+  test('renders with ios platform and uses Text as input', () => {
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const placeholder = randomString();
-
     const wrapper = mount(Input, {
       attrs: { placeholder },
     });

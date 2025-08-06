@@ -4,6 +4,7 @@ import IconButton from '../IconButton.vue';
 describe('IconButton', () => {
   test('renders with default classes', () => {
     const wrapper = mount(IconButton);
+
     expect(wrapper.classes()).toContain('icon-button');
     expect(wrapper.classes()).toContain('icon-button--m');
     expect(wrapper.classes()).toContain('icon-button--bezeled');
@@ -41,12 +42,14 @@ describe('IconButton', () => {
     });
 
     const button = wrapper.find('button');
+
     expect(button.attributes('aria-label')).toBe(label);
     expect(button.attributes('disabled')).toBeDefined();
   });
 
   test('renders as a button element', () => {
     const wrapper = mount(IconButton);
+
     expect(wrapper.element.tagName.toLowerCase()).toBe('button');
   });
 });

@@ -20,9 +20,11 @@ describe('Spoiler', () => {
     const wrapper = mount(Spoiler);
 
     await wrapper.trigger('click');
+
     expect(wrapper.classes()).toContain('spoiler--visible');
 
     await wrapper.trigger('click');
+
     expect(wrapper.classes()).not.toContain('spoiler--visible');
   });
 
@@ -30,6 +32,7 @@ describe('Spoiler', () => {
     const wrapper = mount(Spoiler);
 
     await wrapper.trigger('keydown');
+
     expect(wrapper.classes()).toContain('spoiler--visible');
   });
 
@@ -41,6 +44,7 @@ describe('Spoiler', () => {
     expect(wrapper.classes()).not.toContain('spoiler--visible');
 
     await wrapper.setProps({ visible: true });
+
     expect(wrapper.classes()).toContain('spoiler--visible');
   });
 
@@ -51,6 +55,7 @@ describe('Spoiler', () => {
         default: `<span class="test-content">${text}</span>`,
       },
     });
+
     expect(wrapper.find('.test-content').exists()).toBe(true);
     expect(wrapper.find('.test-content').text()).toBe(text);
   });

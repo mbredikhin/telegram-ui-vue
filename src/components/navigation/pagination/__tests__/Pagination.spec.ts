@@ -5,6 +5,7 @@ import { nextTick } from 'vue';
 describe('Pagination', () => {
   test('renders default single page with previous and next', () => {
     const wrapper = mount(Pagination);
+
     const buttons = wrapper.findAll('[role="tablist"] .button');
 
     expect(buttons).toHaveLength(3);
@@ -39,6 +40,7 @@ describe('Pagination', () => {
     });
 
     const buttons = wrapper.findAll('.button');
+
     expect(buttons[0].classes()).toContain('button--disabled');
     expect(buttons[1].classes()).toContain('button--selected');
     expect(buttons[3].classes()).not.toContain('button--disabled');
@@ -52,6 +54,7 @@ describe('Pagination', () => {
     const page3 = wrapper
       .findAll('.button')
       .find((button) => button.text() === '3');
+
     expect(page3).toBeDefined();
 
     await page3?.trigger('click');
@@ -76,12 +79,14 @@ describe('Pagination', () => {
       .findAll('.button')
       .find((button) => button.text() === '...');
     await ellipsis?.trigger('click');
+
     expect(wrapper.emitted('change')).toBeFalsy();
 
     const prev = wrapper
       .findAll('.button')
       .find((button) => button.find('svg'));
     await prev?.trigger('click');
+
     expect(wrapper.emitted('change')).toBeFalsy();
   });
 
@@ -91,6 +96,7 @@ describe('Pagination', () => {
     });
 
     const root = wrapper.find('[role="tablist"]');
+
     expect(root.classes()).toContain('pagination--disabled');
     expect(root.attributes('aria-disabled')).toBe('true');
   });
@@ -128,6 +134,7 @@ describe('Pagination', () => {
     const pages = wrapper
       .findAll('.button')
       .map((button) => button.text().trim());
+
     expect(pages).toContain('4');
     expect(pages).toContain('...');
     expect(pages.length).toBeLessThan(7);

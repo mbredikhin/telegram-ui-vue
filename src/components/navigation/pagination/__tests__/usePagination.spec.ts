@@ -12,6 +12,7 @@ function getPages(
 describe('usePagination', () => {
   test('defaults to 1 page with page 1 selected', () => {
     const { paginationItems } = usePagination({});
+
     const items = paginationItems.value;
 
     expect(items.length).toBe(3);
@@ -32,6 +33,7 @@ describe('usePagination', () => {
     });
 
     const result = getPages(paginationItems);
+
     expect(result).toEqual([
       PaginationType.Previous,
       1,
@@ -54,6 +56,7 @@ describe('usePagination', () => {
     });
 
     const result = getPages(paginationItems);
+
     expect(result).toContain(PaginationType.StartEllipsis);
     expect(result).toContain(PaginationType.EndEllipsis);
     expect(result).toContain(10);
@@ -67,6 +70,7 @@ describe('usePagination', () => {
     });
 
     const result = getPages(paginationItems);
+
     expect(result).not.toContain(PaginationType.Previous);
     expect(result).not.toContain(PaginationType.Next);
   });
@@ -93,6 +97,7 @@ describe('usePagination', () => {
     const next = paginationItems.value.find(
       ({ type }) => type === PaginationType.Next
     );
+
     expect(next?.disabled).toBe(true);
   });
 
@@ -105,6 +110,7 @@ describe('usePagination', () => {
     const prev = paginationItems.value.find(
       ({ type }) => type === PaginationType.Previous
     );
+
     expect(prev?.disabled).toBe(true);
   });
 
@@ -134,6 +140,7 @@ describe('usePagination', () => {
     });
 
     const selected = paginationItems.value.find(({ selected }) => selected);
+
     expect(selected?.page).toBe(2);
   });
 });

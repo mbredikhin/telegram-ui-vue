@@ -1,7 +1,6 @@
 import { mount, randomString } from '@/lib/tests';
 import Textarea from '../Textarea.vue';
 import { usePlatform } from '@/composables/usePlatform';
-import { Mock } from 'vitest';
 import { randomInt } from 'crypto';
 
 vi.mock('@/composables/usePlatform', () => ({
@@ -17,13 +16,14 @@ describe('Textarea', () => {
     const wrapper = mount(Textarea);
 
     const textarea = wrapper.find('textarea');
+
     expect(wrapper.classes()).toContain('textarea-wrapper');
     expect(textarea.exists()).toBe(true);
     expect(textarea.classes()).toContain('textarea');
   });
 
   test('applies ios class when platform is ios', () => {
-    (usePlatform as Mock).mockReturnValue('ios');
+    vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(Textarea);
 
     expect(wrapper.classes()).toContain('textarea-wrapper--ios');
@@ -55,7 +55,6 @@ describe('Textarea', () => {
     const placeholder = randomString();
     const name = randomString();
     const rows = randomInt(1, 5);
-
     const wrapper = mount(Textarea, {
       attrs: {
         placeholder,
@@ -65,6 +64,7 @@ describe('Textarea', () => {
     });
 
     const textarea = wrapper.find('textarea');
+
     expect(textarea.attributes('placeholder')).toBe(placeholder);
     expect(textarea.attributes('name')).toBe(name);
     expect(textarea.attributes('rows')).toBe(String(rows));

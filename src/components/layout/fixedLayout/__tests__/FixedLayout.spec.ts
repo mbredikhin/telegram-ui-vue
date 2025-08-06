@@ -45,7 +45,6 @@ describe('FixedLayout', () => {
 
   test('renders using a custom component', () => {
     const content = randomString();
-
     const wrapper = mount(FixedLayout, {
       props: {
         is: h('section', () => '<slot />'),

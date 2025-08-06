@@ -10,7 +10,8 @@ describe('Image', () => {
       attrs: { src: 'image.png', alt: 'avatar' },
     });
 
-    const div = wrapper.get('div');
+    const div = wrapper.find('div');
+
     expect(div.attributes('style')).toContain('width: 48px');
     expect(div.classes()).not.toContain('wrapper--loaded');
   });
@@ -30,7 +31,7 @@ describe('Image', () => {
       attrs: { src: 'image.png' },
     });
 
-    const img = wrapper.get('img');
+    const img = wrapper.find('img');
     await img.trigger('load');
 
     expect(wrapper.emitted('load')).toBeTruthy();
@@ -45,7 +46,7 @@ describe('Image', () => {
       },
     });
 
-    const img = wrapper.get('img');
+    const img = wrapper.find('img');
     await img.trigger('error');
 
     expect(wrapper.emitted('error')).toBeTruthy();

@@ -4,6 +4,7 @@ import Radio from '../Radio.vue';
 describe('Radio', () => {
   test('renders icons', () => {
     const wrapper = mount(Radio);
+
     const uncheckedIcon = wrapper.find('[data-test-id]="radio-icon"');
     const checkedIcon = wrapper.find('[data-test-id]="radio-checked-icon"');
 
@@ -19,6 +20,7 @@ describe('Radio', () => {
     });
 
     const input = wrapper.find('input[type="radio"]');
+
     expect((input.element as HTMLInputElement).checked).toBe(true);
   });
 
@@ -53,6 +55,7 @@ describe('Radio', () => {
     });
 
     await wrapper.trigger('click');
+
     expect(checked).toBe(true);
   });
 
