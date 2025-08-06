@@ -54,7 +54,7 @@ export interface Attrs
 
 export interface PaginationProps extends /* @vue-ignore */ Attrs {}
 
-const props = defineProps<PaginationProps>();
+defineProps<PaginationProps>();
 
 const emit = defineEmits<{
   (e: 'change', page: number, event: Event): void;
