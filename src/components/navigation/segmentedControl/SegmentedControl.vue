@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { usePlatform } from '@/composables/usePlatform';
-import { computed, VNode, VNodeArrayChildren } from 'vue';
+import { computed, VNode } from 'vue';
 
 /**
  * The SegmentedControl component renders a set of options as a segmented control, commonly used for toggling between views or filtering content.
@@ -33,17 +33,16 @@ const slots = defineSlots<{
 const platform = usePlatform();
 
 const classes = computed(() => ({
-  ['segmented-control']: true,
-  ['segmented-control--ios']: platform === 'ios',
+  'segmented-control': true,
+  'segmented-control--ios': platform === 'ios',
 }));
 
-const items = computed<VNodeArrayChildren>(
-  () => (slots.default?.()?.at(0)?.children as VNodeArrayChildren) ?? []
+const items = computed<VNode[]>(
+  () => (slots.default?.()?.at(0)?.children as VNode[]) ?? []
 );
 
 const checkedIndex = computed(
-  () =>
-    items.value.findIndex((vnode) => (vnode as VNode)?.props?.selected) ?? -1
+  () => items.value?.findIndex(({ props }) => props?.selected) ?? -1
 );
 
 const translateX = computed(() => `translateX(${100 * checkedIndex.value}%)`);
