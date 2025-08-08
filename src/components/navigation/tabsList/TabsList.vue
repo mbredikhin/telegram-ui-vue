@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, VNode, VNodeArrayChildren } from 'vue';
+import { computed, VNode } from 'vue';
 
 /**
  * The TabsList component renders a list of tabs, typically used for navigating between different views
@@ -26,13 +26,12 @@ const slots = defineSlots<{
   default?: () => VNode[];
 }>();
 
-const items = computed<VNodeArrayChildren>(
-  () => (slots.default?.()?.at(0)?.children as VNodeArrayChildren) ?? []
+const items = computed<VNode[]>(
+  () => (slots.default?.()?.at(0)?.children as VNode[]) ?? []
 );
 
 const checkedIndex = computed(
-  () =>
-    items.value.findIndex((vnode) => (vnode as VNode)?.props?.selected) ?? -1
+  () => items.value?.findIndex(({ props }) => props?.selected) ?? -1
 );
 
 const translateX = computed(() => `translateX(${100 * checkedIndex.value}%)`);
