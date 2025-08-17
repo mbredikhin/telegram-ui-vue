@@ -1,4 +1,4 @@
-import { Ref, ref, watch } from 'vue';
+import { MaybeRef, Ref, ref, toValue, watch } from 'vue';
 import { AppRootInjection } from './AppRootInjection';
 import { canUseDOM } from '@/lib/dom';
 import { getTelegramData } from '@/lib/telegram';
@@ -39,9 +39,9 @@ export const getBrowserAppearanceSubscriber = (
 };
 
 export const useAppearance = (
-  appearanceProp?: AppRootInjection['appearance']
+  appearanceProp?: MaybeRef<AppRootInjection['appearance']>
 ): Ref<NonNullable<AppRootInjection['appearance']>> => {
-  const appearance = ref(appearanceProp || getInitialAppearance());
+  const appearance = ref(toValue(appearanceProp) || getInitialAppearance());
 
   const handleThemeChange = () => {
     const telegramData = getTelegramData();
@@ -53,10 +53,10 @@ export const useAppearance = (
   };
 
   watch(
-    () => appearanceProp,
-    () => {
-      if (appearanceProp !== undefined) {
-        appearance.value = appearanceProp;
+    () => toValue(appearanceProp),
+    (value) => {
+      if (value !== undefined) {
+        appearance.value = value;
         return () => {};
       }
 
