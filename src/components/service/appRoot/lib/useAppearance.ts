@@ -4,6 +4,11 @@ import { canUseDOM } from '@/lib/dom';
 import { getTelegramData } from '@/lib/telegram';
 
 export const getInitialAppearance = () => {
+  const telegramData = getTelegramData();
+  if (telegramData?.colorScheme) {
+    return telegramData.colorScheme;
+  }
+
   if (
     canUseDOM &&
     window.matchMedia &&
