@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, toRefs, UnwrapRef, useAttrs } from 'vue';
+import { computed, reactive, toRefs, UnwrapRef, useAttrs } from 'vue';
 import {
   PaginationType,
   usePagination,
@@ -60,9 +60,12 @@ const emit = defineEmits<{
   (e: 'change', page: number, event: Event): void;
 }>();
 
-// @ts-expect-error type Attrs satisfies the attrs key constraint
-const attrs: Attrs = useAttrs();
-const { paginationItems } = usePagination({ ...toRefs(attrs), onChange });
+const attrs = useAttrs() as Attrs;
+
+const { paginationItems } = usePagination({
+  ...toRefs(reactive(attrs)),
+  onChange,
+});
 
 const classes = computed(() => ({
   pagination: true,
