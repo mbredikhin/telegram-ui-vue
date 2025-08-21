@@ -8,8 +8,8 @@ export interface Wave {
   pointerId: number;
 }
 
-const RIPPLE_DELAY = 70;
-const WAVE_LIVE = 225;
+export const RIPPLE_DELAY = 70;
+export const WAVE_LIVE = 225;
 
 export function useRipple() {
   const clicks = ref<Wave[]>([]);
