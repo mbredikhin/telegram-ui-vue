@@ -17,9 +17,6 @@ importers:
       vaul-vue:
         specifier: 0.4.1
         version: 0.4.1(reka-ui@2.2.0(typescript@5.6.2)(vue@3.5.10(typescript@5.6.2)))(vue@3.5.10(typescript@5.6.2))
-      vue:
-        specifier: 3.5.10
-        version: 3.5.10(typescript@5.6.2)
     devDependencies:
       '@chromatic-com/storybook':
         specifier: '3'
@@ -132,6 +129,9 @@ importers:
       vitest:
         specifier: 3.2.0
         version: 3.2.0(@types/node@22.7.4)(happy-dom@17.5.6)(jiti@2.4.2)(sass-embedded@1.86.0)
+      vue:
+        specifier: 3.5.10
+        version: 3.5.10(typescript@5.6.2)
       vue-tsc:
         specifier: 2.1.6
         version: 2.1.6(typescript@5.6.2)
@@ -3770,8 +3770,8 @@ packages:
   vue-component-type-helpers@2.2.8:
     resolution: {integrity: sha512-4bjIsC284coDO9om4HPA62M7wfsTvcmZyzdfR0aUlFXqq4tXxM1APyXpNVxPC8QazKw9OhmZNHBVDA6ODaZsrA==}
 
-  vue-component-type-helpers@3.0.1:
-    resolution: {integrity: sha512-j23mCB5iEbGsyIhnVdXdWUOg+UdwmVxpKnYYf2j+4ppCt5VSFXKjwu9YFt0QYxUaf5G99PuHsVfRScjHCRSsGQ==}
+  vue-component-type-helpers@3.0.6:
+    resolution: {integrity: sha512-6CRM8X7EJqWCJOiKPvSLQG+hJPb/Oy2gyJx3pLjUEhY7PuaCthQu3e0zAGI1lqUBobrrk9IT0K8sG2GsCluxoQ==}
 
   vue-demi@0.14.10:
     resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
@@ -4754,7 +4754,7 @@ snapshots:
       ts-dedent: 2.2.0
       type-fest: 2.19.0
       vue: 3.5.10(typescript@5.6.2)
-      vue-component-type-helpers: 3.0.1
+      vue-component-type-helpers: 3.0.6
 
   '@swc/helpers@0.5.17':
     dependencies:
@@ -7628,7 +7628,7 @@ snapshots:
 
   vue-component-type-helpers@2.2.8: {}
 
-  vue-component-type-helpers@3.0.1: {}
+  vue-component-type-helpers@3.0.6: {}
 
   vue-demi@0.14.10(vue@3.5.10(typescript@5.6.2)):
     dependencies:
