@@ -52,6 +52,9 @@ export default defineConfig(() => {
           ...Object.keys(pkg.dependencies ?? {}),
           ...Object.keys(pkg.peerDependencies ?? {}),
         ],
+        output: {
+          sourcemapExcludeSources: true,
+        },
       },
     },
     test: {
