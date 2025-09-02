@@ -14,7 +14,7 @@ import {
 } from '@/components/service/appRoot';
 import { hexToRGB } from '@/lib/color';
 import { getTelegramData } from '@/lib/telegram';
-import { DrawerOverlay } from 'vaul-vue';
+import { DrawerOverlay } from 'vauland';
 import { computed, Ref } from 'vue';
 
 const DEFAULT_LIGHT_OVERLAY_RGB = [255, 255, 255];

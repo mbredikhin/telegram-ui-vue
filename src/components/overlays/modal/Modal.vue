@@ -42,7 +42,7 @@ import {
   DrawerRoot,
   DrawerRootNested,
   DrawerTrigger,
-} from 'vaul-vue';
+} from 'vauland';
 import { Ref, useAttrs, VNode } from 'vue';
 import ModalOverlay from './ModalOverlay.vue';
 import { hasSlotContent } from '@/lib/vue';

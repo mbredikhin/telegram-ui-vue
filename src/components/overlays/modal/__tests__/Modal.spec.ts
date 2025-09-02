@@ -2,7 +2,7 @@ import { mount, randomString } from '@/lib/tests';
 import Modal from '../Modal.vue';
 import ModalOverlay from '../ModalOverlay.vue';
 
-vi.mock('vaul-vue', () => ({
+vi.mock('vauland', () => ({
   DrawerRoot: { template: '<div class="drawer-root"><slot /></div>' },
   DrawerRootNested: {
     template: '<div class="drawer-root-nested"><slot /></div>',
