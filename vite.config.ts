@@ -1,12 +1,13 @@
 import { defineConfig, UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { checker } from 'vite-plugin-checker';
-import path, { dirname, resolve } from 'path';
+import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import svgLoader from 'vite-svg-loader';
 import pkg from './package.json';
 import dts from 'vite-plugin-dts';
 import { argv } from 'process';
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -22,6 +23,7 @@ export default defineConfig(() => {
         typescript: true,
       }),
       svgLoader(),
+      cssInjectedByJsPlugin({ useStrictCSP: true }),
       ...(isStoriesBuild
         ? []
         : [
@@ -29,12 +31,12 @@ export default defineConfig(() => {
               tsconfigPath: 'tsconfig.app.json',
               cleanVueFileName: true,
               rollupTypes: true,
-              include: [path.resolve(__dirname, './src')],
+              include: [resolve(__dirname, './src')],
             }),
           ]),
     ],
     resolve: {
-      alias: [{ find: '@', replacement: path.resolve(__dirname, './src') }],
+      alias: [{ find: '@', replacement: resolve(__dirname, './src') }],
     },
     build: {
       minify: false,

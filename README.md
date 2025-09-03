@@ -69,7 +69,6 @@ yarn add telegram-ui-vue
 </template>
 
 <script setup lang="ts">
-import 'telegram-ui-vue/dist/index.css';
 import { AppRoot, Placeholder } from 'telegram-ui-vue';
 </script>
 ```
