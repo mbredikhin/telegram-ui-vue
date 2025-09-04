@@ -1,4 +1,4 @@
-import { mount } from '@/lib/tests';
+import { mount, randomString } from '@/lib/tests';
 import Checkbox from '../Checkbox.vue';
 import IndeterminateIcon from '../icons/checkbox-indeterminate.svg';
 import CheckedIcon from '../icons/checkbox-checked.svg';
@@ -18,11 +18,9 @@ describe('Checkbox', () => {
     });
 
     const indeterminateIcon = wrapper.findComponent(IndeterminateIcon);
-
-    expect(indeterminateIcon.exists()).toBe(true);
-
     const checkedIcon = wrapper.findComponent(CheckedIcon);
 
+    expect(indeterminateIcon.exists()).toBe(true);
     expect(checkedIcon.exists()).toBe(false);
   });
 
@@ -43,11 +41,9 @@ describe('Checkbox', () => {
     });
 
     const checkedIcon = wrapper.findComponent(CheckedIcon);
-
-    expect(checkedIcon.exists()).toBe(true);
-
     const indeterminateIcon = wrapper.findComponent(IndeterminateIcon);
 
+    expect(checkedIcon.exists()).toBe(true);
     expect(indeterminateIcon.exists()).toBe(false);
   });
 
@@ -57,5 +53,18 @@ describe('Checkbox', () => {
     });
 
     expect(wrapper.classes()).toContain('checkbox--disabled');
+  });
+
+  test('applies custom class to the root element', () => {
+    const customClass = randomString();
+    const wrapper = mount(Checkbox, {
+      attrs: {
+        class: customClass,
+      },
+    });
+
+    const root = wrapper.find('[data-test-id="checkbox"]');
+
+    expect(root.classes()).toContain(customClass);
   });
 });

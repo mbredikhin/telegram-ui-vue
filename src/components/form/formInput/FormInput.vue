@@ -1,5 +1,9 @@
 <template>
-  <div :class="classes" :aria-disabled="attrs.disabled">
+  <div
+    data-test-id="form-input"
+    :class="classes"
+    :aria-disabled="attrs.disabled"
+  >
     <label
       v-bind="attrs"
       :aria-disabled="attrs.disabled"
@@ -83,12 +87,12 @@ const formStatus = computed(
 );
 
 const classes = computed(() => ({
-  ['form-input']: true,
+  'form-input': true,
   [`form-input--${platform}`]: true,
   [`form-input--${formStatus.value}`]: true,
-  ['form-input--focused']: isFocused.value,
-  ['form-input--disabled']: attrs.disabled,
-  [attrs.class]: true,
+  'form-input--focused': isFocused.value,
+  'form-input--disabled': attrs.disabled,
+  [String(attrs.class)]: !!attrs.class,
 }));
 
 function onFocus(event: Event) {

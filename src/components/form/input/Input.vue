@@ -1,5 +1,10 @@
 <template>
-  <FormInput :status="attrs.status" :disabled="attrs.disabled" :class="classes">
+  <FormInput
+    data-test-id="input"
+    :status="attrs.status"
+    :disabled="attrs.disabled"
+    :class="classes"
+  >
     <template #header>
       <slot name="header" />
     </template>
@@ -52,8 +57,9 @@ const platform = usePlatform();
 const attrs: InputProps = useAttrs();
 
 const classes = computed(() => ({
-  ['input-wrapper']: true,
-  ['input-wrapper--ios']: platform === 'ios',
+  'input-wrapper': true,
+  'input-wrapper--ios': platform === 'ios',
+  [String(attrs.class)]: !!attrs.class,
 }));
 </script>
 

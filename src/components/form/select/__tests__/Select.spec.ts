@@ -78,4 +78,17 @@ describe('Select', () => {
     expect(wrapper.find('.test-header-content').text()).toBe(headerContent);
     expect(wrapper.find('.test-before-content').text()).toBe(beforeContent);
   });
+
+  test('applies custom class to the root element', () => {
+    const customClass = randomString();
+    const wrapper = mount(Select, {
+      attrs: {
+        class: customClass,
+      },
+    });
+
+    const root = wrapper.find('[data-test-id="select"]');
+
+    expect(root.classes()).toContain(customClass);
+  });
 });

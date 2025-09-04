@@ -77,8 +77,9 @@ const attrs = useAttrs();
 
 const classes = computed(() => ({
   snackbar: true,
-  ['snackbar--ios']: platform === 'ios',
-  ['snackbar--closing']: closing.value,
+  'snackbar--ios': platform === 'ios',
+  'snackbar--closing': closing.value,
+  [String(attrs.class)]: !!attrs.class,
 }));
 
 const closeTimeout = useTimeout(close, props.duration);

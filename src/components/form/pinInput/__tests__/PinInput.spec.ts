@@ -1,4 +1,4 @@
-import { mount } from '@/lib/tests';
+import { mount, randomString } from '@/lib/tests';
 import PinInput from '../PinInput.vue';
 import PinInputCell from '../PinInputCell.vue';
 import PinInputButton from '../PinInputButton.vue';
@@ -63,5 +63,18 @@ describe('PinInput', () => {
 
     // Since we're mocking DOM focus, just ensure no error is thrown and no crash occurs.
     expect(wrapper.exists()).toBe(true);
+  });
+
+  test('applies custom class to the root element', () => {
+    const customClass = randomString();
+    const wrapper = mount(PinInput, {
+      attrs: {
+        class: customClass,
+      },
+    });
+
+    const root = wrapper.find('[data-test-id="pin-input"]');
+
+    expect(root.classes()).toContain(customClass);
   });
 });

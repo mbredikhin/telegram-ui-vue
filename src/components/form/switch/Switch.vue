@@ -1,5 +1,5 @@
 <template>
-  <label :class="classes">
+  <label data-test-id="switch" :class="classes">
     <VisuallyHidden v-bind="attrs" is="input" type="checkbox" class="input" />
     <div aria-hidden class="control"></div>
     <slot />
@@ -36,10 +36,11 @@ const platform = usePlatform();
 const attrs: InputHTMLAttributes = useAttrs();
 
 const classes = computed(() => ({
-  ['switch-wrapper']: true,
-  ['switch-wrapper--ios']: platform === 'ios',
-  ['switch-wrapper--base']: platform === 'base',
-  ['switch-wrapper--disabled']: attrs.disabled,
+  'switch-wrapper': true,
+  'switch-wrapper--ios': platform === 'ios',
+  'switch-wrapper--base': platform === 'base',
+  'switch-wrapper--disabled': attrs.disabled,
+  [String(attrs.class)]: !!attrs.class,
 }));
 </script>
 

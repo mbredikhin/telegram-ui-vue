@@ -1,5 +1,5 @@
 <template>
-  <FormInput :status="attrs.status" :class="classes">
+  <FormInput data-test-id="select" :status="attrs.status" :class="classes">
     <template #header>
       <slot name="header" />
     </template>
@@ -57,8 +57,9 @@ const platform = usePlatform();
 const attrs: FormInputProps = useAttrs();
 
 const classes = computed(() => ({
-  ['select-wrapper']: true,
-  ['select-wrapper--ios']: platform === 'ios',
+  'select-wrapper': true,
+  'select-wrapper--ios': platform === 'ios',
+  [String(attrs.class)]: !!attrs.class,
 }));
 
 const TypographyComponent = computed(() =>

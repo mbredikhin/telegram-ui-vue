@@ -1,5 +1,5 @@
 <template>
-  <label :class="classes">
+  <label data-test-id="checkbox" :class="classes">
     <VisuallyHidden
       v-bind="attrs"
       is="input"
@@ -47,6 +47,7 @@ const attrs: InputHTMLAttributes = useAttrs();
 const classes = computed(() => ({
   checkbox: true,
   'checkbox--disabled': attrs.disabled,
+  [String(attrs.class)]: !!attrs.class,
 }));
 </script>
 

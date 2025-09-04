@@ -1,5 +1,5 @@
 <template>
-  <FormInput :status="attrs.status" :class="classes">
+  <FormInput data-test-id="color-input" :status="attrs.status" :class="classes">
     <template #header>
       <slot name="header" />
     </template>
@@ -82,8 +82,9 @@ watch(
 );
 
 const classes = computed(() => ({
-  ['color-input']: true,
-  ['color-input--ios']: platform === 'ios',
+  'color-input': true,
+  'color-input--ios': platform === 'ios',
+  [String(attrs.class)]: !!attrs.class,
 }));
 
 function onChange(event: Event) {

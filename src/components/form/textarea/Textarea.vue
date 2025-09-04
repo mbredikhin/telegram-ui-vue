@@ -1,5 +1,5 @@
 <template>
-  <FormInput :status="attrs.status" :class="classes">
+  <FormInput data-test-id="textarea" :status="attrs.status" :class="classes">
     <template #header>
       <slot name="header" />
     </template>
@@ -47,8 +47,9 @@ const platform = usePlatform();
 const attrs: Attrs = useAttrs();
 
 const classes = computed(() => ({
-  ['textarea-wrapper']: true,
-  ['textarea-wrapper--ios']: platform === 'ios',
+  'textarea-wrapper': true,
+  'textarea-wrapper--ios': platform === 'ios',
+  [String(attrs.class)]: !!attrs.class,
 }));
 
 const TypographyComponent = computed(() =>

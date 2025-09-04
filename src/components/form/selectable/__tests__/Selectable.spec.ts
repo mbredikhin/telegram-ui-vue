@@ -90,4 +90,17 @@ describe('Selectable', () => {
     expect(input.attributes('name')).toBe(name);
     expect(input.attributes('value')).toBe(value);
   });
+
+  test('applies custom class to the root element', () => {
+    const customClass = randomString();
+    const wrapper = mount(Selectable, {
+      attrs: {
+        class: customClass,
+      },
+    });
+
+    const root = wrapper.find('[data-test-id="selectable"]');
+
+    expect(root.classes()).toContain(customClass);
+  });
 });

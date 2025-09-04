@@ -69,4 +69,17 @@ describe('Textarea', () => {
     expect(textarea.attributes('name')).toBe(name);
     expect(textarea.attributes('rows')).toBe(String(rows));
   });
+
+  test('applies custom class to the root element', () => {
+    const customClass = randomString();
+    const wrapper = mount(Textarea, {
+      attrs: {
+        class: customClass,
+      },
+    });
+
+    const root = wrapper.find('[data-test-id="textarea"]');
+
+    expect(root.classes()).toContain(customClass);
+  });
 });

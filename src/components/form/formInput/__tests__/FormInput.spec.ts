@@ -1,4 +1,4 @@
-import { mount } from '@/lib/tests';
+import { mount, randomString } from '@/lib/tests';
 import FormInput from '../FormInput.vue';
 import FormInputTitle from '../FormInputTitle.vue';
 import { usePlatform } from '@/composables/usePlatform';
@@ -123,5 +123,18 @@ describe('FormInput', () => {
     });
 
     expect(wrapper.find('.test-inner-input').exists()).toBe(true);
+  });
+
+  test('applies custom class to the root element', () => {
+    const customClass = randomString();
+    const wrapper = mount(FormInput, {
+      attrs: {
+        class: customClass,
+      },
+    });
+
+    const root = wrapper.find('[data-test-id="form-input"]');
+
+    expect(root.classes()).toContain(customClass);
   });
 });

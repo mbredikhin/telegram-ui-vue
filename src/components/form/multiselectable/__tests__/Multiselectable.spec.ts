@@ -98,4 +98,17 @@ describe('Multiselectable', () => {
     expect(getComputedStyle(checkedIcon.element).opacity).not.toBe('0');
     expect(getComputedStyle(uncheckedIcon.element).opacity).toBe('');
   });
+
+  test('applies custom class to the root element', () => {
+    const customClass = randomString();
+    const wrapper = mount(Multiselectable, {
+      attrs: {
+        class: customClass,
+      },
+    });
+
+    const root = wrapper.find('[data-test-id="multiselectable"]');
+
+    expect(root.classes()).toContain(customClass);
+  });
 });

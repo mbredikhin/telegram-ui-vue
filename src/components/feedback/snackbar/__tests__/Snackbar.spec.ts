@@ -44,9 +44,9 @@ describe('Snackbar', () => {
     vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(Snackbar);
 
-    const el = wrapper.find('[data-test-id="snackbar"]');
+    const root = wrapper.find('[data-test-id="snackbar"]');
 
-    expect(el.classes()).toContain('snackbar--ios');
+    expect(root.classes()).toContain('snackbar--ios');
   });
 
   test('closes after duration and emits "close"', async () => {
@@ -59,9 +59,9 @@ describe('Snackbar', () => {
 
     vi.advanceTimersByTime(duration);
     await nextTick();
-    const el = wrapper.find('[data-test-id="snackbar"]');
+    const root = wrapper.find('[data-test-id="snackbar"]');
 
-    expect(el.classes()).toContain('snackbar--closing');
+    expect(root.classes()).toContain('snackbar--closing');
 
     vi.advanceTimersByTime(TRANSITION_FINISH_DURATION);
     await nextTick();
@@ -69,17 +69,21 @@ describe('Snackbar', () => {
     expect(wrapper.emitted('close')).toBeTruthy();
   });
 
-  test('forwards root attributes', () => {
+  test('forwards root attributes and classes', () => {
+    const customClass = randomString();
+    const id = randomString();
     const wrapper = mount(Snackbar, {
       attrs: {
-        id: 'snack',
+        class: customClass,
+        id,
         'aria-live': 'polite',
       },
     });
 
-    const root = wrapper.find('.snackbar');
+    const root = wrapper.find('[data-test-id="snackbar"]');
 
-    expect(root.attributes('id')).toBe('snack');
+    expect(root.classes()).toContain(customClass);
+    expect(root.attributes('id')).toBe(id);
     expect(root.attributes('aria-live')).toBe('polite');
   });
 });

@@ -1,4 +1,4 @@
-import { mount } from '@/lib/tests';
+import { mount, randomString } from '@/lib/tests';
 import ColorInput from '../ColorInput.vue';
 import { nextTick } from 'vue';
 import { DOMWrapper } from '@vue/test-utils';
@@ -70,5 +70,18 @@ describe('ColorInput', () => {
 
     expect(wrapper.find('.color-input').exists()).toBe(true);
     expect(wrapper.classes()).toContain('color-input--ios');
+  });
+
+  test('applies custom class to the root element', () => {
+    const customClass = randomString();
+    const wrapper = mount(ColorInput, {
+      attrs: {
+        class: customClass,
+      },
+    });
+
+    const root = wrapper.find('[data-test-id="color-input"]');
+
+    expect(root.classes()).toContain(customClass);
   });
 });

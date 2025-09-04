@@ -1,5 +1,5 @@
 <template>
-  <label :class="classes">
+  <label data-test-id="multiselectable" :class="classes">
     <VisuallyHidden v-bind="attrs" is="input" type="checkbox" class="input">
       <slot />
     </VisuallyHidden>
@@ -60,7 +60,8 @@ const attrs: InputHTMLAttributes = useAttrs();
 
 const classes = computed(() => ({
   multiselectable: true,
-  ['multiselectable--disabled']: attrs.disabled,
+  'multiselectable--disabled': attrs.disabled,
+  [String(attrs.class)]: !!attrs.class,
 }));
 </script>
 

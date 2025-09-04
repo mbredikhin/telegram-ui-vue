@@ -1,5 +1,5 @@
 <template>
-  <label :class="classes">
+  <label data-test-id="selectable" :class="classes">
     <VisuallyHidden
       v-bind="attrs"
       is="input"
@@ -60,7 +60,8 @@ const attrs: InputHTMLAttributes = useAttrs();
 
 const classes = computed(() => ({
   selectable: true,
-  ['selectable--disabled']: attrs.disabled,
+  'selectable--disabled': attrs.disabled,
+  [String(attrs.class)]: !!attrs.class,
 }));
 </script>
 

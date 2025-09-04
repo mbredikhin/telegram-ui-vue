@@ -1,5 +1,5 @@
 <template>
-  <label ref="pinInputCell" :class="classes">
+  <label ref="pinInputCell" data-test-id="pin-input-cell" :class="classes">
     <VisuallyHidden
       is="input"
       type="number"
@@ -36,9 +36,10 @@ const attrs: InputHTMLAttributes = useAttrs();
 const pinInputCellRef = useTemplateRef('pinInputCell');
 
 const classes = computed(() => ({
-  ['pin-input-cell']: true,
-  ['pin-input-cell--ios']: platform === 'ios',
-  ['pin-input-cell--typed']: props.isTyped,
+  'pin-input-cell': true,
+  'pin-input-cell--ios': platform === 'ios',
+  'pin-input-cell--typed': props.isTyped,
+  [String(attrs.class)]: !!attrs.class,
 }));
 
 defineExpose({ pinInputCellRef });

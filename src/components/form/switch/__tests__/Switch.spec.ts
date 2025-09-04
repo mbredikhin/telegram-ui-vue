@@ -79,4 +79,17 @@ describe('Switch', () => {
     expect(input.attributes('name')).toBe(name);
     expect(input.attributes('aria-label')).toBe(label);
   });
+
+  test('applies custom class to the root element', () => {
+    const customClass = randomString();
+    const wrapper = mount(Switch, {
+      attrs: {
+        class: customClass,
+      },
+    });
+
+    const root = wrapper.find('[data-test-id="switch"]');
+
+    expect(root.classes()).toContain(customClass);
+  });
 });

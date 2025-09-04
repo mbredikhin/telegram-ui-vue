@@ -62,4 +62,17 @@ describe('Input', () => {
     expect(formInput.attributes('aria-disabled')).toBeTruthy();
     expect(formInput.props('status')).toBe('error');
   });
+
+  test('applies custom class to the root element', () => {
+    const customClass = randomString();
+    const wrapper = mount(Input, {
+      attrs: {
+        class: customClass,
+      },
+    });
+
+    const root = wrapper.find('[data-test-id="input"]');
+
+    expect(root.classes()).toContain(customClass);
+  });
 });

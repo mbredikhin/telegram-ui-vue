@@ -1,6 +1,11 @@
 <template>
   <RootRenderer>
-    <section ref="pinInput" :class="classes" v-bind="attrs">
+    <section
+      ref="pinInput"
+      data-test-id="pin-input"
+      :class="classes"
+      v-bind="attrs"
+    >
       <header class="header">
         <Headline class="title" weight="2">{{ props.label }}</Headline>
         <div class="cells-wrapper">
@@ -109,8 +114,9 @@ const { inputValue, handleClickValue, handleClickBackspace, handleButton } =
   });
 
 const classes = computed(() => ({
-  ['pin-input']: true,
-  ['pin-input--ios']: platform === 'ios',
+  'pin-input': true,
+  'pin-input--ios': platform === 'ios',
+  [String(attrs.class)]: !!attrs.class,
 }));
 
 function onChange(value: number[]) {
