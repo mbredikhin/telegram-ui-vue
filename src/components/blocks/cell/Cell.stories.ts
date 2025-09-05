@@ -50,7 +50,7 @@ export const Default: Story = {
         <Badge type="dot" />
       </template>
       <template #before>
-        <Avatar :size="48" />
+        <Avatar :size="48" src="https://storage.mbredikhin.com/tg-banana.gif" />
       </template>
       <template #after>
         <Badge type="number">99</Badge>
@@ -71,7 +71,7 @@ export const WithInfo: Story = {
       <template #default>Noah</template>
       <template #subtitle>Yesterday</template>
       <template #before>
-        <Avatar :size="48" />
+        <Avatar :size="48" src="https://storage.mbredikhin.com/dog.png" />
       </template>
       <template #after>
         <Info type="text" subtitle="Received">+1000</Info>
