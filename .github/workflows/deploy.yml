@@ -6,6 +6,28 @@ on:
   workflow_dispatch:
 
 jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    environment: production
+    strategy:
+      matrix:
+        node-version: [20]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.11.0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run lint
+        run: pnpm lint
+
   test:
     runs-on: ubuntu-24.04
     environment: production
@@ -29,9 +51,9 @@ jobs:
         run: pnpm test
 
   build-and-push-image:
-    needs: test
+    needs: [lint, test]
     runs-on: ubuntu-24.04
-    if: ${{ needs.test.result == 'success' }}
+    if: ${{ success() }}
     environment: production
     steps:
       - uses: actions/checkout@v4
@@ -43,9 +65,9 @@ jobs:
           docker push ${{ secrets.DOCKER_HUB_USER }}/telegram-ui-vue:latest
 
   pull-and-run-image:
-    needs: [test, build-and-push-image]
+    needs: [lint, test, build-and-push-image]
     runs-on: ubuntu-24.04
-    if: ${{ needs.test.result == 'success' && needs['build-and-push-image'].result == 'success' }}
+    if: ${{ success() }}
     environment: production
     steps:
       - name: Pull and run image on EC2
@@ -60,9 +82,9 @@ jobs:
           EOF
 
   release:
-    needs: test
+    needs: [lint, test]
     runs-on: ubuntu-24.04
-    if: ${{ needs.test.result == 'success' }}
+    if: ${{ success() }}
     environment: production
     strategy:
       matrix:

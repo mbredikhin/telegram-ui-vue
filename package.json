@@ -36,7 +36,7 @@
     "build-stories": "storybook build --docs",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
-    "lint": "pnpm eslint",
+    "lint": "pnpm eslint src/",
     "test": "vitest"
   },
   "main": "./dist/index.js",
