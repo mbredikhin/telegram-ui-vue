@@ -34,7 +34,7 @@ const levelTags: Record<TitleLevel, string> = {
 
 const attrs = computed<TitleProps>(() => ({
   ...props,
-  weight: '3',
+  weight: '1',
   is: levelTags[props.level],
   ...useAttrs(),
 }));

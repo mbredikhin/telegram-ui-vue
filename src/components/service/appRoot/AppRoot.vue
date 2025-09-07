@@ -126,9 +126,9 @@ const classes = computed<string[]>(() => [
     --tgui-tertiary-bg-color: #f4f4f7;
     --tgui-quartenary-bg-color: #f6f6fa;
 
-    --tgui-font-weight-accent-1: 700;
+    --tgui-font-weight-accent-1: 400;
     --tgui-font-weight-accent-2: 600;
-    --tgui-font-weight-accent-3: 400;
+    --tgui-font-weight-accent-3: 700;
 
     --tgui-border-width: 1px;
 

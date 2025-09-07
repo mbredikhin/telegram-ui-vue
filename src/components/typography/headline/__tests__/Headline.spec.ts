@@ -16,7 +16,7 @@ describe('Headline', () => {
     expect(root.text()).toBe(text);
 
     expect(root.props('is')).toBe('h5');
-    expect(root.props('weight')).toBe('3');
+    expect(root.props('weight')).toBe('1');
 
     expect(root.classes()).toContain('headline');
   });

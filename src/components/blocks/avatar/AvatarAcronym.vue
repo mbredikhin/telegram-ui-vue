@@ -4,7 +4,7 @@
     v-else-if="props.size <= 28"
     v-bind="attrs"
     :level="props.size <= 24 ? '2' : '1'"
-    weight="1"
+    weight="3"
     caps
   >
     <slot />
@@ -12,10 +12,10 @@
   <Headline v-else-if="props.size === 40" v-bind="attrs" weight="2" caps>
     <slot />
   </Headline>
-  <Title v-else-if="props.size === 48" v-bind="attrs" weight="1" level="3" caps>
+  <Title v-else-if="props.size === 48" v-bind="attrs" weight="3" level="3" caps>
     <slot />
   </Title>
-  <LargeTitle v-else v-bind="attrs" weight="1" caps>
+  <LargeTitle v-else v-bind="attrs" weight="3" caps>
     <slot />
   </LargeTitle>
 </template>

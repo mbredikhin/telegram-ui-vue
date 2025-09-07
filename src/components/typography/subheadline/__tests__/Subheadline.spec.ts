@@ -16,7 +16,7 @@ describe('Subheadline', () => {
     expect(root.text()).toBe(text);
 
     expect(root.props('is')).toBe('h6');
-    expect(root.props('weight')).toBe('3');
+    expect(root.props('weight')).toBe('1');
 
     expect(root.classes()).toContain('subheadline');
     expect(root.classes()).toContain('subheadline--1');

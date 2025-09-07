@@ -21,7 +21,7 @@ export interface LargeTitleProps extends /* @vue-ignore */ TypographyProps {}
 defineProps<LargeTitleProps>();
 
 const attrs = computed<LargeTitleProps>(() => ({
-  weight: '3',
+  weight: '1',
   is: 'h1',
   ...useAttrs(),
 }));

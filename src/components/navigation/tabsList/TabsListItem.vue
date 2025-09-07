@@ -36,7 +36,7 @@ const classes = computed(() => ({
 
 const textWeight = computed(() => {
   if (platform === 'ios') {
-    return props.selected ? '1' : '2';
+    return props.selected ? '3' : '2';
   }
   return '2';
 });

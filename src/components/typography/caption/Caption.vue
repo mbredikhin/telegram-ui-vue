@@ -28,7 +28,7 @@ const props = withDefaults(defineProps<CaptionProps>(), {
 });
 
 const attrs = computed<CaptionProps>(() => ({
-  weight: '3',
+  weight: '1',
   is: 'span',
   ...useAttrs(),
 }));

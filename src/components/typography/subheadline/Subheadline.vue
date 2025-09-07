@@ -28,7 +28,7 @@ const props = withDefaults(defineProps<SubheadlineProps>(), {
 
 const attrs = computed<SubheadlineProps>(() => ({
   ...props,
-  weight: '3',
+  weight: '1',
   is: 'h6',
   ...useAttrs(),
 }));

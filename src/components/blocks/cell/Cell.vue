@@ -8,7 +8,7 @@
         v-if="hasSlotContent(slots.subhead)"
         class="subhead"
         level="2"
-        weight="3"
+        weight="1"
       >
         <slot name="subhead" />
       </Subheadline>
@@ -34,7 +34,7 @@
         v-if="hasSlotContent(slots.subtitle)"
         class="subtitle"
         level="2"
-        weight="3"
+        weight="1"
       >
         <slot name="subtitle" />
       </Subheadline>

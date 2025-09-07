@@ -21,7 +21,7 @@ export interface HeadlineProps extends /* @vue-ignore */ TypographyProps {}
 defineProps<HeadlineProps>();
 
 const attrs = computed<HeadlineProps>(() => ({
-  weight: '3',
+  weight: '1',
   is: 'h5',
   ...useAttrs(),
 }));

@@ -16,7 +16,7 @@ describe('Caption', () => {
     expect(root.text()).toBe(text);
 
     expect(root.props('is')).toBe('span');
-    expect(root.props('weight')).toBe('3');
+    expect(root.props('weight')).toBe('1');
 
     expect(root.classes()).toContain('caption');
     expect(root.classes()).toContain('caption--1');

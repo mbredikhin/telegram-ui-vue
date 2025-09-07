@@ -1,7 +1,7 @@
 <template>
   <Image style="border-radius: 50%" :class="classes" v-bind="attrs">
     <template #fallback-icon>
-      <AvatarAcronym v-if="props.acronym" :size="props.size">
+      <AvatarAcronym v-if="props.acronym" :size="attrs.size">
         {{ props.acronym }}
       </AvatarAcronym>
       <slot v-else name="fallback-icon" />

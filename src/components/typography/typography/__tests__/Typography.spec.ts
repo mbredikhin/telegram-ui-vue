@@ -19,7 +19,7 @@ describe('Typography', () => {
     const root = wrapper.find('.typography');
 
     expect(root.element.tagName.toLowerCase()).toBe('span');
-    expect(root.classes()).toContain('typography--weight-3');
+    expect(root.classes()).toContain('typography--weight-1');
   });
 
   test.each([

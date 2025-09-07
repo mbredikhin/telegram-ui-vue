@@ -26,15 +26,17 @@ export interface TypographyProps {
 }
 
 const props = withDefaults(defineProps<TypographyProps>(), {
-  weight: '3',
+  weight: '1',
+  caps: false,
   is: 'span',
+  plain: false,
 });
 
 const classes = computed(() => ({
   typography: true,
   [`typography--weight-${props.weight}`]: true,
-  ['typography--plain']: props.plain,
-  ['typography--caps']: props.caps,
+  'typography--plain': props.plain,
+  'typography--caps': props.caps,
 }));
 </script>
 

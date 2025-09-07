@@ -22,7 +22,7 @@ export interface TextProps
 defineProps<TextProps>();
 
 const attrs = computed<TextProps>(() => ({
-  weight: '3',
+  weight: '1',
   is: 'span',
   ...useAttrs(),
 }));

@@ -1,6 +1,6 @@
 <template>
   <Tappable is="button" role="tab" v-bind="attrs" :class="classes">
-    <Caption :weight="props.selected ? '2' : '3'">
+    <Caption :weight="props.selected ? '2' : '1'">
       <slot />
     </Caption>
   </Tappable>
