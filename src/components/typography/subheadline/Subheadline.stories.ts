@@ -32,9 +32,6 @@ const meta = {
       description:
         'Determines the size of the subheadline, with `1` being the default and `2` providing a smaller option.',
     },
-    default: {
-      control: 'text',
-    },
   },
 } satisfies Meta<typeof Subheadline>;
 
@@ -42,16 +39,58 @@ export default meta;
 
 type Story = StoryObj<typeof Subheadline>;
 
-export const Default: Story = {
+export const Subheadline1: Story = {
   render: (args) => ({
     components: { Subheadline },
     setup() {
       return { args };
     },
-    template: '<Subheadline v-bind="args">{{ args.default }}</Subheadline>',
+    template: `
+      <Subheadline weight="1" v-bind="args">
+        Subheadline 1 · Regular
+      </Subheadline>
+      <br />
+      <br />
+      <Subheadline weight="2" v-bind="args">
+        Subheadline 1 · Semibold
+      </Subheadline>
+      <br />
+      <br />
+      <Subheadline weight="3" v-bind="args">
+        Subheadline 1 · Bold
+      </Subheadline>
+    `,
   }),
   args: {
-    is: 'span',
-    default: 'Text content',
+    level: '1',
+    plain: false,
+  },
+};
+
+export const Subheadline2: Story = {
+  render: (args) => ({
+    components: { Subheadline },
+    setup() {
+      return { args };
+    },
+    template: `
+      <Subheadline weight="1" v-bind="args">
+        Subheadline 2 · Regular
+      </Subheadline>
+      <br />
+      <br />
+      <Subheadline weight="2" v-bind="args">
+        Subheadline 2 · Semibold
+      </Subheadline>
+      <br />
+      <br />
+      <Subheadline weight="3" v-bind="args">
+        Subheadline 2 · Bold
+      </Subheadline>
+    `,
+  }),
+  args: {
+    level: '2',
+    plain: false,
   },
 };

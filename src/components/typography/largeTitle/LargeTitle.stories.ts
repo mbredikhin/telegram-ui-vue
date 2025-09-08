@@ -26,9 +26,6 @@ const meta = {
       description:
         'When true, removes the default margins around the text, useful for inline styling or custom layouts.',
     },
-    default: {
-      control: 'text',
-    },
   },
 } satisfies Meta<typeof LargeTitle>;
 
@@ -42,10 +39,23 @@ export const Default: Story = {
     setup() {
       return { args };
     },
-    template: '<LargeTitle v-bind="args">{{ args.default }}</LargeTitle>',
+    template: `
+      <LargeTitle weight="1" v-bind="args">
+        Large Title · Regular
+      </LargeTitle>
+      <br />
+      <br />
+      <LargeTitle weight="2" v-bind="args">
+        Large Title · Semibold
+      </LargeTitle>
+      <br />
+      <br />
+      <LargeTitle weight="3" v-bind="args">
+        Large Title · Bold
+      </LargeTitle>
+    `,
   }),
   args: {
-    is: 'span',
-    default: 'Text content',
+    plain: false,
   },
 };

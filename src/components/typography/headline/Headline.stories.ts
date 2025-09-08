@@ -26,9 +26,6 @@ const meta = {
       description:
         'When true, removes the default margins around the text, useful for inline styling or custom layouts.',
     },
-    default: {
-      control: 'text',
-    },
   },
 } satisfies Meta<typeof Headline>;
 
@@ -42,10 +39,23 @@ export const Default: Story = {
     setup() {
       return { args };
     },
-    template: '<Headline v-bind="args">{{ args.default }}</Headline>',
+    template: `
+      <Headline weight="1" v-bind="args">
+        Headline · Regular
+      </Headline>
+      <br />
+      <br />
+      <Headline weight="2" v-bind="args">
+        Headline · Semibold
+      </Headline>
+      <br />
+      <br />
+      <Headline weight="3" v-bind="args">
+        Headline · Bold
+      </Headline>
+    `,
   }),
   args: {
-    is: 'span',
-    default: 'Text content',
+    plain: false,
   },
 };

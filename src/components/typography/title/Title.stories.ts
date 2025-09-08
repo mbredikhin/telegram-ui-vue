@@ -32,9 +32,6 @@ const meta = {
       description:
         'Determines the size and semantic tag of the title, with options for `h2`, `h3`, or `h4`.',
     },
-    default: {
-      control: 'text',
-    },
   },
 } satisfies Meta<typeof Title>;
 
@@ -42,16 +39,86 @@ export default meta;
 
 type Story = StoryObj<typeof Title>;
 
-export const Default: Story = {
+export const Title1: Story = {
   render: (args) => ({
     components: { Title },
     setup() {
       return { args };
     },
-    template: '<Title v-bind="args">{{ args.default }}</Title>',
+    template: `
+      <Title weight="1" v-bind="args">
+        Title 1 · Regular
+      </Title>
+      <br />
+      <br />
+      <Title weight="2" v-bind="args">
+        Title 1 · Semibold
+      </Title>
+      <br />
+      <br />
+      <Title weight="3" v-bind="args">
+        Title 1 · Bold
+      </Title>
+    `,
   }),
   args: {
-    is: 'span',
-    default: 'Text content',
+    level: '1',
+    plain: false,
+  },
+};
+
+export const Title2: Story = {
+  render: (args) => ({
+    components: { Title },
+    setup() {
+      return { args };
+    },
+    template: `
+      <Title weight="1" v-bind="args">
+        Title 2 · Regular
+      </Title>
+      <br />
+      <br />
+      <Title weight="2" v-bind="args">
+        Title 2 · Semibold
+      </Title>
+      <br />
+      <br />
+      <Title weight="3" v-bind="args">
+        Title 2 · Bold
+      </Title>
+    `,
+  }),
+  args: {
+    level: '2',
+    plain: false,
+  },
+};
+
+export const Title3: Story = {
+  render: (args) => ({
+    components: { Title },
+    setup() {
+      return { args };
+    },
+    template: `
+      <Title weight="1" v-bind="args">
+        Title 3 · Regular
+      </Title>
+      <br />
+      <br />
+      <Title weight="2" v-bind="args">
+        Title 3 · Semibold
+      </Title>
+      <br />
+      <br />
+      <Title weight="3" v-bind="args">
+        Title 3 · Bold
+      </Title>
+    `,
+  }),
+  args: {
+    level: '3',
+    plain: false,
   },
 };

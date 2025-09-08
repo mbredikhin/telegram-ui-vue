@@ -27,9 +27,6 @@ const meta = {
       description:
         'The size level of the caption, influencing its styling and typography size.',
     },
-    default: {
-      control: 'text',
-    },
   },
 } satisfies Meta<typeof Caption>;
 
@@ -37,16 +34,56 @@ export default meta;
 
 type Story = StoryObj<typeof Caption>;
 
-export const Default: Story = {
+export const Caption1: Story = {
   render: (args) => ({
     components: { Caption },
     setup() {
       return { args };
     },
-    template: '<Caption v-bind="args">{{ args.default }}</Caption>',
+    template: `
+      <Caption weight="1" v-bind="args">
+        Caption 1 · Regular
+      </Caption>
+      <br />
+      <br />
+      <Caption weight="2" v-bind="args">
+        Caption 1 · Semibold
+      </Caption>
+      <br />
+      <br />
+      <Caption weight="3" v-bind="args">
+        Caption 1 · Bold
+      </Caption>
+    `,
   }),
   args: {
-    is: 'span',
-    default: 'Text content',
+    level: '1',
+  },
+};
+
+export const Caption2: Story = {
+  render: (args) => ({
+    components: { Caption },
+    setup() {
+      return { args };
+    },
+    template: `
+      <Caption weight="1" v-bind="args">
+        Caption 2 · Regular
+      </Caption>
+      <br />
+      <br />
+      <Caption weight="2" v-bind="args">
+        Caption 2 · Semibold
+      </Caption>
+      <br />
+      <br />
+      <Caption weight="3" v-bind="args">
+        Caption 2 · Bold
+      </Caption>
+    `,
+  }),
+  args: {
+    level: '2',
   },
 };

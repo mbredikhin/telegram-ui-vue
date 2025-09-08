@@ -21,9 +21,6 @@ const meta = {
       control: 'text',
       description: 'Specifies the HTML tag used to render the text.',
     },
-    default: {
-      control: 'text',
-    },
   },
 } satisfies Meta<typeof Text>;
 
@@ -37,10 +34,21 @@ export const Default: Story = {
     setup() {
       return { args };
     },
-    template: '<Text v-bind="args">{{ args.default }}</Text>',
+    template: `
+      <Text weight="1" v-bind="args">
+        Text · Regular
+      </Text>
+      <br />
+      <br />
+      <Text weight="2" v-bind="args">
+        Text · Semibold
+      </Text>
+      <br />
+      <br />
+      <Text weight="3" v-bind="args">
+        Text · Bold
+      </Text>
+    `,
   }),
-  args: {
-    is: 'span',
-    default: 'Text content',
-  },
+  args: {},
 };
