@@ -28,25 +28,18 @@ yarn add telegram-ui-vue
 
 Follow these simple steps to kickstart your development journey:
 
-### 1. Import Styles
+### 1. Wrap Your App
 
-Before diving into the development, ensure to import the necessary styles:
-
-```js
-import 'telegram-ui-vue/dist/index.css';
-```
-
-### 2. Wrap Your App
-
-Next, wrap your application with `AppRoot` to leverage our platform's features:
+Wrap your application with `AppRoot` to leverage our platform's features:
 
 ```jsx
 <template>
-  <AppRoot> // Your app </AppRoot>
+  <AppRoot>
+    // Your app
+  </AppRoot>
 </template>
 
 <script setup lang="ts">
-import 'telegram-ui-vue/dist/index.css';
 import { AppRoot } from 'telegram-ui-vue';
 </script>
 ```
@@ -69,7 +62,6 @@ import { AppRoot } from 'telegram-ui-vue';
 </template>
 
 <script setup lang="ts">
-import 'telegram-ui-vue/dist/index.css';
 import { AppRoot, Placeholder } from 'telegram-ui-vue';
 </script>
 ```
