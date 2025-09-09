@@ -3,8 +3,15 @@ import type { StorybookConfig } from '@storybook/vue3-vite';
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.ts'],
   addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        docs: false,
+        actions: false,
+        measure: false,
+        outline: false,
+      },
+    },
     '@storybook/addon-docs',
     '@storybook/addon-themes',
   ],
