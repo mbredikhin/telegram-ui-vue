@@ -27,7 +27,7 @@
       </header>
       <div class="button-wrapper">
         <div
-          v-for="rows of createChunks(AVAILABLE_PINS, 3)"
+          v-for="rows of splitIntoChunks(AVAILABLE_PINS, 3)"
           :key="rows.toString()"
           class="row"
         >
@@ -66,7 +66,7 @@ import { usePlatform } from '@/composables/usePlatform';
 import { computed, InputHTMLAttributes, Ref, ref, useAttrs } from 'vue';
 import { AVAILABLE_PINS, usePinInput } from './lib';
 import { Keys } from '@/lib/accessibility';
-import { createChunks } from '@/lib/chunk';
+import { splitIntoChunks } from '@/lib/array';
 import Backspace36Icon from '@/icons/36/backspace.svg';
 import PinInputCell from './PinInputCell.vue';
 import { Headline } from '@/components/typography';
