@@ -68,8 +68,8 @@ describe('ColorInput', () => {
     vi.mocked(usePlatform).mockReturnValue('ios');
     const wrapper = mount(ColorInput);
 
-    expect(wrapper.find('.color-input').exists()).toBe(true);
-    expect(wrapper.classes()).toContain('color-input--ios');
+    expect(wrapper.find('.tgui-color-input').exists()).toBe(true);
+    expect(wrapper.classes()).toContain('tgui-color-input--ios');
   });
 
   test('applies custom class to the root element', () => {

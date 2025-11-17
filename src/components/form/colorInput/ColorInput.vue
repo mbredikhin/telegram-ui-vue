@@ -7,7 +7,7 @@
       <slot name="before" />
     </template>
     <template #after>
-      <div class="color-input__circle">
+      <div class="tgui-color-input__circle">
         <VisuallyHidden
           is="input"
           type="color"
@@ -16,7 +16,7 @@
           @input="onChange"
         />
         <div
-          class="color-input__circle-color"
+          class="tgui-color-input__circle-color"
           :style="{ 'background-color': String(inputValue) }"
         ></div>
       </div>
@@ -24,7 +24,7 @@
     <component
       :is="platform === 'ios' ? Text : Subheadline"
       caps
-      class="color-input__text"
+      class="tgui-color-input__text"
     >
       {{ inputValue }}
     </component>
@@ -82,8 +82,8 @@ watch(
 );
 
 const classes = computed(() => ({
-  'color-input': true,
-  'color-input--ios': platform === 'ios',
+  'tgui-color-input': true,
+  'tgui-color-input--ios': platform === 'ios',
   [String(attrs.class)]: !!attrs.class,
 }));
 
@@ -94,19 +94,19 @@ function onChange(event: Event) {
 </script>
 
 <style lang="scss">
-.color-input {
+.tgui-color-input {
   display: flex;
   gap: 10px;
   min-height: 48px;
   padding: 10px 12px 10px 16px;
 }
 
-.color-input--ios {
+.tgui-color-input--ios {
   padding: 10px 16px;
   min-height: 50px;
 }
 
-.color-input__circle {
+.tgui-color-input__circle {
   position: relative;
   display: flex;
   align-items: center;
@@ -126,30 +126,30 @@ function onChange(event: Event) {
   );
 }
 
-.color-input__circle-color {
+.tgui-color-input__circle-color {
   width: 16px;
   height: 16px;
   border-radius: 50%;
 }
 
-.color-input__circle-color::before,
-.color-input__circle-color::after {
+.tgui-color-input__circle-color::before,
+.tgui-color-input__circle-color::after {
   content: '';
   position: absolute;
   border-radius: inherit;
 }
 
-.color-input__circle-color::before {
+.tgui-color-input__circle-color::before {
   inset: 2px;
   background: var(--tgui-bg-color);
 }
 
-.color-input__circle-color::after {
+.tgui-color-input__circle-color::after {
   inset: 4px;
   background: inherit;
 }
 
-.color-input__text {
+.tgui-color-input__text {
   flex: 1 1 0;
 }
 </style>

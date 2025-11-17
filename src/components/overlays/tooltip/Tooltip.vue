@@ -38,36 +38,36 @@ const arrowProps = computed(() => ({
 }));
 
 const classes = computed(() => ({
-  tooltip: true,
-  ['tooltip--ios']: platform === 'ios',
-  ['tooltip--dark']: props.mode === 'dark',
+  ['tgui-tooltip']: true,
+  ['tgui-tooltip--ios']: platform === 'ios',
+  ['tgui-tooltip--dark']: props.mode === 'dark',
 }));
 </script>
 
 <style lang="scss">
-.tooltip {
+.tgui-tooltip {
   padding: 10px;
   border-radius: 12px;
   color: var(--tgui-black);
   background: var(--tgui-white);
   box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.1);
+
+  &--dark {
+    box-shadow: none;
+    color: var(--tgui-white);
+    background: var(--tooltip-background-dark);
+  }
 }
 
-.tooltip--dark {
-  box-shadow: none;
+.tgui-tooltip .arrow {
   color: var(--tgui-white);
-  background: var(--tooltip-background-dark);
 }
 
-.tooltip .arrow {
-  color: var(--tgui-white);
-}
-
-.tooltip--dark .arrow {
+.tgui-tooltip--dark .arrow {
   color: var(--tooltip-background-dark);
 }
 
-.tooltip--ios .tooltip--dark {
+.tgui-tooltip--ios.tgui-tooltip--dark {
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
 }

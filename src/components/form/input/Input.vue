@@ -18,14 +18,14 @@
     <Text
       is="input"
       v-if="platform === 'ios'"
-      class="input__inner"
+      class="tgui-input__inner"
       type="text"
       v-bind="attrs"
     />
     <Subheadline
       is="input"
       v-else
-      class="input__inner"
+      class="tgui-input__inner"
       type="text"
       v-bind="attrs"
     />
@@ -57,22 +57,22 @@ const platform = usePlatform();
 const attrs: InputProps = useAttrs();
 
 const classes = computed(() => ({
-  'input-wrapper': true,
-  'input-wrapper--ios': platform === 'ios',
+  'tgui-input-wrapper': true,
+  'tgui-input-wrapper--ios': platform === 'ios',
   [String(attrs.class)]: !!attrs.class,
 }));
 </script>
 
 <style lang="scss">
-.input-wrapper {
+.tgui-input-wrapper {
   padding: 12px 16px;
 }
 
-.input-wrapper--ios {
+.tgui-input-wrapper--ios {
   min-height: 48px;
 }
 
-.input__inner {
+.tgui-input__inner {
   display: block;
   width: 100%;
   margin: 0;
@@ -86,12 +86,12 @@ const classes = computed(() => ({
   color: var(--tgui-text-color);
 }
 
-.input__inner::-webkit-outer-spin-button,
-.input__inner::-webkit-inner-spin-button {
+.tgui-input__inner::-webkit-outer-spin-button,
+.tgui-input__inner::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-.input__inner::placeholder {
+.tgui-input__inner::placeholder {
   color: var(--tgui-secondary-hint-color);
 }
 </style>

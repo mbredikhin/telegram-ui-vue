@@ -20,8 +20,8 @@ describe('Input', () => {
 
     expect(input.exists()).toBe(true);
     expect(input.attributes('placeholder')).toBe('Type here');
-    expect(wrapper.classes()).toContain('input-wrapper');
-    expect(wrapper.classes()).not.toContain('input-wrapper--ios');
+    expect(wrapper.classes()).toContain('tgui-input-wrapper');
+    expect(wrapper.classes()).not.toContain('tgui-input-wrapper--ios');
   });
 
   test('renders with ios platform and uses Text as input', () => {
@@ -35,7 +35,7 @@ describe('Input', () => {
 
     expect(text.exists()).toBe(true);
     expect(text.attributes('placeholder')).toBe(placeholder);
-    expect(wrapper.classes()).toContain('input-wrapper--ios');
+    expect(wrapper.classes()).toContain('tgui-input-wrapper--ios');
   });
 
   test('forwards slots to FormInput', () => {

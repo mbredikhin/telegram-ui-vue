@@ -38,8 +38,8 @@ describe('Tooltip', () => {
 
     const popper = wrapper.find('.popper');
 
-    expect(popper.classes()).toContain('tooltip');
-    expect(popper.classes()).not.toContain('tooltip--dark');
+    expect(popper.classes()).toContain('tgui-tooltip');
+    expect(popper.classes()).not.toContain('tgui-tooltip--dark');
   });
 
   test('applies dark mode class when mode="dark"', () => {
@@ -49,7 +49,7 @@ describe('Tooltip', () => {
 
     const popper = wrapper.find('.popper');
 
-    expect(popper.classes()).toContain('tooltip--dark');
+    expect(popper.classes()).toContain('tgui-tooltip--dark');
   });
 
   test('applies ios class when platform is ios', () => {
@@ -62,7 +62,7 @@ describe('Tooltip', () => {
 
     const popper = wrapper.find('.popper');
 
-    expect(popper.classes()).toContain('tooltip--ios');
+    expect(popper.classes()).toContain('tgui-tooltip--ios');
   });
 
   test('merges arrowProps classes correctly', () => {
